@@ -10,28 +10,34 @@ from bokeh.layouts import gridplot
 
 data_oil = pd.read_csv("World Energy Consumption.csv")
 
-best_oil_countries = ["United States", "Russia", "Saudi Arabia"]
-
 data_oil_countries = data_oil.loc[data_oil["country"] != "World"].dropna(subset = ["iso_code"])
 data_oil_countries["population"] = data_oil_countries["population"]/1000000
 
 cds_oil_world = ColumnDataSource(data_oil[data_oil["country"] == "World"])
 cds_oil_2019 = ColumnDataSource(data_oil_countries[data_oil_countries["year"] == 2019])
 
-cds_oil_best_countries = {}
+cds_oil_united_states = ColumnDataSource(data_oil[data_oil["country"] == "United States"])
+cds_oil_russia = ColumnDataSource(data_oil[data_oil["country"] == "Russia"])
+cds_oil_saudi_arabia = ColumnDataSource(data_oil[data_oil["country"] == "Saudi Arabia"])
 
-for country in best_oil_countries:
-    data_oil_country = data_oil_countries.loc[data_oil_countries["country"] == country]
-    cds_oil_best_countries[country] = ColumnDataSource(data_oil_country)
+cds_oil_africa = ColumnDataSource(data_oil[data_oil["country"] == "Africa"])
+cds_oil_asia = ColumnDataSource(data_oil[data_oil["country"] == "Asia Pacific"])
+cds_oil_middle_east = ColumnDataSource(data_oil[data_oil["country"] == "Middle East"])
+cds_oil_north_america = ColumnDataSource(data_oil[data_oil["country"] == "North America"])
+cds_oil_south_and_central_america = ColumnDataSource(data_oil[data_oil["country"] == "South & Central America"])
 
 
 output_file("rascunho_pedro_1.html")
 
-graph_world_variation = figure()
+graph_best_regions = figure()
 
-graph_world_variation.vbar(x = "year", top = "oil_cons_change_twh", source = cds_oil_world, fill_color = "blue", fill_alpha = 1)
+graph_best_regions.line(x = "year", y = "oil_production", source = cds_oil_africa)
+graph_best_regions.line(x = "year", y = "oil_production", source = cds_oil_asia)
+graph_best_regions.line(x = "year", y = "oil_production", source = cds_oil_middle_east)
+graph_best_regions.line(x = "year", y = "oil_production", source = cds_oil_north_america)
+graph_best_regions.line(x = "year", y = "oil_production", source = cds_oil_south_and_central_america)
 
-# show(graph_world_variation)
+# show(graph_best_regions)
 
 
 output_file("rascunho_pedro_2.html")
@@ -40,26 +46,28 @@ graph_pop_consumption = figure(x_axis_type = "log", y_axis_type = "log")
 
 graph_pop_consumption.circle(x = "population", y = "oil_consumption", source = cds_oil_2019)
 
-# show(graph_pop_consumption)
+show(graph_pop_consumption)
 
 
 output_file("rascunho_pedro_3.html")
 
-graph_united_states = figure()
-graph_united_states.line(x = "year", y = "oil_production", source = cds_oil_best_countries["United States"])
-graph_united_states.y_range = Range1d(start = 0, end = 9100)
+graph_united_states = figure(height = 200)
+graph_united_states.vbar(x = "year", top = "oil_prod_change_twh", source = cds_oil_united_states)
+graph_united_states.x_range = Range1d(start = 1886, end = 2024)
+graph_united_states.y_range = Range1d(start = -2000, end = 1200)
 
-graph_russia = figure()
-graph_russia.line(x = "year", y = "oil_production", source = cds_oil_best_countries["Russia"])
-graph_russia.y_range = Range1d(end = 9100)
+graph_russia = figure(height = 200)
+graph_russia.vbar(x = "year", top = "oil_prod_change_twh", source = cds_oil_russia)
+graph_russia.x_range = Range1d(start = 1886, end = 2024)
+graph_russia.y_range = Range1d(start = -2000, end = 1200)
 
-graph_saudi_arabia = figure()
-graph_saudi_arabia.line(x = "year", y = "oil_production", source = cds_oil_best_countries["Saudi Arabia"])
-graph_saudi_arabia.x_range = Range1d(start = 1895, end = 2025)
-graph_saudi_arabia.y_range = Range1d(end = 9100)
+graph_saudi_arabia = figure(height = 200)
+graph_saudi_arabia.vbar(x = "year", top = "oil_prod_change_twh", source = cds_oil_saudi_arabia)
+graph_saudi_arabia.x_range = Range1d(start = 1886, end = 2024)
+graph_saudi_arabia.y_range = Range1d(start = -2000, end = 1200)
 
 grid = gridplot([[graph_united_states],
                  [graph_russia],
                  [graph_saudi_arabia]])
 
-show(grid)
+# show(grid)

@@ -29,10 +29,9 @@ output_file("rascunho_pedro_1.html")
 
 graph_world_year = figure()
 
-graph_world_year.line(x = "year", y = "oil_production", source = cds_oil_world, line_color = "green")
-graph_world_year.line(x = "year", y = "oil_consumption", source = cds_oil_world, line_color = "red")
+graph_world_year.vbar(x = "year", top = "oil_prod_change_twh", source = cds_oil_world, fill_color = "blue", fill_alpha = 1)
 
-# save(graph_world_year)
+show(graph_world_year)
 
 
 output_file("rascunho_pedro_2.html")
@@ -77,4 +76,4 @@ grid = gridplot([[graph_united_states, graph_russia, graph_saudi_arabia],
                  [graph_canada, graph_iraq, graph_china],
                  [graph_iran, graph_brazil, graph_united_arab_emirates]])
 
-show(grid)
+# show(grid)

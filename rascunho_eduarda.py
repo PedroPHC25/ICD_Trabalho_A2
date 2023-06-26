@@ -79,7 +79,7 @@ p.background_fill_color = "#38ABF2"  # Altera a cor de fundo do gráfico
 # Mostrando o gráfico:
 show(p)
 
-'''
+
 #GRÁFICO 3: VARIAÇÃO PERCENTUAL ANUAL NO CONSUMO DE VENTO, COMPARAÇÃO ENTRE BRASIL E ARGENTINA
 
 data = pd.read_csv("World Energy Consumption.csv")
@@ -107,3 +107,30 @@ output_file("line_chart.html")
 show(p)
 
 '''
+
+# Leitura do arquivo CSV
+data = pd.read_csv("World Energy Consumption.csv")
+
+# Filtrar os dados para o ano de 2007
+df_filtered = data[data['year'] == 2007]
+
+# Ordenar os valores da coluna 'wind_consumption' em ordem decrescente
+df_sorted = df_filtered.sort_values('wind_consumption', ascending=False)
+
+# Selecionar os 10 maiores valores da coluna 'wind_consumption'
+df_top_10 = df_sorted.head(10)
+
+# Selecionar apenas as colunas desejadas ('country' e 'wind_consumption')
+df_top_10_filtered = df_top_10[['country', 'wind_consumption']]
+
+# Configurar a saída para um arquivo HTML
+output_file("bar_chart.html")
+
+# Criar uma figura
+p = figure(title="10 Maiores Consumidores de Energia Eólica em 2007", x_axis_label='País', y_axis_label='Consumo de Energia Eólica (kWh)')
+
+# Plotar o gráfico de barras
+p.vbar(x='country', top='wind_consumption', width=5, source=df_top_10_filtered)
+
+# Mostrar o gráfico
+show(p)

@@ -37,7 +37,7 @@ graph_best_regions.line(x = "year", y = "oil_production", source = cds_oil_middl
 graph_best_regions.line(x = "year", y = "oil_production", source = cds_oil_north_america)
 graph_best_regions.line(x = "year", y = "oil_production", source = cds_oil_south_and_central_america)
 
-show(graph_best_regions)
+# show(graph_best_regions)
 
 
 output_file("rascunho_pedro_2.html")
@@ -46,23 +46,25 @@ graph_pop_consumption = figure(x_axis_type = "log", y_axis_type = "log")
 
 graph_pop_consumption.circle(x = "population", y = "oil_consumption", source = cds_oil_2019)
 
-# show(graph_pop_consumption)
+show(graph_pop_consumption)
 
 
 output_file("rascunho_pedro_3.html")
 
 graph_united_states = figure(height = 200)
-graph_united_states.line(x = "year", y = "oil_production", source = cds_oil_united_states)
-graph_united_states.y_range = Range1d(start = 0, end = 9100)
+graph_united_states.vbar(x = "year", top = "oil_prod_change_twh", source = cds_oil_united_states)
+graph_united_states.x_range = Range1d(start = 1886, end = 2024)
+graph_united_states.y_range = Range1d(start = -2000, end = 1200)
 
 graph_russia = figure(height = 200)
-graph_russia.line(x = "year", y = "oil_production", source = cds_oil_russia)
-graph_russia.y_range = Range1d(end = 9100)
+graph_russia.vbar(x = "year", top = "oil_prod_change_twh", source = cds_oil_russia)
+graph_russia.x_range = Range1d(start = 1886, end = 2024)
+graph_russia.y_range = Range1d(start = -2000, end = 1200)
 
 graph_saudi_arabia = figure(height = 200)
-graph_saudi_arabia.line(x = "year", y = "oil_production", source = cds_oil_saudi_arabia)
-graph_saudi_arabia.x_range = Range1d(start = 1895, end = 2025)
-graph_saudi_arabia.y_range = Range1d(end = 9100)
+graph_saudi_arabia.vbar(x = "year", top = "oil_prod_change_twh", source = cds_oil_saudi_arabia)
+graph_saudi_arabia.x_range = Range1d(start = 1886, end = 2024)
+graph_saudi_arabia.y_range = Range1d(start = -2000, end = 1200)
 
 grid = gridplot([[graph_united_states],
                  [graph_russia],

@@ -36,7 +36,12 @@ output_file("rascunho_pedro_1.html")
 graph_best_regions = figure()
 
 # Gerando as 5 linhas com base dos CDSs criados anteriormente, já com suas cores e legendas
-graph_best_regions.line(x = "year", y = "oil_production", source = cds_oil_middle_east, line_color = "orange", line_width = 2, legend_label = "Oriente Médio")
+graph_best_regions.line(x = "year", 
+                        y = "oil_production", 
+                        source = cds_oil_middle_east, 
+                        line_color = "orange", 
+                        line_width = 2, 
+                        legend_label = "Oriente Médio")
 graph_best_regions.line(x = "year", y = "oil_production", source = cds_oil_north_america, line_color = "blue", line_width = 2, legend_label = "América do Norte")
 graph_best_regions.line(x = "year", y = "oil_production", source = cds_oil_africa, line_color = "red", line_width = 2, legend_label = "África")
 graph_best_regions.line(x = "year", y = "oil_production", source = cds_oil_asia, line_color = "yellow", line_width = 2, legend_label = "Ásia")
@@ -45,6 +50,7 @@ graph_best_regions.line(x = "year", y = "oil_production", source = cds_oil_south
 # Tirando os ticks secundários
 graph_best_regions.xaxis.minor_tick_line_color = None
 graph_best_regions.yaxis.minor_tick_line_color = None
+
 
 # Ajustando a posição da legenda
 graph_best_regions.legend.location = "top_left"
@@ -61,6 +67,12 @@ graph_best_regions.yaxis.axis_label = "Produção (em terawatts-hora)"
 graph_best_regions.axis.axis_label_text_font_style = "normal"
 graph_best_regions.xaxis.axis_label_text_font = "arial"
 graph_best_regions.yaxis.axis_label_text_font = "arial"
+
+# Ajustando o grid
+graph_best_regions.xgrid.grid_line_alpha = 0.4
+graph_best_regions.ygrid.grid_line_alpha = 0.4
+
+graph_best_regions.toolbar.autohide = True
 
 
 save(graph_best_regions)

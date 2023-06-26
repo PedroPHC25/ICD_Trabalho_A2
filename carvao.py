@@ -1,6 +1,7 @@
 import pandas as pd
 from bokeh.plotting import figure, output_file, show
 from bokeh.models import ColumnDataSource
+from bokeh.layouts import gridplot
 
 #Gráfico da produção de energia dos continentes ao longo do tempo
 
@@ -18,9 +19,9 @@ africa = figure()
 africa.line(x= "year", y="coal_production", source=source)
 
 # Oriente Médio
-om_data = csv[csv["country"] == "Middle East"]
+oriente_data = csv[csv["country"] == "Middle East"]
 
-source = ColumnDataSource(om_data)
+source = ColumnDataSource(oriente_data)
 
 oriente = figure()
 oriente.line(x= "year", y="coal_production", source=source)
@@ -41,8 +42,6 @@ source = ColumnDataSource(am_norte_data)
 am_norte = figure()
 am_norte.line(x= "year", y="coal_production", source=source)
 
+grid = gridplot([[europa, africa], [am_norte, oriente]], width=500, height=300)
 
-plot = figure()
-plot.line(x= "year", y="coal_production", source=source)
-
-show(am_norte)
+show(grid)

@@ -2,7 +2,7 @@ from bokeh.io import output_file, show
 from bokeh.models import ColumnDataSource
 from bokeh.plotting import figure
 import pandas as pd
-
+'''
 #1: GRÁFICO DE BARRAS DE GERAÇÃO DE ELETRICIDADE A PARTIR DO VENTO POR PAÍS (MEDIDDO EM TERAWATT-HORA)
 
 # Leitura do arquivo CSV
@@ -20,6 +20,12 @@ df_top_10 = df_sorted.head(10)
 # Selecionar apenas as colunas desejadas ('country' e 'wind_electricity')
 df_top_10_filtered = df_top_10[['country', 'wind_electricity']]
 
+# Identificar o país com o maior valor de wind_electricity
+pais_maior_geracao = df_top_10_filtered[df_top_10_filtered['wind_electricity'] == df_top_10_filtered['wind_electricity'].max()]['country'].iloc[0]
+
+# Excluir o país com o maior valor de wind_electricity
+df_top_10_filtered = df_top_10_filtered[df_top_10_filtered['country'] != pais_maior_geracao]
+
 # Criar um ColumnDataSource com os dados organizados
 data_organized = ColumnDataSource(df_top_10_filtered)
 
@@ -27,7 +33,7 @@ data_organized = ColumnDataSource(df_top_10_filtered)
 output_file("grafico_barras.html")
 
 # Criar a figura
-p = figure(x_range=df_top_10_filtered['country'], height=400, title="Geração de Eletricidade a partir do Vento por País")
+p = figure(x_range=df_top_10_filtered['country'], height=600, width=800, title="Geração de Eletricidade a partir do Vento por País")
 
 # Plotar as barras
 p.vbar(x='country', top='wind_electricity', width=0.9, source=data_organized)
@@ -39,7 +45,7 @@ p.yaxis.axis_label = "Geração de Eletricidade (TWh)"
 # Exibir o gráfico
 show(p)
 
-'''
+
 #2: GRÁFICO DE LINHA CONSUMO PER CAPITA DE ELETRICIDADE DO VENTO( MEDIDA EM kWh)
 
 # Leitura do arquivo CSV
@@ -106,7 +112,30 @@ p.legend.location = "top_left"
 p.legend.title = "Países"
 
 #Configure a saída para um arquivo HTML e mostre o gráfico:
-output_file("line_chart.html")
+output_file("line_chart2.html")
 show(p)
 
 '''
+#GRÁFICO 4: DISPERSÃO
+
+# Leitura do arquivo CSV
+data = pd.read_csv("World Energy Consumption.csv")
+
+#Filtrar os dados para o ano de 2000
+df_filtered_year = data[data['year'] == 2000]
+# Criar a figura
+p = figure(height=400, width=600, title="Relação entre Wind Elec per Capita e Wind Energy per Capita")
+
+# Plotar o gráfico de dispersão
+p.scatter(x='wind_elec_per_capita', y='wind_energy_per_capita', source=df_filtered_year)
+
+# Configurar rótulos e títulos dos eixos
+p.xaxis.axis_label = "Wind Elec per Capita"
+p.yaxis.axis_label = "Wind Energy per Capita"
+
+# Configurar a saída para um arquivo HTML
+output_file("scatter_plot.html")
+
+# Exibir o gráfico
+show(p)
+

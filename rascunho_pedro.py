@@ -10,7 +10,7 @@ from bokeh.layouts import gridplot
 
 data_oil = pd.read_csv("World Energy Consumption.csv")
 
-best_oil_countries = ["United States", "Russia", "Saudi Arabia", "Canada"]
+best_oil_countries = ["United States", "Russia", "Saudi Arabia"]
 
 data_oil_countries = data_oil.loc[data_oil["country"] != "World"].dropna(subset = ["iso_code"])
 data_oil_countries["population"] = data_oil_countries["population"]/10000000
@@ -53,9 +53,6 @@ graph_russia.line(x = "year", y = "oil_production", source = cds_oil_best_countr
 
 graph_saudi_arabia = figure()
 graph_saudi_arabia.line(x = "year", y = "oil_production", source = cds_oil_best_countries["Saudi Arabia"])
-
-graph_canada = figure()
-graph_canada.line(x = "year", y = "oil_production", source = cds_oil_best_countries["Canada"])
 
 grid = gridplot([[graph_united_states, graph_russia, graph_saudi_arabia]])
 

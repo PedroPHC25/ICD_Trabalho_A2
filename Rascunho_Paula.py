@@ -58,7 +58,21 @@ scatterplot_gdp_nuclear = figure(width= 640, height = 480, tools = "box_zoom, pa
 
 scatterplot_gdp_nuclear.circle(x = "x", y = "y", source = data_source)
 
+scatterplot_gdp_nuclear.xaxis[0].formatter.use_scientific=False
+
 show(scatterplot_gdp_nuclear)
+
+
+
+output_file("nuclear_rascunho3.html")
+
+data_source = ColumnDataSource(data= nuclear[nuclear["country"]=="World"])
+
+scatterplot_year_nuclear = figure()
+
+scatterplot_year_nuclear.line(x = "year", y = "nuclear_electricity", source = data_source)
+
+show(scatterplot_year_nuclear)
 
 
 

@@ -17,13 +17,13 @@ source = ColumnDataSource(africa_data)
 africa = figure()
 africa.line(x= "year", y="coal_production", source=source)
 
-# Ásia 
-asia_data = csv[csv["country"] == "Asia Pacific"]
+# Oriente Médio
+om_data = csv[csv["country"] == "Middle East"]
 
-source = ColumnDataSource(asia_data)
+source = ColumnDataSource(om_data)
 
-asia = figure()
-asia.line(x= "year", y="coal_production", source=source)
+oriente = figure()
+oriente.line(x= "year", y="coal_production", source=source)
 
 # Europa 
 europa_data = csv[csv["country"] == "Europe"]
@@ -33,8 +33,16 @@ source = ColumnDataSource(europa_data)
 europa = figure()
 europa.line(x= "year", y="coal_production", source=source)
 
+# América do norte
+am_norte_data = csv[csv["country"] == "North America"]
+
+source = ColumnDataSource(am_norte_data)
+
+am_norte = figure()
+am_norte.line(x= "year", y="coal_production", source=source)
+
 
 plot = figure()
 plot.line(x= "year", y="coal_production", source=source)
 
-show(europa)
+show(am_norte)

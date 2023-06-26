@@ -3,6 +3,8 @@ from bokeh.models import Range1d
 from bokeh.io import output_file, save, show
 import pandas as pd
 from bokeh.models import ColumnDataSource
+from bokeh.layouts import gridplot
+
 
 nuclear = pd.read_csv("World Energy Consumption.csv")
 
@@ -43,7 +45,7 @@ scatterplot_gdp_nuclear_share.yaxis.minor_tick_line_color = "black"
 scatterplot_gdp_nuclear_share.yaxis.minor_tick_in = 5
 scatterplot_gdp_nuclear_share.yaxis.major_label_orientation = "vertical"
 
-show(scatterplot_gdp_nuclear_share)
+#show(scatterplot_gdp_nuclear_share)
 
 
 
@@ -54,25 +56,46 @@ data_pib_nuclear_elec = {"x": nuclear["gdp"], "y": nuclear["nuclear_electricity"
 data_source = ColumnDataSource(data=data_pib_nuclear_elec )
 
  #configura o tamanho e as ferramentas pretendidas
-scatterplot_gdp_nuclear = figure(width= 640, height = 480, tools = "box_zoom, pan, reset, save, wheel_zoom")
+scatterplot_gdp_nuclear = figure( tools = "box_zoom, pan, reset, save, wheel_zoom")
 
 scatterplot_gdp_nuclear.circle(x = "x", y = "y", source = data_source)
 
 scatterplot_gdp_nuclear.xaxis[0].formatter.use_scientific=False
 
-show(scatterplot_gdp_nuclear)
+#show(scatterplot_gdp_nuclear)
 
 
 
 output_file("nuclear_rascunho3.html")
 
-data_source = ColumnDataSource(data= nuclear[nuclear["country"]=="World"])
+data_source = ColumnDataSource(data= nuclear[nuclear["country"]=="United States"])
+scatterplot_year_nuclear_EUA = figure()
+scatterplot_year_nuclear_EUA.line(x = "year", y = "nuclear_electricity", source = data_source)
 
-scatterplot_year_nuclear = figure()
+data_source = ColumnDataSource(data= nuclear[nuclear["country"]=="France"])
+scatterplot_year_nuclear_France = figure()
+scatterplot_year_nuclear_France.line(x = "year", y = "nuclear_electricity", source = data_source)
 
-scatterplot_year_nuclear.line(x = "year", y = "nuclear_electricity", source = data_source)
+data_source = ColumnDataSource(data= nuclear[nuclear["country"]=="Japan"])
+scatterplot_year_nuclear_Japan = figure()
+scatterplot_year_nuclear_Japan.line(x = "year", y = "nuclear_electricity", source = data_source)
 
-show(scatterplot_year_nuclear)
+data_source = ColumnDataSource(data= nuclear[nuclear["country"]=="Germany"])
+scatterplot_year_nuclear_Germany = figure()
+scatterplot_year_nuclear_Germany.line(x = "year", y = "nuclear_electricity", source = data_source)
+
+data_source = ColumnDataSource(data= nuclear[nuclear["country"]=="Russia"])
+scatterplot_year_nuclear_Russia = figure()
+scatterplot_year_nuclear_Russia.line(x = "year", y = "nuclear_electricity", source = data_source)
+
+data_source = ColumnDataSource(data= nuclear[nuclear["country"]=="South Korea"])
+scatterplot_year_nuclear_SouthKorea = figure()
+scatterplot_year_nuclear_SouthKorea.line(x = "year", y = "nuclear_electricity", source = data_source)
+
+plot = gridplot([[scatterplot_year_nuclear_EUA, scatterplot_year_nuclear_France, scatterplot_year_nuclear_Japan],
+                  [scatterplot_year_nuclear_Germany, scatterplot_year_nuclear_Russia, scatterplot_year_nuclear_SouthKorea]])
+
+show(plot)
 
 
 

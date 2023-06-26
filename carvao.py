@@ -33,8 +33,16 @@ source = ColumnDataSource(europa_data)
 europa = figure()
 europa.line(x= "year", y="coal_production", source=source)
 
+# América do norte
+am_norte_data = csv[csv["country"] == "North America"]
+
+source = ColumnDataSource(am_norte_data)
+
+am_norte = figure()
+am_norte.line(x= "year", y="coal_production", source=source)
+
 
 plot = figure()
 plot.line(x= "year", y="coal_production", source=source)
 
-show(oriente)
+show(am_norte)

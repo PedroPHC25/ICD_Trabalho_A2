@@ -14,10 +14,32 @@ data_pib_nuclear_share_elec = {"x": nuclear["gdp"], "y": nuclear["nuclear_share_
 
 data_source = ColumnDataSource(data=data_pib_nuclear_share_elec )
 
-scatterplot_gdp_nuclear_share = figure()
+ #configura o tamanho e as ferramentas pretendidas
+scatterplot_gdp_nuclear_share = figure(width= 640, height = 480, tools = "box_zoom, pan, reset, save, wheel_zoom")
 
 scatterplot_gdp_nuclear_share.circle(x = "x", y = "y", source = data_source)
 
+
+scatterplot_gdp_nuclear_share.toolbar.logo = None #retira a logo
+scatterplot_gdp_nuclear_share.toolbar.autohide = True #deixa o barra de ferramentas invisível
+scatterplot_gdp_nuclear_share.toolbar_location = "below" #define a localização barra de ferramentas
+
+
+# título
+scatterplot_gdp_nuclear_share.title.text = "Participação do consumo de eletricidade proveniente da energia nuclear por PIB"
+scatterplot_gdp_nuclear_share.title.text_color = "DarkBlue"
+scatterplot_gdp_nuclear_share.title.text_font = "Arial"
+scatterplot_gdp_nuclear_share.title.text_font_size = "13px"
+scatterplot_gdp_nuclear_share.title.align = "center"
+
 show(scatterplot_gdp_nuclear_share)
+
+
+
+
+
+
+
+
 
 

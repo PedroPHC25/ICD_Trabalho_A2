@@ -1,45 +1,37 @@
 from bokeh.io import output_file, show
 from bokeh.models import ColumnDataSource
 from bokeh.plotting import figure
-from bokeh.sampledata.periodic_table import elements
 import pandas as pd
 
-#pd.set_option("read_csv.py", None)
-#Ver os elementos
-#print(elements.head())
-#Ver quantos tem
-#print(elements.count())
-#print(elements)
 
-#Para tirar os elementos que faltam dados(NA)
-#elements.dropna(inplace=True)
+# Leitura do arquivo CSV
+data = pd.read_csv("World Energy Consumption.csv")
 
-'''
-#Dict p/ colorir elementos de acordo com o estado físico encontrado na natureza
+# Filtrar os dados para o ano de 2020
+df_filtered = data[data['year'] == 2020]
 
-color_dict = {"gas":"blue", "liquid": "orange", "solid":"grey"}
-colors =[]
+# Ordenar os valores da coluna 'wind_electricity' em ordem decrescente
+df_sorted = df_filtered.sort_values('wind_electricity', ascending=False)
 
-for each_element in elements["standard state"]:
-    colors.append(color_dict[each_element])
+print(df_sorted)
 
-elements["color"] = colors
-elements["size"] = elements["van der Waals radius"]/10
+# Selecionar os 10 maiores valores da coluna 'wind_electricity'
+df_top_10 = df_sorted.head(10)
 
-gas =ColumnDataSource(elements[elements["standard state"]=="gas"])
-liquid = ColumnDataSource(elements[elements["standard state"]=="liquid"])
-solid = ColumnDataSource(elements[elements["standard state"]=="solid"])
+# Criar um ColumnDataSource com os dados organizados
+data_organized = ColumnDataSource(df_top_10)
 
+# Configurar a saída para um arquivo HTML
+output_file("scatter_plot.html")
 
+# Criar uma figura
+p = figure(title="Maiores Valores de Wind Electricity em 2020", x_axis_label='País', y_axis_label='Wind Electricity')
 
-plot=figure()
-plot.xaxis.axis_label = "Atomic Radius"
-plot.yaxis.axis_label = "Boiling Point"
+# Plotar o gráfico de pontos
+p.vbar('country', 'wind_electricity', source=data_organized)
 
-plot.circle(x="atomic radius", y = "boiling point", size = "size", color= "color", fill_alpha=0.13, legend_lable= "Gas", source=gas)
-plot.circle(x="atomic radius", y = "boiling point", size = "size", color= "color", fill_alpha=0.13, legend_lable= "Liquid", source=liquid)
-plot.circle(x="atomic radius", y = "boiling point", size = "size", color= "color", fill_alpha=0.13, legend_lable= "Solid", source=solid)
-'''
-output_file("graf.html")
-show(plot)
+# Rotacionar os rótulos do eixo x
+p.xaxis.major_label_orientation = 1.2
 
+# Mostrar o gráfico
+show(p)

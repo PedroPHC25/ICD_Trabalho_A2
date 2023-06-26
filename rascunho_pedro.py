@@ -4,9 +4,6 @@ from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource, Range1d
 from bokeh.layouts import gridplot
 
-# Geração de eletricidade por petróleo no mundo por ano (gráfico de linha)
-# Relação entre renda per capita e produção de petróleo em 2019 (scatter)
-# ???
 
 data_oil = pd.read_csv("World Energy Consumption.csv")
 
@@ -44,7 +41,7 @@ output_file("rascunho_pedro_2.html")
 
 graph_pop_consumption = figure(x_axis_type = "log", y_axis_type = "log")
 
-graph_pop_consumption.circle(x = "population", y = "oil_consumption", source = cds_oil_2019)
+graph_pop_consumption.circle(x = "population", y = "oil_consumption", source = cds_oil_2019, size = 10)
 
 show(graph_pop_consumption)
 

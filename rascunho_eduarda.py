@@ -3,7 +3,6 @@ from bokeh.models import ColumnDataSource
 from bokeh.plotting import figure
 import pandas as pd
 
-'''
 #1: GRÁFICO DE BARRAS DE GERAÇÃO DE ELETRICIDADE A PARTIR DO VENTO POR PAÍS (MEDIDDO EM TERAWATT-HORA)
 
 # Leitura do arquivo CSV
@@ -24,19 +23,23 @@ df_top_10_filtered = df_top_10[['country', 'wind_electricity']]
 # Criar um ColumnDataSource com os dados organizados
 data_organized = ColumnDataSource(df_top_10_filtered)
 
-# Criar uma figura
-p = figure(title="Países que mais geraram energia a partir do vento em 2020", x_axis_label='País', y_axis_label='Geração de eletricidade a partir do vento em terawatt-hora')
-
-# Plotar o gráfico de barras
-p.vbar(x='country', top='wind_electricity', width=5, source=data_organized)
-
 # Configurar a saída para um arquivo HTML
-output_file("bar_chart.html")
+output_file("grafico_barras.html")
 
-# Mostrar o gráfico
+# Criar a figura
+p = figure(x_range=df_top_10_filtered['country'], height=400, title="Geração de Eletricidade a partir do Vento por País")
+
+# Plotar as barras
+p.vbar(x='country', top='wind_electricity', width=0.9, source=data_organized)
+
+# Configurar rótulos e títulos dos eixos
+p.xaxis.axis_label = "País"
+p.yaxis.axis_label = "Geração de Eletricidade (TWh)"
+
+# Exibir o gráfico
 show(p)
 
-
+'''
 #2: GRÁFICO DE LINHA CONSUMO PER CAPITA DE ELETRICIDADE DO VENTO( MEDIDA EM kWh)
 
 # Leitura do arquivo CSV
@@ -107,30 +110,3 @@ output_file("line_chart.html")
 show(p)
 
 '''
-
-# Leitura do arquivo CSV
-data = pd.read_csv("World Energy Consumption.csv")
-
-# Filtrar os dados para o ano de 2007
-df_filtered = data[data['year'] == 2007]
-
-# Ordenar os valores da coluna 'wind_consumption' em ordem decrescente
-df_sorted = df_filtered.sort_values('wind_consumption', ascending=False)
-
-# Selecionar os 10 maiores valores da coluna 'wind_consumption'
-df_top_10 = df_sorted.head(10)
-
-# Selecionar apenas as colunas desejadas ('country' e 'wind_consumption')
-df_top_10_filtered = df_top_10[['country', 'wind_consumption']]
-
-# Configurar a saída para um arquivo HTML
-output_file("bar_chart.html")
-
-# Criar uma figura
-p = figure(title="10 Maiores Consumidores de Energia Eólica em 2007", x_axis_label='País', y_axis_label='Consumo de Energia Eólica (kWh)')
-
-# Plotar o gráfico de barras
-p.vbar(x='country', top='wind_consumption', width=5, source=df_top_10_filtered)
-
-# Mostrar o gráfico
-show(p)

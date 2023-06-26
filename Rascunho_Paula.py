@@ -6,13 +6,13 @@ from bokeh.models import ColumnDataSource
 from bokeh.layouts import gridplot
 
 
-nuclear = pd.read_csv("World Energy Consumption.csv")
+data = pd.read_csv("World Energy Consumption.csv")
 
-print(nuclear)
+print(data)
 
 output_file("nuclear_rascunho.html")
 
-data_pib_nuclear_share_elec = {"x": nuclear["gdp"], "y": nuclear["nuclear_share_elec"]}
+data_pib_nuclear_share_elec = {"x": data["gdp"], "y": data["nuclear_share_elec"]}
 
 data_source = ColumnDataSource(data=data_pib_nuclear_share_elec )
 
@@ -51,7 +51,7 @@ scatterplot_gdp_nuclear_share.yaxis.major_label_orientation = "vertical"
 
 output_file("nuclear_rascunho2.html")
 
-data_pib_nuclear_elec = {"x": nuclear["gdp"], "y": nuclear["nuclear_electricity"]}
+data_pib_nuclear_elec = {"x": data["gdp"], "y": data["nuclear_electricity"]}
 
 data_source = ColumnDataSource(data=data_pib_nuclear_elec )
 
@@ -68,7 +68,7 @@ scatterplot_gdp_nuclear.xaxis[0].formatter.use_scientific=False
 
 output_file("nuclear_rascunho3.html")
 """EUA"""
-data_source = ColumnDataSource(data= nuclear[nuclear["country"]=="United States"]) #Cria o ColumnDataSource
+data_source = ColumnDataSource(data=data[data["country"]=="United States"]) #Cria o ColumnDataSource
 line_year_nuclear_EUA = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
 line_year_nuclear_EUA.line(x = "year", y = "nuclear_electricity", source = data_source)
 # ferramnetas
@@ -93,7 +93,7 @@ line_year_nuclear_EUA.yaxis.major_label_orientation = "vertical"
 
 
 """France"""
-data_source = ColumnDataSource(data= nuclear[nuclear["country"]=="France"])
+data_source = ColumnDataSource(data= data[data["country"]=="France"])
 line_year_nuclear_France = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
 line_year_nuclear_France.line(x = "year", y = "nuclear_electricity", source = data_source)
 # ferramnetas
@@ -117,7 +117,7 @@ line_year_nuclear_France.yaxis.minor_tick_in = 5
 line_year_nuclear_France.yaxis.major_label_orientation = "vertical"
 
 """Japan"""
-data_source = ColumnDataSource(data= nuclear[nuclear["country"]=="Japan"])
+data_source = ColumnDataSource(data= data[data["country"]=="Japan"])
 line_year_nuclear_Japan = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
 line_year_nuclear_Japan.line(x = "year", y = "nuclear_electricity", source = data_source)
 # ferramnetas
@@ -142,7 +142,7 @@ line_year_nuclear_Japan.yaxis.major_label_orientation = "vertical"
 
 
 """Germany"""
-data_source = ColumnDataSource(data= nuclear[nuclear["country"]=="Germany"])
+data_source = ColumnDataSource(data= data[data["country"]=="Germany"])
 line_year_nuclear_Germany = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
 line_year_nuclear_Germany.line(x = "year", y = "nuclear_electricity", source = data_source)
 # ferramnetas
@@ -166,7 +166,7 @@ line_year_nuclear_Germany.yaxis.minor_tick_in = 5
 line_year_nuclear_Germany.yaxis.major_label_orientation = "vertical"
 
 """Russia"""
-data_source = ColumnDataSource(data= nuclear[nuclear["country"]=="Russia"])
+data_source = ColumnDataSource(data= data[data["country"]=="Russia"])
 line_year_nuclear_Russia = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
 line_year_nuclear_Russia.line(x = "year", y = "nuclear_electricity", source = data_source)
 # ferramnetas
@@ -190,7 +190,7 @@ line_year_nuclear_Russia.yaxis.minor_tick_in = 5
 line_year_nuclear_Russia.yaxis.major_label_orientation = "vertical"
 
 """South Korea"""
-data_source = ColumnDataSource(data= nuclear[nuclear["country"]=="South Korea"])
+data_source = ColumnDataSource(data= data[data["country"]=="South Korea"])
 line_year_nuclear_SouthKorea = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
 line_year_nuclear_SouthKorea.line(x = "year", y = "nuclear_electricity", source = data_source)
 # ferramnetas
@@ -217,6 +217,14 @@ plot = gridplot([[line_year_nuclear_EUA, line_year_nuclear_France, line_year_nuc
                   [line_year_nuclear_Germany, line_year_nuclear_Russia, line_year_nuclear_SouthKorea]])
 
 show(plot)
+
+output_file("nuclear_rascunho4.html")
+
+data_source = ColumnDataSource(data= data[data["country"]=="world"]) #Cria o ColumnDataSource
+line_year_nuclear_EUA = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
+line_year_nuclear_EUA.line(x = "year", y = "nuclear_electricity", source = data_source)
+
+#show(scatterplot_gdp_nuclear)
 
 
 

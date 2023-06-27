@@ -134,7 +134,7 @@ graph_best_regions.add_layout(Label(x = 1992,
                                     text_alpha = 0.7))
 
 # Salvando o gráfico
-# save(graph_best_regions)
+save(graph_best_regions)
 
 
 ##############################################################################################################
@@ -203,15 +203,15 @@ graph_pop_consumption.toolbar.autohide = True
 graph_pop_consumption.toolbar.logo = None
 
 # Adicionando uma anotação
-graph_pop_consumption.add_layout(Label(x = 100000000, 
-                                    y = 15, 
-                                    text = "Em geral, quanto maior \na população, maior \no consumo de petróleo", 
-                                    text_font_size = "12px", 
-                                    text_color = "darkslategray", 
-                                    text_alpha = 0.8))
+graph_pop_consumption.add_layout(Label(x = 100000000,
+                                       y = 15, 
+                                       text = "Em geral, quanto maior \na população, maior \no consumo de petróleo",
+                                       text_font_size = "12px",
+                                       text_color = "darkslategray",
+                                       text_alpha = 0.8))
 
 # Salvando o gráfico
-# save(graph_pop_consumption)
+save(graph_pop_consumption)
 
 
 ##############################################################################################################
@@ -314,12 +314,43 @@ grid = gridplot([[graph_united_states],
                  toolbar_options = dict(autohide = True, logo = None), 
                  toolbar_location = "right")
 
+# Criando uma anotação no gráfico referente aos Estados Unidos
+graph_united_states.add_layout(BoxAnnotation(left = 2009, 
+                                             right = 2019,
+                                             fill_color = "green",
+                                             fill_alpha = 0.3))
+graph_united_states.add_layout(Label(x = 2005, 
+                                     y = -1750, 
+                                     text = "Aumento na produção estadunidense devido\n ao desenvolvimento de tecnologias para\n extração e produção do petróleo de xisto", text_font_size = "11px",
+                                     text_color = "green",
+                                     text_alpha = 0.8,
+                                     text_align = "right"))
 
-graph_united_states.add_layout(Label(x = 1960, 
-                                    y = -1750, 
-                                    text = "Aumento na produção estadunidense \ndevido ao desenvolvimento de tecnologias \npara extração e produção do petróleo de xisto", 
-                                    text_font_size = "11px", 
-                                    text_color = "darkslategray", 
-                                    text_alpha = 0.8))
+# Criando uma anotação no gráfico referente à Rússia
+graph_russia.add_layout(BoxAnnotation(left = 1988, 
+                                      right = 1996, 
+                                      fill_color = "red", 
+                                      fill_alpha = 0.3))
+graph_russia.add_layout(Label(x = 1984, 
+                              y = -1750, 
+                              text = "Queda na produção russa provocada\n pela instabilidade ocasionada pela\n queda da União Soviética em 1991", 
+                              text_font_size = "11px", 
+                              text_color = "red", 
+                              text_alpha = 0.8,
+                              text_align = "right"))
 
+# Criando uma anotação no gráfico referente à Árábia Saudita
+graph_saudi_arabia.add_layout(BoxAnnotation(left = 1981,
+                                            right = 1985,
+                                            fill_color = "red",
+                                            fill_alpha = 0.3))
+graph_saudi_arabia.add_layout(Label(x = 1970,
+                                    y = -1750,
+                                    text = "Forte baixa na produção saudita gerada pela\n crise mundial desencadeada pela Revolução Iraniana\n de 1979 e pela Guerra Irã-Iraque de 1980",
+                                    text_font_size = "11px",
+                                    text_color = "red",
+                                    text_alpha = 0.8,
+                                    text_align = "right"))
+
+# Salvando a visualização
 save(grid)

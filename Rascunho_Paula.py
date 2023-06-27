@@ -11,19 +11,24 @@ data = pd.read_csv("World Energy Consumption.csv")
 # Cria um data frame com todos os países excluindo a soma dos continentes e do mundo ("world"), que estão no dado original.
 data_countries = data.loc[data["country"] != "World"].dropna(subset = ["iso_code"])
 # Seleciona os dados a partir do ano 2000
-data_2000 = data_countries.loc[data_countries["year"]>=2000]
+data_2000 = data_countries.loc[data_countries["year"]==2000]
 data_2000["gdp_em_bi"] = data_2000["gdp"]/ 1000000000
 
 output_file("nuclear_rascunho.html")
-
+print(data_2000)
 # Cria um dicionário que corresponde x e y com as colunas 'population' e 'nuclear_share_energy', do dataframe 'data_2000'.
 # E gera o ColumnDataSource com esse dicionário.
-data_pib_nuclear = {"x": data_2000["gdp_em_bi"], "y": data_2000["nuclear_share_energy"]}
+data_pib_nuclear = {"x": data_2000["gdp_em_bi"], "y": data_2000["nuclear_share_energy"], "z": data_2000["country"]}
 data_source = ColumnDataSource(data=data_pib_nuclear)
 
 # Gera o scatterplot
-scatterplot_gdp_nuclear_share = figure(width= 700, height = 700, tools = "box_zoom, pan, reset, save, wheel_zoom")
+scatterplot_gdp_nuclear_share = figure(width= 700, height = 700,
+                                        tools = "box_zoom, pan, reset, save, wheel_zoom, hover",
+                                          tooltips = [("País", "@z"),
+                                                      ("Energia nuclear", "@y"),
+                                                      ("PIB", "@x")])
 scatterplot_gdp_nuclear_share.circle(x = "x", y = "y", size = "y", color = "RoyalBlue", alpha = 0.5, source = data_source)
+
 
 # Ferramentas pretendidas
 scatterplot_gdp_nuclear_share.toolbar.logo = None #retira a logo
@@ -50,8 +55,8 @@ scatterplot_gdp_nuclear_share.yaxis.major_label_orientation = "vertical"
 
 scatterplot_gdp_nuclear_share.xaxis.axis_label_text_font ="Arial" #Fonte do título do eixo
 scatterplot_gdp_nuclear_share.yaxis.axis_label_text_font ="Arial"
-scatterplot_gdp_nuclear_share.yaxis.axis_label_text_color = 'RoyalBlue' #cor do título do eixo
-scatterplot_gdp_nuclear_share.xaxis.axis_label_text_color = 'RoyalBlue'
+scatterplot_gdp_nuclear_share.yaxis.axis_label_text_color = 'DarkBlue' #cor do título do eixo
+scatterplot_gdp_nuclear_share.xaxis.axis_label_text_color = 'DarkBlue'
 
 scatterplot_gdp_nuclear_share.xaxis.axis_label_text_font_size = "20px" #Tamnho da fonte do título dos eixos
 scatterplot_gdp_nuclear_share.yaxis.axis_label_text_font_size = "20px"

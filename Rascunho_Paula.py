@@ -1,5 +1,5 @@
 from bokeh.plotting import figure
-from bokeh.models import Range1d
+from bokeh.models import Range1d, Label
 from bokeh.io import output_file, save, show
 import pandas as pd
 from bokeh.models import ColumnDataSource
@@ -11,19 +11,25 @@ data = pd.read_csv("World Energy Consumption.csv")
 # Cria um data frame com todos os países excluindo a soma dos continentes e do mundo ("world"), que estão no dado original.
 data_countries = data.loc[data["country"] != "World"].dropna(subset = ["iso_code"])
 # Seleciona os dados a partir do ano 2000
-data_2000 = data_countries.loc[data_countries["year"]>=2000]
+data_2000 = data_countries.loc[data_countries["year"]==2000]
 data_2000["gdp_em_bi"] = data_2000["gdp"]/ 1000000000
 
 output_file("nuclear_rascunho.html")
-
+print(data_2000)
 # Cria um dicionário que corresponde x e y com as colunas 'population' e 'nuclear_share_energy', do dataframe 'data_2000'.
 # E gera o ColumnDataSource com esse dicionário.
-data_pib_nuclear = {"x": data_2000["gdp_em_bi"], "y": data_2000["nuclear_share_energy"]}
+data_pib_nuclear = {"x": data_2000["gdp_em_bi"], "y": data_2000["nuclear_share_energy"], "z": data_2000["country"]}
 data_source = ColumnDataSource(data=data_pib_nuclear)
 
 # Gera o scatterplot
-scatterplot_gdp_nuclear_share = figure(width= 700, height = 700, tools = "box_zoom, pan, reset, save, wheel_zoom")
-scatterplot_gdp_nuclear_share.circle(x = "x", y = "y", size = "y", color = "RoyalBlue", alpha = 0.5, source = data_source)
+scatterplot_gdp_nuclear_share = figure(width= 700, height = 700,
+                                        tools = "box_zoom, pan, reset, save, wheel_zoom, hover",
+                                          tooltips = [("País", "@z"),
+                                                      ("Energia nuclear", "@y"),
+                                                      ("PIB", "@x")])
+scatterplot_gdp_nuclear_share.circle(x = "x", y = "y", size = "y", color = "RoyalBlue", 
+                                     alpha = 0.5, source = data_source)
+
 
 # Ferramentas pretendidas
 scatterplot_gdp_nuclear_share.toolbar.logo = None #retira a logo
@@ -32,7 +38,7 @@ scatterplot_gdp_nuclear_share.toolbar_location = "right" #define a localização
 
 # título
 scatterplot_gdp_nuclear_share.title.text = "Energia nuclear por PIB"
-scatterplot_gdp_nuclear_share.title.text_color = "DarkBlue"
+scatterplot_gdp_nuclear_share.title.text_color = "MidnightBlue"
 scatterplot_gdp_nuclear_share.title.text_font = "Arial"
 scatterplot_gdp_nuclear_share.title.text_font_size = "25px"
 scatterplot_gdp_nuclear_share.title.align = "center"
@@ -50,13 +56,20 @@ scatterplot_gdp_nuclear_share.yaxis.major_label_orientation = "vertical"
 
 scatterplot_gdp_nuclear_share.xaxis.axis_label_text_font ="Arial" #Fonte do título do eixo
 scatterplot_gdp_nuclear_share.yaxis.axis_label_text_font ="Arial"
-scatterplot_gdp_nuclear_share.yaxis.axis_label_text_color = 'RoyalBlue' #cor do título do eixo
-scatterplot_gdp_nuclear_share.xaxis.axis_label_text_color = 'RoyalBlue'
+scatterplot_gdp_nuclear_share.yaxis.axis_label_text_color = 'MidnightBlue' #cor do título do eixo
+scatterplot_gdp_nuclear_share.xaxis.axis_label_text_color = 'MidnightBlue'
 
-scatterplot_gdp_nuclear_share.xaxis.axis_label_text_font_size = "20px" #Tamnho da fonte do título dos eixos
+scatterplot_gdp_nuclear_share.xaxis.axis_label_text_font_size = "20px" #Tamanho da fonte do título dos eixos
 scatterplot_gdp_nuclear_share.yaxis.axis_label_text_font_size = "20px"
 
+scatterplot_gdp_nuclear_share.add_layout(Label(x = 2700, y = 35,
+                                       text = "França foi o país que a energia nuclear \nteve mais participação no consumo de \neletricidade no ano 2000.",
+                                       text_font_size = "14px",
+                                       text_color = "Black", 
+                                       text_alpha = 0.7))
+
 scatterplot_gdp_nuclear_share.xaxis[0].formatter.use_scientific = False
+
 
 # Fundo
 scatterplot_gdp_nuclear_share.background_fill_color = ("WhiteSmoke")
@@ -76,7 +89,7 @@ line_year_nuclear_EUA.toolbar.autohide = True #deixa o barra de ferramentas invi
 line_year_nuclear_EUA.toolbar_location = "below" #define a localização barra de ferramentas
 # título
 line_year_nuclear_EUA.title.text = "Geração de energia nuclear nos Estados Unidos"
-line_year_nuclear_EUA.title.text_color = "DarkBlue"
+line_year_nuclear_EUA.title.text_color = "MidnightBlue"
 line_year_nuclear_EUA.title.text_font = "Arial"
 line_year_nuclear_EUA.title.text_font_size = "20px"
 line_year_nuclear_EUA.title.align = "center"
@@ -99,7 +112,6 @@ line_year_nuclear_EUA.xaxis.axis_label_text_font_size = "20px" #Tamnho da fonte 
 line_year_nuclear_EUA.yaxis.axis_label_text_font_size = "20px"
 
 
-
 # Fundo
 line_year_nuclear_EUA.background_fill_color = ("WhiteSmoke")
 
@@ -114,7 +126,7 @@ line_year_nuclear_France.toolbar.autohide = True #deixa o barra de ferramentas i
 line_year_nuclear_France.toolbar_location = "below" #define a localização barra de ferramentas
 # título
 line_year_nuclear_France.title.text = "Geração de energia nuclear na França"
-line_year_nuclear_France.title.text_color = "DarkBlue"
+line_year_nuclear_France.title.text_color = "MidnightBlue"
 line_year_nuclear_France.title.text_font = "Arial"
 line_year_nuclear_France.title.text_font_size = "20px"
 line_year_nuclear_France.title.align = "center"
@@ -149,7 +161,7 @@ line_year_nuclear_Japan.toolbar.autohide = True #deixa o barra de ferramentas in
 line_year_nuclear_Japan.toolbar_location = "below" #define a localização barra de ferramentas
 # título
 line_year_nuclear_Japan.title.text = "Geração de energia nuclear no Japão"
-line_year_nuclear_Japan.title.text_color = "DarkBlue"
+line_year_nuclear_Japan.title.text_color = "MidnightBlue"
 line_year_nuclear_Japan.title.text_font = "Arial"
 line_year_nuclear_Japan.title.text_font_size = "20px"
 line_year_nuclear_Japan.title.align = "center"
@@ -185,7 +197,7 @@ line_year_nuclear_Germany.toolbar.autohide = True #deixa o barra de ferramentas 
 line_year_nuclear_Germany.toolbar_location = "below" #define a localização barra de ferramentas
 # título
 line_year_nuclear_Germany.title.text = "Geração de energia nuclear na Alemanha"
-line_year_nuclear_Germany.title.text_color = "DarkBlue"
+line_year_nuclear_Germany.title.text_color = "MidnightBlue"
 line_year_nuclear_Germany.title.text_font = "Arial"
 line_year_nuclear_Germany.title.text_font_size = "20px"
 line_year_nuclear_Germany.title.align = "center"
@@ -220,7 +232,7 @@ line_year_nuclear_Russia.toolbar.autohide = True #deixa o barra de ferramentas i
 line_year_nuclear_Russia.toolbar_location = "below" #define a localização barra de ferramentas
 # título
 line_year_nuclear_Russia.title.text = "Geração de energia nuclear na Russia"
-line_year_nuclear_Russia.title.text_color = "DarkBlue"
+line_year_nuclear_Russia.title.text_color = "MidnightBlue"
 line_year_nuclear_Russia.title.text_font = "Arial"
 line_year_nuclear_Russia.title.text_font_size = "20px"
 line_year_nuclear_Russia.title.align = "center"
@@ -255,7 +267,7 @@ line_year_nuclear_SouthKorea.toolbar.autohide = True #deixa o barra de ferrament
 line_year_nuclear_SouthKorea.toolbar_location = "below" #define a localização barra de ferramentas
 # título
 line_year_nuclear_SouthKorea.title.text = "Geração de energia nuclear na Koreia do Sul"
-line_year_nuclear_SouthKorea.title.text_color = "DarkBlue"
+line_year_nuclear_SouthKorea.title.text_color = "MidnightBlue"
 line_year_nuclear_SouthKorea.title.text_font = "Arial"
 line_year_nuclear_SouthKorea.title.text_font_size = "20px"
 line_year_nuclear_SouthKorea.title.align = "center"
@@ -285,7 +297,7 @@ line_year_nuclear_SouthKorea.background_fill_color = ("WhiteSmoke")
 plot = gridplot([[line_year_nuclear_EUA, line_year_nuclear_France, line_year_nuclear_Japan],
                   [line_year_nuclear_Germany, line_year_nuclear_Russia, line_year_nuclear_SouthKorea]])
 
-show(plot)
+# show(plot)
 
 output_file("nuclear_rascunho4.html")
 
@@ -316,7 +328,7 @@ bar_rank_nuclear.toolbar.autohide = True #deixa o barra de ferramentas invisíve
 bar_rank_nuclear.toolbar_location = "below" #define a localização barra de ferramentas
 # título
 bar_rank_nuclear.title.text = "Geração de energia nuclear na Koreia do Sul"
-bar_rank_nuclear.title.text_color = "DarkBlue"
+bar_rank_nuclear.title.text_color = "MidnightBlue"
 bar_rank_nuclear.title.text_font = "Arial"
 bar_rank_nuclear.title.text_font_size = "20px"
 bar_rank_nuclear.title.align = "center"
@@ -345,4 +357,4 @@ bar_rank_nuclear.background_fill_color = ("WhiteSmoke")
 
 
 # print(top)
-show(bar_rank_nuclear)
+# show(bar_rank_nuclear)

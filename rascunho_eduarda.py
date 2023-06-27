@@ -115,14 +115,28 @@ p.legend.title = "Países"
 output_file("line_chart2.html")
 show(p)
 
+'''
+#GRÁFICO 4: DISPERSÃO 
 
-#GRÁFICO 4: DISPERSÃO (muito legal n )
+import numpy as np
+import pandas as pd
+from bokeh.plotting import figure, show, output_file
+from bokeh.models import Slope
+from sklearn.linear_model import RANSACRegressor
 
 # Leitura do arquivo CSV
 data = pd.read_csv("World Energy Consumption.csv")
 
-#Filtrar os dados para o ano de 2000
+# Filtrar os dados para o ano de 2000
 df_filtered_year = data[data['year'] == 2000]
+
+# Remover linhas com valores NaN
+df_filtered_year = df_filtered_year.dropna(subset=['wind_energy_per_capita'])
+
+# Verificar se há linhas restantes após a remoção de NaN
+if df_filtered_year.empty:
+    raise ValueError("Não há dados válidos para a regressão.")
+
 # Criar a figura
 p = figure(height=400, width=600, title="Relação entre Wind Elec per Capita e Wind Energy per Capita")
 
@@ -133,37 +147,26 @@ p.scatter(x='wind_elec_per_capita', y='wind_energy_per_capita', source=df_filter
 p.xaxis.axis_label = "Wind Elec per Capita"
 p.yaxis.axis_label = "Wind Energy per Capita"
 
+# Aplicar regressão RANSAC
+ransac = RANSACRegressor()
+x = df_filtered_year['wind_elec_per_capita'].values.reshape(-1, 1)
+y = df_filtered_year['wind_energy_per_capita'].values.reshape(-1, 1)
+ransac.fit(x, y)
+
+# Calcular a reta de regressão
+slope = ransac.estimator_.coef_[0][0]
+intercept = ransac.estimator_.intercept_[0]
+
+# Criar a reta de regressão
+x_line = np.array([df_filtered_year['wind_elec_per_capita'].min(), df_filtered_year['wind_elec_per_capita'].max()])
+y_line = slope * x_line + intercept
+regression_line = Slope(gradient=slope, y_intercept=intercept, line_color='red', line_width=2)
+
+# Adicionar a reta de regressão ao gráfico
+p.add_layout(regression_line)
+
 # Configurar a saída para um arquivo HTML
 output_file("scatter_plot.html")
-
-# Exibir o gráfico
-show(p)
-
-'''
-from bokeh.models import ColumnDataSource, Whisker
-from bokeh.plotting import figure, show
-from bokeh.sampledata.autompg2 import autompg2 as df
-from bokeh.transform import factor_cmap, jitter
-
-data = pd.read_csv("World Energy Consumption.csv")
-# Ordenar os valores da coluna 'population' em ordem decrescente e selecionar os 5 maiores países
-df_top_5 = data.sort_values('population', ascending=False).head(5)
-
-# Criar a figura
-p = figure(height=400, x_range=df_top_5['country'], background_fill_color="#efefef",
-           title="Países com Maior População e Renda Per Capita")
-
-# Configurar a fonte de dados
-source = ColumnDataSource(df_top_5)
-
-# Plotar os círculos com jitter nos valores de 'gdp' e 'population'
-p.circle(jitter("country", 0.3, range=p.x_range), "gdp", source=source,
-         alpha=0.5, size=13, line_color="white",
-         color=factor_cmap("country", "Category10_5", df_top_5['country']))
-
-# Configurar rótulos e títulos dos eixos
-p.xaxis.axis_label = "Países"
-p.yaxis.axis_label = "Renda Per Capita"
 
 # Exibir o gráfico
 show(p)

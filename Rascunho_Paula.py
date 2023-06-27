@@ -31,7 +31,7 @@ scatterplot_gdp_nuclear_share.toolbar_location = "right" #define a localização
 
 # título
 scatterplot_gdp_nuclear_share.title.text = "Energia nuclear por PIB"
-scatterplot_gdp_nuclear_share.title.text_color = "SteelBlue"
+scatterplot_gdp_nuclear_share.title.text_color = "DarkBlue"
 scatterplot_gdp_nuclear_share.title.text_font = "Arial"
 scatterplot_gdp_nuclear_share.title.text_font_size = "25px"
 scatterplot_gdp_nuclear_share.title.align = "center"
@@ -54,6 +54,8 @@ scatterplot_gdp_nuclear_share.xaxis.axis_label_text_color = 'RoyalBlue'
 
 scatterplot_gdp_nuclear_share.xaxis.axis_label_text_font_size = "20px" #Tamnho da fonte do título dos eixos
 scatterplot_gdp_nuclear_share.yaxis.axis_label_text_font_size = "20px"
+
+scatterplot_gdp_nuclear_share.xaxis[0].formatter.use_scientific = False
 
 # Fundo
 scatterplot_gdp_nuclear_share.background_fill_color = ("WhiteSmoke")
@@ -94,6 +96,8 @@ line_year_nuclear_EUA.xaxis.axis_label_text_color = 'RoyalBlue'
 
 line_year_nuclear_EUA.xaxis.axis_label_text_font_size = "20px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_EUA.yaxis.axis_label_text_font_size = "20px"
+
+
 
 # Fundo
 line_year_nuclear_EUA.background_fill_color = ("WhiteSmoke")
@@ -272,6 +276,8 @@ line_year_nuclear_SouthKorea.xaxis.axis_label_text_color = 'RoyalBlue'
 line_year_nuclear_SouthKorea.xaxis.axis_label_text_font_size = "20px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_SouthKorea.yaxis.axis_label_text_font_size = "20px"
 
+
+
 # Fundo
 line_year_nuclear_SouthKorea.background_fill_color = ("WhiteSmoke")
 
@@ -330,6 +336,8 @@ bar_rank_nuclear.xaxis.axis_label_text_color = 'RoyalBlue'
 
 bar_rank_nuclear.xaxis.axis_label_text_font_size = "15px" #Tamnho da fonte do título dos eixos
 bar_rank_nuclear.yaxis.axis_label_text_font_size = "20px"
+
+
 
 # Fundo
 bar_rank_nuclear.background_fill_color = ("WhiteSmoke")

@@ -22,7 +22,7 @@ data_source = ColumnDataSource(data=data_pib_nuclear)
 
 # Gera o scatterplot
 scatterplot_gdp_nuclear_share = figure(width= 700, height = 700, tools = "box_zoom, pan, reset, save, wheel_zoom")
-scatterplot_gdp_nuclear_share.circle(x = "x", y = "y", source = data_source)
+scatterplot_gdp_nuclear_share.circle(x = "x", y = "y", size = "y", color = "RoyalBlue", alpha = 0.5, source = data_source)
 
 # Ferramentas pretendidas
 scatterplot_gdp_nuclear_share.toolbar.logo = None #retira a logo
@@ -37,7 +37,7 @@ scatterplot_gdp_nuclear_share.title.text_font_size = "25px"
 scatterplot_gdp_nuclear_share.title.align = "center"
 
 # Eixos
-scatterplot_gdp_nuclear_share.xaxis.axis_label = "PIB"  #título do eixo x
+scatterplot_gdp_nuclear_share.xaxis.axis_label = "Produto interno bruto"  #título do eixo x
 scatterplot_gdp_nuclear_share.xaxis.minor_tick_line_color = "black" 
 scatterplot_gdp_nuclear_share.xaxis.minor_tick_in = 5
 scatterplot_gdp_nuclear_share.xaxis.major_label_orientation = "vertical"
@@ -72,7 +72,7 @@ scatterplot_gdp_nuclear.circle(x = "x", y = "y", source = data_source)
 
 scatterplot_gdp_nuclear.xaxis[0].formatter.use_scientific=False
 
-# show(scatterplot_gdp_nuclear)
+show(scatterplot_gdp_nuclear)
 
 
 

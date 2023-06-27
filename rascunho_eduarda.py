@@ -118,13 +118,11 @@ show(p)
 '''
 #GRÁFICO 4: DISPERSÃO 
 
+import numpy as np
 import pandas as pd
 from bokeh.plotting import figure, show, output_file
-from bokeh.models import ColumnDataSource
-
-import pandas as pd
-from bokeh.plotting import figure, show, output_file
-from bokeh.models import ColumnDataSource, Range1d
+from bokeh.models import Slope
+from sklearn.linear_model import RANSACRegressor
 
 # Leitura do arquivo CSV
 data = pd.read_csv("World Energy Consumption.csv")
@@ -132,28 +130,43 @@ data = pd.read_csv("World Energy Consumption.csv")
 # Filtrar os dados para o ano de 2000
 df_filtered_year = data[data['year'] == 2000]
 
+# Remover linhas com valores NaN
+df_filtered_year = df_filtered_year.dropna(subset=['wind_energy_per_capita'])
+
+# Verificar se há linhas restantes após a remoção de NaN
+if df_filtered_year.empty:
+    raise ValueError("Não há dados válidos para a regressão.")
+
 # Criar a figura
 p = figure(height=400, width=600, title="Relação entre Wind Elec per Capita e Wind Energy per Capita")
 
-# Configurar a fonte de dados usando ColumnDataSource
-source = ColumnDataSource(df_filtered_year)
-
-# Plotar o gráfico de dispersão usando as colunas da ColumnDataSource
-p.scatter(x='wind_elec_per_capita', y='wind_energy_per_capita', source=source)
+# Plotar o gráfico de dispersão
+p.scatter(x='wind_elec_per_capita', y='wind_energy_per_capita', source=df_filtered_year)
 
 # Configurar rótulos e títulos dos eixos
 p.xaxis.axis_label = "Wind Elec per Capita"
 p.yaxis.axis_label = "Wind Energy per Capita"
 
-# Alterar a escala dos eixos
-p.x_range = Range1d(0, 120)  # Definir faixa para o eixo x
-p.y_range = Range1d(0, 350)  # Definir faixa para o eixo y
+# Aplicar regressão RANSAC
+ransac = RANSACRegressor()
+x = df_filtered_year['wind_elec_per_capita'].values.reshape(-1, 1)
+y = df_filtered_year['wind_energy_per_capita'].values.reshape(-1, 1)
+ransac.fit(x, y)
+
+# Calcular a reta de regressão
+slope = ransac.estimator_.coef_[0][0]
+intercept = ransac.estimator_.intercept_[0]
+
+# Criar a reta de regressão
+x_line = np.array([df_filtered_year['wind_elec_per_capita'].min(), df_filtered_year['wind_elec_per_capita'].max()])
+y_line = slope * x_line + intercept
+regression_line = Slope(gradient=slope, y_intercept=intercept, line_color='red', line_width=2)
+
+# Adicionar a reta de regressão ao gráfico
+p.add_layout(regression_line)
 
 # Configurar a saída para um arquivo HTML
 output_file("scatter_plot.html")
 
 # Exibir o gráfico
 show(p)
-
-
-

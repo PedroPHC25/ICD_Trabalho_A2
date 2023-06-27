@@ -8,11 +8,11 @@ from bokeh.layouts import gridplot
 output_file("continents.html")
 
 # Lendo o arquivo csv
-csv = pd.read_csv("World Energy Consumption.csv")
+data = pd.read_csv("World Energy Consumption.csv")
 
 # África
 # Filtrando apenas os dados da África
-africa_data = csv[csv["country"] == "Africa"]
+africa_data = data[data["country"] == "Africa"]
 # Convertendo o arquivo para CDS
 source = ColumnDataSource(africa_data)
 africa = figure()
@@ -22,7 +22,7 @@ africa.line(x= "year", y="coal_production", source=source)
 
 # Oriente Médio
 # Filtrando os dados
-oriente_data = csv[csv["country"] == "Middle East"]
+oriente_data = data[data["country"] == "Middle East"]
 # Convertendo o arquivo para CDS
 source = ColumnDataSource(oriente_data)
 oriente = figure()
@@ -32,7 +32,7 @@ oriente.line(x= "year", y="coal_production", source=source)
 
 # Europa 
 # Filtrando os dados
-europa_data = csv[csv["country"] == "Europe"]
+europa_data = data[data["country"] == "Europe"]
 # Convertendo o arquivo para CDS
 source = ColumnDataSource(europa_data)
 europa = figure()
@@ -41,7 +41,7 @@ europa.line(x= "year", y="coal_production", source=source)
 
 # América do norte
 # Filtrando os dados 
-am_norte_data = csv[csv["country"] == "North America"]
+am_norte_data = data[data["country"] == "North America"]
 # Convertendo o arquivo para CDS
 source = ColumnDataSource(am_norte_data)
 am_norte = figure()

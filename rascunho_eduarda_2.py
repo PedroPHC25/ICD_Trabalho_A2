@@ -1,11 +1,5 @@
 import pandas as pd
 from bokeh.plotting import figure, show, output_file
-from bokeh.models import ColumnDataSource
-from bokeh.transform import linear_cmap
-from bokeh.palettes import Blues256
-
-import pandas as pd
-from bokeh.plotting import figure, show, output_file
 from bokeh.models import ColumnDataSource, ColorBar
 from bokeh.transform import linear_cmap
 from bokeh.palettes import Blues256
@@ -13,8 +7,11 @@ from bokeh.palettes import Blues256
 # Leitura do arquivo CSV
 data = pd.read_csv("World Energy Consumption.csv")
 
-x = data['population']  # Selecionar a coluna 'population'
-y = data['gdp']  # Selecionar a coluna 'gdp'
+# Filtrar os dados de 2003
+data_2003 = data[data['year'] == 2003]
+
+x = data_2003['population']  # Selecionar a coluna 'population'
+y = data_2003['gdp']  # Selecionar a coluna 'gdp'
 source = ColumnDataSource(dict(x=x, y=y))
 
 def make_plot(mapper, palette):
@@ -39,4 +36,5 @@ p = make_plot(linear_cmap, Blues256)
 
 # Exibir o gráfico
 show(p)
+
 

@@ -115,23 +115,39 @@ p.legend.title = "Países"
 output_file("line_chart2.html")
 show(p)
 
+'''
+#GRÁFICO 4: DISPERSÃO 
 
-#GRÁFICO 4: DISPERSÃO (muito legal n )
+import pandas as pd
+from bokeh.plotting import figure, show, output_file
+from bokeh.models import ColumnDataSource
+
+import pandas as pd
+from bokeh.plotting import figure, show, output_file
+from bokeh.models import ColumnDataSource, Range1d
 
 # Leitura do arquivo CSV
 data = pd.read_csv("World Energy Consumption.csv")
 
-#Filtrar os dados para o ano de 2000
+# Filtrar os dados para o ano de 2000
 df_filtered_year = data[data['year'] == 2000]
+
 # Criar a figura
 p = figure(height=400, width=600, title="Relação entre Wind Elec per Capita e Wind Energy per Capita")
 
-# Plotar o gráfico de dispersão
-p.scatter(x='wind_elec_per_capita', y='wind_energy_per_capita', source=df_filtered_year)
+# Configurar a fonte de dados usando ColumnDataSource
+source = ColumnDataSource(df_filtered_year)
+
+# Plotar o gráfico de dispersão usando as colunas da ColumnDataSource
+p.scatter(x='wind_elec_per_capita', y='wind_energy_per_capita', source=source)
 
 # Configurar rótulos e títulos dos eixos
 p.xaxis.axis_label = "Wind Elec per Capita"
 p.yaxis.axis_label = "Wind Energy per Capita"
+
+# Alterar a escala dos eixos
+p.x_range = Range1d(0, 120)  # Definir faixa para o eixo x
+p.y_range = Range1d(0, 350)  # Definir faixa para o eixo y
 
 # Configurar a saída para um arquivo HTML
 output_file("scatter_plot.html")
@@ -139,31 +155,5 @@ output_file("scatter_plot.html")
 # Exibir o gráfico
 show(p)
 
-'''
-from bokeh.models import ColumnDataSource, Whisker
-from bokeh.plotting import figure, show
-from bokeh.sampledata.autompg2 import autompg2 as df
-from bokeh.transform import factor_cmap, jitter
 
-data = pd.read_csv("World Energy Consumption.csv")
-# Ordenar os valores da coluna 'population' em ordem decrescente e selecionar os 5 maiores países
-df_top_5 = data.sort_values('population', ascending=False).head(5)
 
-# Criar a figura
-p = figure(height=400, x_range=df_top_5['country'], background_fill_color="#efefef",
-           title="Países com Maior População e Renda Per Capita")
-
-# Configurar a fonte de dados
-source = ColumnDataSource(df_top_5)
-
-# Plotar os círculos com jitter nos valores de 'gdp' e 'population'
-p.circle(jitter("country", 0.3, range=p.x_range), "gdp", source=source,
-         alpha=0.5, size=13, line_color="white",
-         color=factor_cmap("country", "Category10_5", df_top_5['country']))
-
-# Configurar rótulos e títulos dos eixos
-p.xaxis.axis_label = "Países"
-p.yaxis.axis_label = "Renda Per Capita"
-
-# Exibir o gráfico
-show(p)

@@ -298,11 +298,42 @@ cinco_países = cinco_países.head(10)
 
 
 # Gráfico de barras
-
-bar_rank_nuclear = figure(x_range = cinco_países["country"])
+bar_rank_nuclear = figure(x_range = cinco_países["country"], width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
 pais = cinco_países["country"]
 y = cinco_países["nuclear_consumption"]
 bar_rank_nuclear.vbar(x=pais, top=y, width=0.5)
+
+# ferramnetas
+bar_rank_nuclear.toolbar.logo = None #retira a logo
+bar_rank_nuclear.toolbar.autohide = True #deixa o barra de ferramentas invisível
+bar_rank_nuclear.toolbar_location = "below" #define a localização barra de ferramentas
+# título
+bar_rank_nuclear.title.text = "Geração de energia nuclear na Koreia do Sul"
+bar_rank_nuclear.title.text_color = "DarkBlue"
+bar_rank_nuclear.title.text_font = "Arial"
+bar_rank_nuclear.title.text_font_size = "20px"
+bar_rank_nuclear.title.align = "center"
+# Eixos
+bar_rank_nuclear.xaxis.axis_label = "anos"  #título do eixo x
+bar_rank_nuclear.xaxis.minor_tick_line_color = "black" 
+bar_rank_nuclear.xaxis.minor_tick_in = 5
+bar_rank_nuclear.xaxis.major_label_orientation = "vertical"
+bar_rank_nuclear.yaxis.axis_label = "Geração de energia nuclear(terawatts-hora) "  #título do eixo y
+bar_rank_nuclear.yaxis.minor_tick_line_color = "black"
+bar_rank_nuclear.yaxis.minor_tick_in = 5
+bar_rank_nuclear.yaxis.major_label_orientation = "vertical"
+
+bar_rank_nuclear.xaxis.axis_label_text_font ="Arial" #Fonte do título do eixo
+bar_rank_nuclear.yaxis.axis_label_text_font ="Arial"
+bar_rank_nuclear.yaxis.axis_label_text_color = 'RoyalBlue' #cor do título do eixo
+bar_rank_nuclear.xaxis.axis_label_text_color = 'RoyalBlue'
+
+bar_rank_nuclear.xaxis.axis_label_text_font_size = "15px" #Tamnho da fonte do título dos eixos
+bar_rank_nuclear.yaxis.axis_label_text_font_size = "20px"
+
+# Fundo
+bar_rank_nuclear.background_fill_color = ("WhiteSmoke")
+
 
 # print(top)
 show(bar_rank_nuclear)

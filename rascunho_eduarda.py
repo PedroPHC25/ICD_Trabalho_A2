@@ -115,8 +115,8 @@ p.legend.title = "Países"
 output_file("line_chart2.html")
 show(p)
 
-'''
-#GRÁFICO 4: DISPERSÃO
+
+#GRÁFICO 4: DISPERSÃO (muito legal n )
 
 # Leitura do arquivo CSV
 data = pd.read_csv("World Energy Consumption.csv")
@@ -139,3 +139,31 @@ output_file("scatter_plot.html")
 # Exibir o gráfico
 show(p)
 
+'''
+from bokeh.models import ColumnDataSource, Whisker
+from bokeh.plotting import figure, show
+from bokeh.sampledata.autompg2 import autompg2 as df
+from bokeh.transform import factor_cmap, jitter
+
+data = pd.read_csv("World Energy Consumption.csv")
+# Ordenar os valores da coluna 'population' em ordem decrescente e selecionar os 5 maiores países
+df_top_5 = data.sort_values('population', ascending=False).head(5)
+
+# Criar a figura
+p = figure(height=400, x_range=df_top_5['country'], background_fill_color="#efefef",
+           title="Países com Maior População e Renda Per Capita")
+
+# Configurar a fonte de dados
+source = ColumnDataSource(df_top_5)
+
+# Plotar os círculos com jitter nos valores de 'gdp' e 'population'
+p.circle(jitter("country", 0.3, range=p.x_range), "gdp", source=source,
+         alpha=0.5, size=13, line_color="white",
+         color=factor_cmap("country", "Category10_5", df_top_5['country']))
+
+# Configurar rótulos e títulos dos eixos
+p.xaxis.axis_label = "Países"
+p.yaxis.axis_label = "Renda Per Capita"
+
+# Exibir o gráfico
+show(p)

@@ -52,7 +52,7 @@ scatterplot_gdp_nuclear_share.yaxis.axis_label_text_font ="Arial"
 scatterplot_gdp_nuclear_share.yaxis.axis_label_text_color = 'RoyalBlue' #cor do título do eixo
 scatterplot_gdp_nuclear_share.xaxis.axis_label_text_color = 'RoyalBlue'
 
-scatterplot_gdp_nuclear_share.xaxis.axis_label_text_font_size = "20px"
+scatterplot_gdp_nuclear_share.xaxis.axis_label_text_font_size = "20px" #Tamnho da fonte do título dos eixos
 scatterplot_gdp_nuclear_share.yaxis.axis_label_text_font_size = "20px"
 
 show(scatterplot_gdp_nuclear_share)

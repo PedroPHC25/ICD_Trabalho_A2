@@ -1,11 +1,10 @@
 # Importando todas as funções e métodos necessários
 import pandas as pd
 from bokeh.plotting import figure
-from bokeh.io import output_file, save
+from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource, Range1d, Label, PrintfTickFormatter, Div
 from bokeh.layouts import gridplot, column
 from bokeh.models.annotations import BoxAnnotation
-from bokeh.embed import file_html
 
 
 data = pd.read_csv("World Energy Consumption.csv")
@@ -134,7 +133,7 @@ graph_best_regions.add_layout(Label(x = 1992,
                                     text_alpha = 0.7))
 
 # Salvando o gráfico
-save(graph_best_regions)
+# save(graph_best_regions)
 
 
 ##############################################################################################################
@@ -211,7 +210,7 @@ graph_pop_consumption.add_layout(Label(x = 100000000,
                                        text_alpha = 0.8))
 
 # Salvando o gráfico
-save(graph_pop_consumption)
+# save(graph_pop_consumption)
 
 
 ##############################################################################################################
@@ -353,4 +352,10 @@ grid = gridplot([[graph_united_states],
                  toolbar_location = "right")
 
 # Salvando a visualização
-save(grid)
+# save(grid)
+
+output_file("petroleo.html")
+
+text = Div(text = "")
+
+show(column(text, graph_best_regions))

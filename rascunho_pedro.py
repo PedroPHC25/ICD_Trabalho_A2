@@ -1,11 +1,11 @@
 # Importando todas as funções e métodos necessários
 import pandas as pd
 from bokeh.plotting import figure
-from bokeh.io import output_file, save, show
+from bokeh.io import output_file, save
 from bokeh.models import ColumnDataSource, Range1d, Label, PrintfTickFormatter, Div
 from bokeh.layouts import gridplot, column
 from bokeh.models.annotations import BoxAnnotation
-from bokeh.palettes import Turbo256
+from bokeh.embed import file_html
 
 
 data = pd.read_csv("World Energy Consumption.csv")
@@ -307,13 +307,6 @@ graph_russia.ygrid.grid_line_alpha = 0.4
 graph_saudi_arabia.xgrid.grid_line_alpha = 0.4
 graph_saudi_arabia.ygrid.grid_line_alpha = 0.4
 
-# Gerando o gridplot com os 3 gráficos e configurando a toolbar
-grid = gridplot([[graph_united_states],
-                 [graph_russia],
-                 [graph_saudi_arabia]], 
-                 toolbar_options = dict(autohide = True, logo = None), 
-                 toolbar_location = "right")
-
 # Criando uma anotação no gráfico referente aos Estados Unidos
 graph_united_states.add_layout(BoxAnnotation(left = 2009, 
                                              right = 2019,
@@ -351,6 +344,13 @@ graph_saudi_arabia.add_layout(Label(x = 1970,
                                     text_color = "red",
                                     text_alpha = 0.8,
                                     text_align = "right"))
+
+# Gerando o gridplot com os 3 gráficos e configurando a toolbar
+grid = gridplot([[graph_united_states],
+                 [graph_russia],
+                 [graph_saudi_arabia]], 
+                 toolbar_options = dict(autohide = True, logo = None), 
+                 toolbar_location = "right")
 
 # Salvando a visualização
 save(grid)

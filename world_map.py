@@ -14,6 +14,10 @@ gdf.columns = ['country', 'country_code', 'geometry']
 data = pd.read_csv("World Energy Consumption.csv")
 
 # Retirando os continentes e organizações
-rank_data = data[~data["iso_code"].isnull()] 
-rank_data = rank_data[rank_data["country"] != "World"]
+map_data = data[~data["iso_code"].isnull()] 
+map_data = map_data[map_data["country"] != "World"]
 
+# Selecionando um ano
+map_data = map_data[["country", "year","coal_electricity"]]
+map_data = map_data[map_data["year"] == 2000]
+print(map_data)

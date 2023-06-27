@@ -8,10 +8,12 @@ from bokeh.layouts import gridplot
 
 data = pd.read_csv("World Energy Consumption.csv")
 
+data_countries = data.loc[data["country"] != "World"].dropna(subset = ["iso_code"])
+
+data_2000 = data_countries.loc[data_countries["year"]>=2000]
 output_file("nuclear_rascunho.html")
 
-data_pib_nuclear_share_elec = {"x": data["gdp"], "y": data["nuclear_share_elec"]}
-
+data_pib_nuclear_share_elec = {"x": data_2000["population"], "y": data_2000["nuclear_share_energy"]}
 data_source = ColumnDataSource(data=data_pib_nuclear_share_elec )
 
  #configura o tamanho e as ferramentas pretendidas
@@ -43,7 +45,7 @@ scatterplot_gdp_nuclear_share.yaxis.minor_tick_line_color = "black"
 scatterplot_gdp_nuclear_share.yaxis.minor_tick_in = 5
 scatterplot_gdp_nuclear_share.yaxis.major_label_orientation = "vertical"
 
-#show(scatterplot_gdp_nuclear_share)
+show(scatterplot_gdp_nuclear_share)
 
 
 
@@ -60,7 +62,7 @@ scatterplot_gdp_nuclear.circle(x = "x", y = "y", source = data_source)
 
 scatterplot_gdp_nuclear.xaxis[0].formatter.use_scientific=False
 
-#show(scatterplot_gdp_nuclear)
+# show(scatterplot_gdp_nuclear)
 
 
 
@@ -214,7 +216,7 @@ line_year_nuclear_SouthKorea.yaxis.major_label_orientation = "vertical"
 plot = gridplot([[line_year_nuclear_EUA, line_year_nuclear_France, line_year_nuclear_Japan],
                   [line_year_nuclear_Germany, line_year_nuclear_Russia, line_year_nuclear_SouthKorea]])
 
-#show(plot)
+# show(plot)
 
 output_file("nuclear_rascunho4.html")
 
@@ -241,4 +243,4 @@ y = cinco_países["nuclear_consumption"]
 bar_rank_nuclear.vbar(x=pais, top=y, width=0.5)
 
 # print(top)
-show(bar_rank_nuclear)
+# show(bar_rank_nuclear)

@@ -62,24 +62,6 @@ scatterplot_gdp_nuclear_share.background_fill_color = ("WhiteSmoke")
 show(scatterplot_gdp_nuclear_share)
 
 
-
-output_file("nuclear_rascunho2.html")
-
-data_pib_nuclear_elec = {"x": data["gdp"], "y": data["nuclear_electricity"]}
-
-data_source = ColumnDataSource(data=data_pib_nuclear_elec )
-
- #configura o tamanho e as ferramentas pretendidas
-scatterplot_gdp_nuclear = figure( tools = "box_zoom, pan, reset, save, wheel_zoom")
-
-scatterplot_gdp_nuclear.circle(x = "x", y = "y", source = data_source)
-
-scatterplot_gdp_nuclear.xaxis[0].formatter.use_scientific=False
-
-show(scatterplot_gdp_nuclear)
-
-
-
 output_file("nuclear_rascunho3.html")
 """EUA"""
 data_source = ColumnDataSource(data=data[data["country"]=="United States"]) #Cria o ColumnDataSource
@@ -323,4 +305,4 @@ y = cinco_países["nuclear_consumption"]
 bar_rank_nuclear.vbar(x=pais, top=y, width=0.5)
 
 # print(top)
-# show(bar_rank_nuclear)
+show(bar_rank_nuclear)

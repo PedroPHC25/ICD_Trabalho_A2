@@ -8,28 +8,32 @@ from bokeh.layouts import gridplot
 
 data = pd.read_csv("World Energy Consumption.csv")
 
+# Cria um data frame com todos os países excluindo a soma dos continentes e do mundo ("world"), que estão no dado original.
+data_countries = data.loc[data["country"] != "World"].dropna(subset = ["iso_code"])
+# Seleciona os dados a partir do ano 2000
+data_2000 = data_countries.loc[data_countries["year"]>=2000]
+
 output_file("nuclear_rascunho.html")
 
-data_pib_nuclear_share_elec = {"x": data["gdp"], "y": data["nuclear_share_elec"]}
+# Cria um dicionário que corresponde x e y com as colunas 'population' e 'nuclear_share_energy', do dataframe 'data_2000'.
+# E gera o ColumnDataSource com esse dicionário.
+data_pib_nuclear = {"x": data_2000["gdp"], "y": data_2000["nuclear_share_energy"]}
+data_source = ColumnDataSource(data=data_pib_nuclear)
 
-data_source = ColumnDataSource(data=data_pib_nuclear_share_elec )
-
- #configura o tamanho e as ferramentas pretendidas
-scatterplot_gdp_nuclear_share = figure(width= 640, height = 480, tools = "box_zoom, pan, reset, save, wheel_zoom")
-
+# Gera o scatterplot
+scatterplot_gdp_nuclear_share = figure(width= 700, height = 700, tools = "box_zoom, pan, reset, save, wheel_zoom")
 scatterplot_gdp_nuclear_share.circle(x = "x", y = "y", source = data_source)
 
-
+# Ferramentas pretendidas
 scatterplot_gdp_nuclear_share.toolbar.logo = None #retira a logo
-scatterplot_gdp_nuclear_share.toolbar.autohide = True #deixa o barra de ferramentas invisível
-scatterplot_gdp_nuclear_share.toolbar_location = "below" #define a localização barra de ferramentas
-
+scatterplot_gdp_nuclear_share.toolbar.autohide = True #deixa a barra de ferramentas invisível
+scatterplot_gdp_nuclear_share.toolbar_location = "right" #define a localização barra de ferramentas
 
 # título
-scatterplot_gdp_nuclear_share.title.text = "Participação do consumo de eletricidade proveniente da energia nuclear por PIB"
-scatterplot_gdp_nuclear_share.title.text_color = "DarkBlue"
+scatterplot_gdp_nuclear_share.title.text = "Energia nuclear por PIB"
+scatterplot_gdp_nuclear_share.title.text_color = "SteelBlue"
 scatterplot_gdp_nuclear_share.title.text_font = "Arial"
-scatterplot_gdp_nuclear_share.title.text_font_size = "13px"
+scatterplot_gdp_nuclear_share.title.text_font_size = "25px"
 scatterplot_gdp_nuclear_share.title.align = "center"
 
 # Eixos
@@ -43,7 +47,15 @@ scatterplot_gdp_nuclear_share.yaxis.minor_tick_line_color = "black"
 scatterplot_gdp_nuclear_share.yaxis.minor_tick_in = 5
 scatterplot_gdp_nuclear_share.yaxis.major_label_orientation = "vertical"
 
-#show(scatterplot_gdp_nuclear_share)
+scatterplot_gdp_nuclear_share.xaxis.axis_label_text_font ="Arial" #Fonte do título do eixo
+scatterplot_gdp_nuclear_share.yaxis.axis_label_text_font ="Arial"
+scatterplot_gdp_nuclear_share.yaxis.axis_label_text_color = 'RoyalBlue' #cor do título do eixo
+scatterplot_gdp_nuclear_share.xaxis.axis_label_text_color = 'RoyalBlue'
+
+scatterplot_gdp_nuclear_share.xaxis.axis_label_text_font_size = "20px" #Tamnho da fonte do título dos eixos
+scatterplot_gdp_nuclear_share.yaxis.axis_label_text_font_size = "20px"
+
+show(scatterplot_gdp_nuclear_share)
 
 
 
@@ -60,7 +72,7 @@ scatterplot_gdp_nuclear.circle(x = "x", y = "y", source = data_source)
 
 scatterplot_gdp_nuclear.xaxis[0].formatter.use_scientific=False
 
-#show(scatterplot_gdp_nuclear)
+# show(scatterplot_gdp_nuclear)
 
 
 
@@ -214,7 +226,7 @@ line_year_nuclear_SouthKorea.yaxis.major_label_orientation = "vertical"
 plot = gridplot([[line_year_nuclear_EUA, line_year_nuclear_France, line_year_nuclear_Japan],
                   [line_year_nuclear_Germany, line_year_nuclear_Russia, line_year_nuclear_SouthKorea]])
 
-#show(plot)
+# show(plot)
 
 output_file("nuclear_rascunho4.html")
 
@@ -241,4 +253,4 @@ y = cinco_países["nuclear_consumption"]
 bar_rank_nuclear.vbar(x=pais, top=y, width=0.5)
 
 # print(top)
-show(bar_rank_nuclear)
+# show(bar_rank_nuclear)

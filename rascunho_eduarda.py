@@ -114,8 +114,8 @@ p2 = figure(title="                                          ANNUAL PERCENTAGE C
            width=1200, height=600)
 
 #Plote os gráficos de linha para cada país:
-p2.line(df_brazil['year'], df_brazil['wind_cons_change_pct'], line_width=6, color='#1A5AD9', legend_label='Brazil')
-p2.line(df_argentina['year'], df_argentina['wind_cons_change_pct'], line_width=4, color='#C2D918', legend_label='Argentina')
+p2.line(df_brazil['year'], df_brazil['wind_cons_change_pct'], line_width=6, color='#D49495', legend_label='Brazil')
+p2.line(df_argentina['year'], df_argentina['wind_cons_change_pct'], line_width=4, color='#8A5556', legend_label='Argentina')
 
 #Ajuste a legenda para mostrar os nomes dos países:
 p2.legend.location = "top_left"

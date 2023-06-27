@@ -20,4 +20,7 @@ map_data = map_data[map_data["country"] != "World"]
 # Selecionando um ano
 map_data = map_data[["country", "year","coal_electricity"]]
 map_data = map_data[map_data["year"] == 2000]
-print(map_data)
+
+# Mesclando os dados
+merged = gdf.merge(map_data, left_on = 'country', right_on = 'country')
+print(merged)

@@ -15,7 +15,11 @@ data = pd.read_csv("World Energy Consumption.csv")
 africa_data = data[data["country"] == "Africa"]
 # Convertendo o arquivo para CDS
 source = ColumnDataSource(africa_data)
-africa = figure(title="África", x_axis_label="Ano", y_axis_label="Produção de energia pelo carvão")
+africa = figure(title="África", 
+                x_axis_label="Ano", 
+                y_axis_label="Produção de energia pelo carvão",
+                )
+
 # Linha do tempo com a produção anual de energia da África
 africa.line(x= "year", 
             y="coal_production", 
@@ -28,9 +32,15 @@ africa.line(x= "year",
 oriente_data = data[data["country"] == "Middle East"]
 # Convertendo o arquivo para CDS
 source = ColumnDataSource(oriente_data)
-oriente = figure()
+oriente = figure(title="Oriente Médio", 
+                x_axis_label="Ano", 
+                y_axis_label="Produção de energia pelo carvão",
+                )
 # Linha do tempo com a produção anual de energia do Oriente Médio
-oriente.line(x= "year", y="coal_production", source=source)
+oriente.line(x= "year", 
+             y="coal_production", 
+             source=source,
+             line_color = "red")
 
 
 # Europa 

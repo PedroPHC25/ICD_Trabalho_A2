@@ -5,11 +5,8 @@ import pandas as pd
 '''
 #1: GRÁFICO DE BARRAS DE GERAÇÃO DE ELETRICIDADE A PARTIR DO VENTO POR PAÍS (MEDIDDO EM TERAWATT-HORA)
 
-# Leitura do arquivo CSV
-data = pd.read_csv("World Energy Consumption.csv")
-
-# Filtrar os dados para o ano de 2020
-df_filtered = data[data['year'] == 2020]
+data = pd.read_csv("World Energy Consumption.csv") #Lendo o arquivo
+df_filtered = data[data['year'] == 2020] #Filtrando dados do ano de 2020
 
 # Ordenar os valores da coluna 'wind_electricity' em ordem decrescente
 df_sorted = df_filtered.sort_values('wind_electricity', ascending=False)
@@ -33,19 +30,35 @@ data_organized = ColumnDataSource(df_top_10_filtered)
 output_file("grafico_barras.html")
 
 # Criar a figura
-p = figure(x_range=df_top_10_filtered['country'], height=600, width=800, title="Geração de Eletricidade a partir do Vento por País")
+p = figure(x_range=df_top_10_filtered['country'], height=600, width=800, title="ELECTRICITY GENERATION FROM WIND BY COUNTRY IN 2020")
 
 # Plotar as barras
-p.vbar(x='country', top='wind_electricity', width=0.9, source=data_organized)
+p.vbar(x='country', top='wind_electricity', width=0.9, color="#022601", source=data_organized)
 
 # Configurar rótulos e títulos dos eixos
-p.xaxis.axis_label = "País"
-p.yaxis.axis_label = "Geração de Eletricidade (TWh)"
+p.xaxis.axis_label = "COUNTRY"
+p.yaxis.axis_label = "ELECTRICITY GENERATION FROM WIND (TWh)"
+
+p.title.text_font = "Georgia"  # Altera a fonte do título para Georgia
+p.title.text_font_size = "16pt"  # Altera o tamanho da fonte do título para 14 pontos
+p.title.text_color = "#0C3B40"  # Altera a cor do texto do título para vermelho
+p.title.text_align = "center"  # Alinhando o título no centro do gráfico
+
+p.xaxis.axis_label_text_font = "Georgia"  # Altera a fonte do rótulo do eixo x para Georgia
+p.xaxis.axis_label_text_font_size = "16pt"  # Altera o tamanho da fonte do rótulo do eixo x para 12 pontos
+p.xaxis.axis_label_text_color = "#0C3B40"  # Altera a cor do texto do rótulo do eixo x para azul
+p.xaxis.major_label_text_font_style = "bold"  # Colocando em negrito os rótulos das escalas do eixo x
+
+p.yaxis.axis_label_text_font = "Georgia"  # Altera a fonte do rótulo do eixo y para Georgia
+p.yaxis.axis_label_text_font_size = "16pt"  # Altera o tamanho da fonte do rótulo do eixo y para 10 pontos
+p.yaxis.axis_label_text_color = "#0C3B40"  # Altera a cor do texto do rótulo do eixo y para verde
+p.yaxis.major_label_text_font_style = "bold"  # Colocando em negrito os rótulos das escalas do eixo y
+
+p.background_fill_color = "#38ABF2"  # Altera a cor de fundo do gráfico 
 
 # Exibir o gráfico
 show(p)
-
-
+'''
 #2: GRÁFICO DE LINHA CONSUMO PER CAPITA DE ELETRICIDADE DO VENTO( MEDIDA EM kWh)
 
 # Leitura do arquivo CSV
@@ -88,7 +101,7 @@ p.background_fill_color = "#38ABF2"  # Altera a cor de fundo do gráfico
 # Mostrando o gráfico:
 show(p)
 
-
+'''
 #GRÁFICO 3: VARIAÇÃO PERCENTUAL ANUAL NO CONSUMO DE VENTO, COMPARAÇÃO ENTRE BRASIL E ARGENTINA
 
 data = pd.read_csv("World Energy Consumption.csv")
@@ -115,7 +128,6 @@ p.legend.title = "Países"
 output_file("line_chart2.html")
 show(p)
 
-'''
 #GRÁFICO 4: DISPERSÃO 
 
 import numpy as np
@@ -170,3 +182,4 @@ output_file("scatter_plot.html")
 
 # Exibir o gráfico
 show(p)
+'''

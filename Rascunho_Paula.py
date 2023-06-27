@@ -55,6 +55,10 @@ scatterplot_gdp_nuclear_share.xaxis.axis_label_text_color = 'RoyalBlue'
 scatterplot_gdp_nuclear_share.xaxis.axis_label_text_font_size = "20px" #Tamnho da fonte do título dos eixos
 scatterplot_gdp_nuclear_share.yaxis.axis_label_text_font_size = "20px"
 
+# Fundo
+scatterplot_gdp_nuclear_share.background_fill_color = ("WhiteSmoke")
+# scatterplot_gdp_nuclear_share.background_fill_alpha = 0.9
+
 show(scatterplot_gdp_nuclear_share)
 
 

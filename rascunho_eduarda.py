@@ -192,11 +192,11 @@ p3.yaxis.major_label_text_font_style = "bold"  #Colocando em negrito os rótulos
 
 p3.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico
 
-# Criar um grid com os 4 gráficos
+#Criando um grid com os 4 gráficos
 grid = gridplot([[p], [p1], [p2], [p3]])
 
-# Configurar a saída para um arquivo HTML
+#Configurando a saída para um arquivo HTML
 output_file("grid.html")
 
-# Exibir o grid
+#Exibindo o grid
 show(grid)

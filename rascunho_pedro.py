@@ -2,7 +2,7 @@
 import pandas as pd
 from bokeh.plotting import figure
 from bokeh.io import output_file, save, show
-from bokeh.models import ColumnDataSource, Range1d, Label
+from bokeh.models import ColumnDataSource, Range1d, Label, PrintfTickFormatter
 from bokeh.layouts import gridplot
 from bokeh.models.annotations import BoxAnnotation
 
@@ -13,9 +13,16 @@ data = pd.read_csv("World Energy Consumption.csv")
 # Gerando um dataframe apenas com os dados dos países, sem os continentes ou o mundo
 data_countries = data.loc[data["country"] != "World"].dropna(subset = ["iso_code"])
 
-# Gerando um CDS apenas com os dados do mundo e outro apenas com os dados de 2019
+# Gerando dataframes cujos países possuem um consumo de petróleo acima e abaixo da média mundial em 2019, valor esse calculado a partir da divisão do consumo pela população
+data_2019_high_consumption = data_countries.loc[data_countries["year"] == 2019].loc[data_countries["oil_consumption"]/data["population"] > 53619.925/7713467904]
+data_2019_low_consumption = data_countries.loc[data_countries["year"] == 2019].loc[data_countries["oil_consumption"]/data["population"] < 53619.925/7713467904]
+
+# Gerando um CDS apenas com os dados do mundo
 cds_oil_world = ColumnDataSource(data[data["country"] == "World"])
-cds_oil_2019 = ColumnDataSource(data_countries[data_countries["year"] == 2019])
+
+# Gerando CDSs com os dados de 2019 separados com base no consumo de petróleo do país
+cds_oil_2019_high_consumption = ColumnDataSource(data_2019_high_consumption)
+cds_oil_2019_low_consumption = ColumnDataSource(data_2019_low_consumption)
 
 # Gerando CDSs apenas com os dados dos 3 maiores produtores de petróleo (Estados Unidos, Rússia e Arábia Saudita)
 cds_oil_united_states = ColumnDataSource(data[data["country"] == "United States"])
@@ -110,16 +117,66 @@ graph_best_regions.add_layout(Label(x = 1992,
                                     text_alpha = 0.7))
 
 # Salvando o gráfico
-save(graph_best_regions)
+# save(graph_best_regions)
 
 
+
+# Minha segunda visualização será um gráfico de dispersão mostrando a relação entre a população de cada país e o consumo de petróleo
 output_file("rascunho_pedro_2.html")
 
-graph_pop_consumption = figure(x_axis_type = "log", y_axis_type = "log", tools = "tap, hover")
+# Criando o objeto figura com os eixos em escala logarítmica e com as ferramentas adequadas
+graph_pop_consumption = figure(x_axis_type = "log", 
+                               y_axis_type = "log", 
+                               tools = "pan, wheel_zoom, reset, hover, save")
 
-graph_pop_consumption.circle(x = "population", y = "oil_consumption", source = cds_oil_2019, size = 10)
+# Gerando o gráfico de dispersão com os dados dos CDSs, agrupando os dados por cor (verde são os países com consumo abaixo da média mundial e vermelho são os com consumo acima)
+graph_pop_consumption.circle(x = "population", 
+                             y = "oil_consumption", 
+                             source = cds_oil_2019_high_consumption, 
+                             size = 5, 
+                             fill_color = "red", 
+                             line_color = "red", 
+                             legend_label = "Acima da média mundial")
+graph_pop_consumption.circle(x = "population", 
+                             y = "oil_consumption", 
+                             source = cds_oil_2019_low_consumption, 
+                             size = 5, 
+                             fill_color = "lime", 
+                             line_color = "lime", 
+                             legend_label = "Abaixo da média mundial")
 
-# show(graph_pop_consumption)
+# Excluindo os ticks secundários
+graph_pop_consumption.xaxis.minor_tick_line_color = None
+graph_pop_consumption.yaxis.minor_tick_line_color = None
+
+# Ajustando os rótulos dos eixos
+graph_pop_consumption.xaxis[0].formatter = PrintfTickFormatter(format="%5f")
+graph_pop_consumption.yaxis[0].formatter = PrintfTickFormatter(format="%5f")
+graph_pop_consumption.xaxis.major_label_overrides = {1000000: '1 milhão', 
+                                                     10000000: '10 milhões', 
+                                                     100000000: '100 milhões', 
+                                                     1000000000: "1 bilhão"}
+
+# Inserindo e customizando o título
+graph_pop_consumption.title.text = "Consumo de petróleo x População em 2019"
+graph_pop_consumption.title.text_font = "arial"
+graph_pop_consumption.title.text_font_size = "15px"
+graph_pop_consumption.title.align = "center"
+
+# Adicionando os títulos dos eixos
+graph_pop_consumption.xaxis.axis_label = "População"
+graph_pop_consumption.yaxis.axis_label = "Consumo (em terawatts-hora)"
+graph_pop_consumption.axis.axis_label_text_font_style = "normal"
+graph_pop_consumption.xaxis.axis_label_text_font = "arial"
+graph_pop_consumption.yaxis.axis_label_text_font = "arial"
+
+# Gerando a legenda
+graph_pop_consumption.legend.location = "top_left"
+
+
+
+
+save(graph_pop_consumption)
 
 
 output_file("rascunho_pedro_3.html")

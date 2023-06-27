@@ -12,12 +12,13 @@ data = pd.read_csv("World Energy Consumption.csv")
 data_countries = data.loc[data["country"] != "World"].dropna(subset = ["iso_code"])
 # Seleciona os dados a partir do ano 2000
 data_2000 = data_countries.loc[data_countries["year"]>=2000]
+data_2000["gdp_em_bi"] = data_2000["gdp"]/ 1000000000
 
 output_file("nuclear_rascunho.html")
 
 # Cria um dicionário que corresponde x e y com as colunas 'population' e 'nuclear_share_energy', do dataframe 'data_2000'.
 # E gera o ColumnDataSource com esse dicionário.
-data_pib_nuclear = {"x": data_2000["gdp"], "y": data_2000["nuclear_share_energy"]}
+data_pib_nuclear = {"x": data_2000["gdp_em_bi"], "y": data_2000["nuclear_share_energy"]}
 data_source = ColumnDataSource(data=data_pib_nuclear)
 
 # Gera o scatterplot
@@ -37,10 +38,10 @@ scatterplot_gdp_nuclear_share.title.text_font_size = "25px"
 scatterplot_gdp_nuclear_share.title.align = "center"
 
 # Eixos
-scatterplot_gdp_nuclear_share.xaxis.axis_label = "Produto interno bruto"  #título do eixo x
+scatterplot_gdp_nuclear_share.xaxis.axis_label = "Produto interno bruto em bilhões"  #título do eixo x
 scatterplot_gdp_nuclear_share.xaxis.minor_tick_line_color = "black" 
 scatterplot_gdp_nuclear_share.xaxis.minor_tick_in = 5
-scatterplot_gdp_nuclear_share.xaxis.major_label_orientation = "vertical"
+scatterplot_gdp_nuclear_share.xaxis.major_label_orientation = "horizontal"
 
 scatterplot_gdp_nuclear_share.yaxis.axis_label = "Participação da energia nuclear no consumo de eletricidade "  #título do eixo y
 scatterplot_gdp_nuclear_share.yaxis.minor_tick_line_color = "black"

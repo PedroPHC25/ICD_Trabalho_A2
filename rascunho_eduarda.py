@@ -170,10 +170,11 @@ if df_filtered_year.empty:
     raise ValueError("Não há dados válidos para a regressão.")
 
 # Criar a figura
-p = figure(height=400, width=600, title="Relação entre Wind Elec per Capita e Wind Energy per Capita")
+p = figure(height=600, width=1200, title="          RATIO BETWEEN WIND ELECTRICITY AND WIND ENERGY (BOTH PER CAPITA)")
 
 # Plotar o gráfico de dispersão
-p.scatter(x='wind_elec_per_capita', y='wind_energy_per_capita', source=df_filtered_year)
+p.scatter(x='wind_elec_per_capita', y='wind_energy_per_capita', source=df_filtered_year,
+           fill_color="#0C3B40", size=10)
 
 # Configurar rótulos e títulos dos eixos
 p.xaxis.axis_label = "Wind Elec per Capita"
@@ -192,7 +193,7 @@ intercept = ransac.estimator_.intercept_[0]
 # Criar a reta de regressão
 x_line = np.array([df_filtered_year['wind_elec_per_capita'].min(), df_filtered_year['wind_elec_per_capita'].max()])
 y_line = slope * x_line + intercept
-regression_line = Slope(gradient=slope, y_intercept=intercept, line_color='red', line_width=2)
+regression_line = Slope(gradient=slope, y_intercept=intercept, line_color='#C2D918', line_width=2)
 
 # Adicionar a reta de regressão ao gráfico
 p.add_layout(regression_line)
@@ -202,7 +203,6 @@ p.title.text_font_size = "14pt"  # Altera o tamanho da fonte do título
 p.title.text_color = "#0C3B40"  # Altera a cor do texto do título 
 p.title.text_align = "center"  # Alinhando o título no centro do gráfico
 p.title.text_baseline = "middle"  # Alinhando o título verticalmente ao centro
-
 
 p.xaxis.axis_label_text_font = "Georgia"  # Altera a fonte do rótulo do eixo x para Georgia
 p.xaxis.axis_label_text_font_size = "16pt"  # Altera o tamanho da fonte do rótulo do eixo x 

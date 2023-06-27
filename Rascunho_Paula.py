@@ -10,8 +10,9 @@ data = pd.read_csv("World Energy Consumption.csv")
 
 paises_com_mais_usinas = ["United States", "France", "Japan", "Germany", "Russia", "South Korea"]
 cinco_primeiros_países = data[data["country"].isin(paises_com_mais_usinas)]
+cinco_países = cinco_primeiros_países.groupby("country").count().reset_index()
 
-print(cinco_primeiros_países)
+print(cinco_países)
 
 output_file("nuclear_rascunho.html")
 
@@ -223,11 +224,23 @@ plot = gridplot([[line_year_nuclear_EUA, line_year_nuclear_France, line_year_nuc
 
 output_file("nuclear_rascunho4.html")
 
-data_source = ColumnDataSource(cinco_primeiros_países[cinco_primeiros_países["year"]=="2016"]) #Cria o ColumnDataSource
-bar_year_nuclear = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
-bar_year_nuclear.vbar(x = "iso_code", top = "nuclear_electricity", source = data_source)
+# data_source = ColumnDataSource(cinco_países[cinco_países["year"]=="2016"]) #Cria o ColumnDataSource
+# bar_year_nuclear = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
+# bar_year_nuclear.vbar(x = "country", top = "nuclear_elec_per_capita", source = data_source)
+
+
+data_pib_nuclear_elec = {"x": cinco_primeiros_países["country"], "y": cinco_primeiros_países["nuclear_electricity"]}
+
+data_source = ColumnDataSource(data=data_pib_nuclear_elec )
+
+ #configura o tamanho e as ferramentas pretendidas
+bar_year_nuclear = figure( x_range = cinco_primeiros_países["country"], tools = "box_zoom, pan, reset, save, wheel_zoom")
+
+bar_year_nuclear.vbar(x = "x", top = "y", source = data_source)
 
 show(bar_year_nuclear)
+
+
 
 
 

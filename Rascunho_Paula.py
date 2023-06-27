@@ -8,7 +8,10 @@ from bokeh.layouts import gridplot
 
 data = pd.read_csv("World Energy Consumption.csv")
 
-print(data)
+paises_com_mais_usinas = ["United States", "France", "Japan", "Germany", "Russia", "South Korea"]
+cinco_primeiros_países = data[data["country"].isin(paises_com_mais_usinas)]
+
+print(cinco_primeiros_países)
 
 output_file("nuclear_rascunho.html")
 
@@ -216,15 +219,15 @@ line_year_nuclear_SouthKorea.yaxis.major_label_orientation = "vertical"
 plot = gridplot([[line_year_nuclear_EUA, line_year_nuclear_France, line_year_nuclear_Japan],
                   [line_year_nuclear_Germany, line_year_nuclear_Russia, line_year_nuclear_SouthKorea]])
 
-show(plot)
+#show(plot)
 
 output_file("nuclear_rascunho4.html")
 
-data_source = ColumnDataSource(data= data[data["country"]=="world"]) #Cria o ColumnDataSource
-line_year_nuclear_EUA = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
-line_year_nuclear_EUA.line(x = "year", y = "nuclear_electricity", source = data_source)
+data_source = ColumnDataSource(cinco_primeiros_países[cinco_primeiros_países["year"]=="2016"]) #Cria o ColumnDataSource
+bar_year_nuclear = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
+bar_year_nuclear.vbar(x = "iso_code", top = "nuclear_electricity", source = data_source)
 
-#show(scatterplot_gdp_nuclear)
+show(bar_year_nuclear)
 
 
 

@@ -8,12 +8,6 @@ from bokeh.layouts import gridplot
 
 data = pd.read_csv("World Energy Consumption.csv")
 
-paises_com_mais_usinas = ["United States", "France", "Japan", "Germany", "Russia", "South Korea"]
-cinco_primeiros_países = data[data["country"].isin(paises_com_mais_usinas)]
-cinco_países = cinco_primeiros_países.groupby("country").count().reset_index()
-
-print(cinco_países)
-
 output_file("nuclear_rascunho.html")
 
 data_pib_nuclear_share_elec = {"x": data["gdp"], "y": data["nuclear_share_elec"]}
@@ -224,25 +218,27 @@ plot = gridplot([[line_year_nuclear_EUA, line_year_nuclear_France, line_year_nuc
 
 output_file("nuclear_rascunho4.html")
 
-# data_source = ColumnDataSource(cinco_países[cinco_países["year"]=="2016"]) #Cria o ColumnDataSource
-# bar_year_nuclear = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
-# bar_year_nuclear.vbar(x = "country", top = "nuclear_elec_per_capita", source = data_source)
+# Filtrando os dados
+
+#Retirando os continentes e organizações
+cinco_países = data[~data["iso_code"].isnull()] 
+cinco_países = cinco_países[cinco_países["country"] != "World"]
+
+# Selecionando um ano
+cinco_países = cinco_países[cinco_países["year"] == 2018]
+
+# Ordenando e selecionando as colunas desejadas
+cinco_países = cinco_países.sort_values("nuclear_consumption", ascending= False)
+cinco_países = cinco_países[["country", "year", "nuclear_consumption"]]
+cinco_países = cinco_países.head(10)
 
 
-data_pib_nuclear_elec = {"x": cinco_primeiros_países["country"], "y": cinco_primeiros_países["nuclear_electricity"]}
+# Gráfico de barras
 
-data_source = ColumnDataSource(data=data_pib_nuclear_elec )
+bar_rank_nuclear = figure(x_range = cinco_países["country"])
+pais = cinco_países["country"]
+y = cinco_países["nuclear_consumption"]
+bar_rank_nuclear.vbar(x=pais, top=y, width=0.5)
 
- #configura o tamanho e as ferramentas pretendidas
-bar_year_nuclear = figure( x_range = cinco_primeiros_países["country"], tools = "box_zoom, pan, reset, save, wheel_zoom")
-
-bar_year_nuclear.vbar(x = "x", top = "y", source = data_source)
-
-show(bar_year_nuclear)
-
-
-
-
-
-
-
+# print(top)
+show(bar_rank_nuclear)

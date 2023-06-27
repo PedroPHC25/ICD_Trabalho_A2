@@ -8,16 +8,12 @@ from bokeh.layouts import gridplot
 
 data = pd.read_csv("World Energy Consumption.csv")
 
-paises_com_mais_usinas = ["United States", "France", "Japan", "Germany", "Russia", "South Korea"]
-cinco_primeiros_países = data[data["country"].isin(paises_com_mais_usinas)]
-cinco_países = cinco_primeiros_países.groupby("country").count().reset_index()
+data_countries = data.loc[data["country"] != "World"].dropna(subset = ["iso_code"])
 
-print(cinco_países)
-
+data_2000 = data_countries.loc[data_countries["year"]>=2000]
 output_file("nuclear_rascunho.html")
 
-data_pib_nuclear_share_elec = {"x": data["gdp"], "y": data["nuclear_share_elec"]}
-
+data_pib_nuclear_share_elec = {"x": data_2000["population"], "y": data_2000["nuclear_share_energy"]}
 data_source = ColumnDataSource(data=data_pib_nuclear_share_elec )
 
  #configura o tamanho e as ferramentas pretendidas
@@ -49,7 +45,7 @@ scatterplot_gdp_nuclear_share.yaxis.minor_tick_line_color = "black"
 scatterplot_gdp_nuclear_share.yaxis.minor_tick_in = 5
 scatterplot_gdp_nuclear_share.yaxis.major_label_orientation = "vertical"
 
-#show(scatterplot_gdp_nuclear_share)
+show(scatterplot_gdp_nuclear_share)
 
 
 
@@ -66,7 +62,7 @@ scatterplot_gdp_nuclear.circle(x = "x", y = "y", source = data_source)
 
 scatterplot_gdp_nuclear.xaxis[0].formatter.use_scientific=False
 
-#show(scatterplot_gdp_nuclear)
+# show(scatterplot_gdp_nuclear)
 
 
 
@@ -220,29 +216,31 @@ line_year_nuclear_SouthKorea.yaxis.major_label_orientation = "vertical"
 plot = gridplot([[line_year_nuclear_EUA, line_year_nuclear_France, line_year_nuclear_Japan],
                   [line_year_nuclear_Germany, line_year_nuclear_Russia, line_year_nuclear_SouthKorea]])
 
-#show(plot)
+# show(plot)
 
 output_file("nuclear_rascunho4.html")
 
-# data_source = ColumnDataSource(cinco_países[cinco_países["year"]=="2016"]) #Cria o ColumnDataSource
-# bar_year_nuclear = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
-# bar_year_nuclear.vbar(x = "country", top = "nuclear_elec_per_capita", source = data_source)
+# Filtrando os dados
+
+#Retirando os continentes e organizações
+cinco_países = data[~data["iso_code"].isnull()] 
+cinco_países = cinco_países[cinco_países["country"] != "World"]
+
+# Selecionando um ano
+cinco_países = cinco_países[cinco_países["year"] == 2018]
+
+# Ordenando e selecionando as colunas desejadas
+cinco_países = cinco_países.sort_values("nuclear_consumption", ascending= False)
+cinco_países = cinco_países[["country", "year", "nuclear_consumption"]]
+cinco_países = cinco_países.head(10)
 
 
-data_pib_nuclear_elec = {"x": cinco_primeiros_países["country"], "y": cinco_primeiros_países["nuclear_electricity"]}
+# Gráfico de barras
 
-data_source = ColumnDataSource(data=data_pib_nuclear_elec )
+bar_rank_nuclear = figure(x_range = cinco_países["country"])
+pais = cinco_países["country"]
+y = cinco_países["nuclear_consumption"]
+bar_rank_nuclear.vbar(x=pais, top=y, width=0.5)
 
- #configura o tamanho e as ferramentas pretendidas
-bar_year_nuclear = figure( x_range = cinco_primeiros_países["country"], tools = "box_zoom, pan, reset, save, wheel_zoom")
-
-bar_year_nuclear.vbar(x = "x", top = "y", source = data_source)
-
-show(bar_year_nuclear)
-
-
-
-
-
-
-
+# print(top)
+# show(bar_rank_nuclear)

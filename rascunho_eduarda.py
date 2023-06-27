@@ -103,7 +103,6 @@ p.background_fill_color = "#38ABF2"  # Altera a cor de fundo do gráfico
 
 # Mostrando o gráfico:
 show(p)
-'''
 
 #GRÁFICO 3: VARIAÇÃO PERCENTUAL ANUAL NO CONSUMO DE VENTO, COMPARAÇÃO ENTRE BRASIL E ARGENTINA
 
@@ -112,7 +111,7 @@ df_brazil = data[data['country'] == 'Brazil'] #Filtrando dados do Brasil
 df_argentina = data[data['country'] == 'Argentina'] #Filtrando dados da Argentina
 
 #Crie a figura para o gráfico:
-p = figure(title="ANNUAL PERCENTAGE CHANGE IN WIND CONSUMPTION", x_axis_label='YEAR', 
+p = figure(title="                                        ANNUAL PERCENTAGE CHANGE IN WIND CONSUMPTION", x_axis_label='YEAR', 
            y_axis_label='WIND ENERGY PER CAPITA',
            width=1200, height=600)
 
@@ -147,12 +146,6 @@ p.background_fill_color = "#38ABF2"  # Altera a cor de fundo do gráfico
 #Configure a saída para um arquivo HTML e mostre o gráfico:
 output_file("line_chart2.html")
 show(p)
-
-
-
-
-
-
 
 '''
 #GRÁFICO 4: DISPERSÃO 
@@ -204,9 +197,27 @@ regression_line = Slope(gradient=slope, y_intercept=intercept, line_color='red',
 # Adicionar a reta de regressão ao gráfico
 p.add_layout(regression_line)
 
+p.title.text_font = "Georgia"  # Altera a fonte do título para Georgia
+p.title.text_font_size = "14pt"  # Altera o tamanho da fonte do título 
+p.title.text_color = "#0C3B40"  # Altera a cor do texto do título 
+p.title.text_align = "center"  # Alinhando o título no centro do gráfico
+p.title.text_baseline = "middle"  # Alinhando o título verticalmente ao centro
+
+
+p.xaxis.axis_label_text_font = "Georgia"  # Altera a fonte do rótulo do eixo x para Georgia
+p.xaxis.axis_label_text_font_size = "16pt"  # Altera o tamanho da fonte do rótulo do eixo x 
+p.xaxis.axis_label_text_color = "#0C3B40"  # Altera a cor do texto do rótulo do eixo x 
+p.xaxis.major_label_text_font_style = "bold"  # Colocando em negrito os rótulos das escalas do eixo x
+
+p.yaxis.axis_label_text_font = "Georgia"  # Altera a fonte do rótulo do eixo y para Georgia
+p.yaxis.axis_label_text_font_size = "16pt"  # Altera o tamanho da fonte do rótulo do eixo y para 10 pontos
+p.yaxis.axis_label_text_color = "#0C3B40"  # Altera a cor do texto do rótulo do eixo y para verde
+p.yaxis.major_label_text_font_style = "bold"  # Colocando em negrito os rótulos das escalas do eixo y
+
+p.background_fill_color = "#38ABF2"  # Altera a cor de fundo do gráfico
+
 # Configurar a saída para um arquivo HTML
 output_file("scatter_plot.html")
 
 # Exibir o gráfico
 show(p)
-'''

@@ -8,11 +8,6 @@ from bokeh.layouts import gridplot
 
 data = pd.read_csv("World Energy Consumption.csv")
 
-paises_com_mais_usinas = ["United States", "France", "Japan", "Germany", "Russia", "South Korea"]
-cinco_primeiros_países = data[data["country"].isin(paises_com_mais_usinas)]
-
-print(cinco_primeiros_países)
-
 output_file("nuclear_rascunho.html")
 
 data_pib_nuclear_share_elec = {"x": data["gdp"], "y": data["nuclear_share_elec"]}
@@ -223,13 +218,27 @@ plot = gridplot([[line_year_nuclear_EUA, line_year_nuclear_France, line_year_nuc
 
 output_file("nuclear_rascunho4.html")
 
-data_source = ColumnDataSource(cinco_primeiros_países[cinco_primeiros_países["year"]=="2016"]) #Cria o ColumnDataSource
-bar_year_nuclear = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
-bar_year_nuclear.vbar(x = "iso_code", top = "nuclear_electricity", source = data_source)
+# Filtrando os dados
 
-show(bar_year_nuclear)
+#Retirando os continentes e organizações
+cinco_países = data[~data["iso_code"].isnull()] 
+cinco_países = cinco_países[cinco_países["country"] != "World"]
+
+# Selecionando um ano
+cinco_países = cinco_países[cinco_países["year"] == 2018]
+
+# Ordenando e selecionando as colunas desejadas
+cinco_países = cinco_países.sort_values("nuclear_consumption", ascending= False)
+cinco_países = cinco_países[["country", "year", "nuclear_consumption"]]
+cinco_países = cinco_países.head(10)
 
 
+# Gráfico de barras
 
+bar_rank_nuclear = figure(x_range = cinco_países["country"])
+pais = cinco_países["country"]
+y = cinco_países["nuclear_consumption"]
+bar_rank_nuclear.vbar(x=pais, top=y, width=0.5)
 
-
+# print(top)
+show(bar_rank_nuclear)

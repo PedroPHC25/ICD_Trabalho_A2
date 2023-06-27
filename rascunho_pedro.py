@@ -5,7 +5,8 @@ from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource, Range1d, Label, PrintfTickFormatter
 from bokeh.layouts import gridplot
 from bokeh.models.annotations import BoxAnnotation
-
+from bokeh.transform import linear_cmap
+from bokeh.palettes import Turbo256
 
 
 data = pd.read_csv("World Energy Consumption.csv")
@@ -13,9 +14,12 @@ data = pd.read_csv("World Energy Consumption.csv")
 # Gerando um dataframe apenas com os dados dos países, sem os continentes ou o mundo
 data_countries = data.loc[data["country"] != "World"].dropna(subset = ["iso_code"])
 
+# Criando uma nova coluna com a média de consumo de petróleo em função da população
+data_countries["oil_mean_consumption"] = data_countries["oil_consumption"]/data_countries["population"]
+
 # Gerando dataframes cujos países possuem um consumo de petróleo acima e abaixo da média mundial em 2019, valor esse calculado a partir da divisão do consumo pela população
-data_2019_high_consumption = data_countries.loc[data_countries["year"] == 2019].loc[data_countries["oil_consumption"]/data["population"] > 53619.925/7713467904]
-data_2019_low_consumption = data_countries.loc[data_countries["year"] == 2019].loc[data_countries["oil_consumption"]/data["population"] < 53619.925/7713467904]
+data_2019_high_consumption = data_countries.loc[data_countries["year"] == 2019].loc[data_countries["oil_mean_consumption"] > 53619.925/7713467904]
+data_2019_low_consumption = data_countries.loc[data_countries["year"] == 2019].loc[data_countries["oil_mean_consumption"] < 53619.925/7713467904]
 
 # Gerando um CDS apenas com os dados do mundo
 cds_oil_world = ColumnDataSource(data[data["country"] == "World"])
@@ -36,6 +40,8 @@ cds_oil_middle_east = ColumnDataSource(data[data["country"] == "Middle East"])
 cds_oil_north_america = ColumnDataSource(data[data["country"] == "North America"])
 cds_oil_south_and_central_america = ColumnDataSource(data[data["country"] == "South & Central America"])
 
+
+##############################################################################################################
 
 
 # Meu primeiro gráfico é um gráfico de linhas mostrando a evolução da produção de petróleo das 5 maiores regiões produtoras ao longo dos anos
@@ -120,6 +126,8 @@ graph_best_regions.add_layout(Label(x = 1992,
 # save(graph_best_regions)
 
 
+##############################################################################################################
+
 
 # Minha segunda visualização será um gráfico de dispersão mostrando a relação entre a população de cada país e o consumo de petróleo
 output_file("rascunho_pedro_2.html")
@@ -127,22 +135,23 @@ output_file("rascunho_pedro_2.html")
 # Criando o objeto figura com os eixos em escala logarítmica e com as ferramentas adequadas
 graph_pop_consumption = figure(x_axis_type = "log", 
                                y_axis_type = "log", 
-                               tools = "pan, wheel_zoom, reset, hover, save")
+                               tools = "pan, wheel_zoom, reset, hover, save",
+                               tooltips = [("País", "@country")])
 
 # Gerando o gráfico de dispersão com os dados dos CDSs, agrupando os dados por cor (verde são os países com consumo abaixo da média mundial e vermelho são os com consumo acima)
 graph_pop_consumption.circle(x = "population", 
                              y = "oil_consumption", 
                              source = cds_oil_2019_high_consumption, 
-                             size = 5, 
-                             fill_color = "red", 
-                             line_color = "red", 
+                             fill_color = "red",
+                             line_color = "red",
+                             size = 5,  
                              legend_label = "Acima da média mundial")
 graph_pop_consumption.circle(x = "population", 
                              y = "oil_consumption", 
                              source = cds_oil_2019_low_consumption, 
+                             fill_color = "lime",
+                             line_color = "lime",
                              size = 5, 
-                             fill_color = "lime", 
-                             line_color = "lime", 
                              legend_label = "Abaixo da média mundial")
 
 # Excluindo os ticks secundários
@@ -173,9 +182,19 @@ graph_pop_consumption.yaxis.axis_label_text_font = "arial"
 # Gerando a legenda
 graph_pop_consumption.legend.location = "top_left"
 
+# Ajustando o grid
+graph_pop_consumption.xgrid.grid_line_alpha = 0.4
+graph_pop_consumption.ygrid.grid_line_alpha = 0.4
 
+# Adicionando uma anotação
+graph_pop_consumption.add_layout(Label(x = 100000000, 
+                                    y = 15, 
+                                    text = "Em geral, quanto maior \na população, maior \no consumo de petróleo", 
+                                    text_font_size = "12px", 
+                                    text_color = "darkslategray", 
+                                    text_alpha = 0.8))
 
-
+# Salvando o gráfico
 save(graph_pop_consumption)
 
 

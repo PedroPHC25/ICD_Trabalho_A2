@@ -1,9 +1,19 @@
 import geopandas as gpd
+import pandas as pd
+from bokeh.plotting import figure, output_file, show
+from bokeh.models import ColumnDataSource
 
 
 shapefile = 'map_data/ne_110m_admin_0_countries.shp'
-#Read shapefile using Geopandas
+# Lendo o arquivo com o geopandas
 gdf = gpd.read_file(shapefile)[['ADMIN', 'ADM0_A3', 'geometry']]
-#Rename columns.
+# Renomeando as colunas
 gdf.columns = ['country', 'country_code', 'geometry']
-print(gdf)
+
+# Lendo os dados sobre energia
+data = pd.read_csv("World Energy Consumption.csv")
+
+# Retirando os continentes e organizações
+rank_data = data[~data["iso_code"].isnull()] 
+rank_data = rank_data[rank_data["country"] != "World"]
+

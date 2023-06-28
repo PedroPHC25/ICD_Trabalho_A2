@@ -1,135 +1,55 @@
+from bokeh.io import output_file, show
+from bokeh.models import ColumnDataSource
+from bokeh.plotting import figure
+from bokeh.layouts import gridplot
 import pandas as pd
-from bokeh.plotting import figure, show, output_file
-from bokeh.models import ColumnDataSource, ColorBar
-from bokeh.transform import linear_cmap, log_cmap
-from bokeh.palettes import Blues256
-'''
-#1
- 
-# Leitura do arquivo CSV
-data = pd.read_csv("World Energy Consumption.csv")
 
-x = data['population']  # Selecionar a coluna 'population'
-y = data['gdp']  # Selecionar a coluna 'gdp'
-source = ColumnDataSource(dict(x=x, y=y))
+#GRÁFICO DE BARRAS DE GERAÇÃO DE ELETRICIDADE A PARTIR DO VENTO POR PAÍS (MEDIDO EM TERAWATT-HORA)
 
-def make_plot(mapper, palette):
-    cmap = log_cmap(field_name="x", palette=palette, low=min(x), high=max(x))
-    axis_type = "log"  # Definir a escala logarítmica
+data = pd.read_csv("World Energy Consumption.csv") #Lendo o arquivo
+df_filtered = data[data['year'] == 2020] #Filtrando dados do ano de 2020
 
-    p = figure(title=f"{palette} with {mapper.__name__}", toolbar_location=None, tools="", x_axis_type=axis_type, y_axis_type=axis_type)
+#Ordenando os valores de 'wind_electricity' em ordem decrescente
+df_sorted = df_filtered.sort_values('wind_electricity', ascending=False)
 
-    r = p.scatter('x', 'y', alpha=0.8, source=source, color=cmap)
+#Selecionando os 10 maiores valores da coluna 'wind_electricity'
+df_top_10 = df_sorted.head(10)
 
-    color_bar = ColorBar(color_mapper=cmap['transform'], location=(0, 0))
-    p.add_layout(color_bar, 'right')
+#Selecionando apenas as colunas desejadas ('country' e 'wind_electricity')
+df_top_10_filtered = df_top_10[['country', 'wind_electricity']]
 
-    return p
+#Identificando o país com o maior valor de wind_electricity
+pais_maior_geracao = df_top_10_filtered[df_top_10_filtered['wind_electricity'] == df_top_10_filtered['wind_electricity'].max()]['country'].iloc[0]
 
-# Configurar a saída para um arquivo HTML
-output_file("grafico.html")
+#Excluindo o país com o maior valor de wind_electricity
+df_top_10_filtered = df_top_10_filtered[df_top_10_filtered['country'] != pais_maior_geracao]
 
-# Chamar a função make_plot com os parâmetros desejados
-p = make_plot(log_cmap, Blues256)
+#Criando ColumnDataSource
+data_organized = ColumnDataSource(df_top_10_filtered)
 
-# Exibir o gráfico
-show(p)
-'''
+#Criando a figura e plotando as barras
+p = figure(x_range=df_top_10_filtered['country'], height=600, width=1200, 
+           title="             ELECTRICITY GENERATION FROM WIND BY COUNTRY IN 2020")
+p.vbar(x='country', top='wind_electricity', width=0.9, color="#A95974", source=data_organized)
 
-import pandas as pd
-from bokeh.plotting import figure, show
-from bokeh.models import ColumnDataSource, Whisker
-from bokeh.palettes import Category10_10
+#Ajustando os títulos dos eixos
+p.xaxis.axis_label = "COUNTRY"
+p.yaxis.axis_label = "ELECTRICITY GENERATION FROM WIND (TWh)"
 
-# Leitura do arquivo CSV
-data = pd.read_csv("World Energy Consumption.csv")
+p.title.text_font = "Georgia"  #Alterando a fonte do título 
+p.title.text_font_size = "16pt"  #Alterando o tamanho da fonte do título 
+p.title.text_color = "#8A5556"  #Alterando a cor do texto do título 
+p.title.text_align = "center"  #Alinhando o título no centro do gráfico
 
-# Ordenar os países pelo GDP em ordem decrescente e selecionar os 10 países com maior GDP (exceto o primeiro lugar)
-top_countries = data.nlargest(11, 'gdp')[1:11]
-countries = top_countries['country'].tolist()
+p.xaxis.axis_label_text_font = "Georgia"  #Alterando a fonte do rótulo do eixo x 
+p.xaxis.axis_label_text_font_size = "16pt"  #Alterando o tamanho da fonte do rótulo do eixo x 
+p.xaxis.axis_label_text_color = "#8A5556"  #Alterando a cor do texto do rótulo do eixo x 
+p.xaxis.major_label_text_font_style = "bold"  #Colocando em negrito os rótulos das escalas do eixo x
 
-print(countries)
-'''
-# Filtrar os dados apenas para os países selecionados
-filtered_data = data[data['country'].isin(countries)]
+p.yaxis.axis_label_text_font = "Georgia"  #Alterando a fonte do rótulo do eixo y 
+p.yaxis.axis_label_text_font_size = "16pt"  #Alterando o tamanho da fonte do rótulo do eixo y 
+p.yaxis.axis_label_text_color = "#8A5556"  #Alterando a cor do texto do rótulo do eixo y 
+p.yaxis.major_label_text_font_style = "bold"  #Colocando em negrito os rótulos das escalas do eixo y
 
-# Criar uma fonte de dados (ColumnDataSource)
-source = ColumnDataSource(filtered_data)
+p.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico
 
-# Configurar o gráfico
-p = figure(x_range=countries, title="Variação do consumo de energia eólica (TWh) ao longo dos anos",
-           x_axis_label="Países", y_axis_label="Variação do consumo de energia eólica (TWh)")
-
-# Agrupar os dados por país e calcular os quartis (quantiles) para o gráfico de caixa
-groups = filtered_data.groupby('country')
-q1 = groups['wind_cons_change_twh'].quantile(0.25)
-q2 = groups['wind_cons_change_twh'].quantile(0.5)
-q3 = groups['wind_cons_change_twh'].quantile(0.75)
-
-# Criar listas para os segmentos (Whisker)
-top = []
-bottom = []
-x = []
-
-# Preencher as listas com os valores dos segmentos
-for country in countries:
-    top.append(q3[country])
-    bottom.append(q1[country])
-    x.append(country)
-
-# Configurar os segmentos (Whisker) no gráfico
-p.segment(x, top, x, q3, line_width=2, line_color='black')
-p.segment(x, bottom, x, q1, line_width=2, line_color='black')
-
-# Criar listas para as caixas
-top_box = []
-bottom_box = []
-
-# Preencher as listas com os valores das caixas
-for country in countries:
-    top_box.append(q2[country])
-    bottom_box.append(q1[country])
-
-# Configurar as caixas no gráfico
-p.vbar(x, 0.7, top_box, bottom_box, fill_color=Category10_10[0], line_color='black')
-
-# Exibir o gráfico
-show(p)
-
-'''
-
-'''
-import numpy as np
-from bokeh.plotting import figure, show
-from bokeh.io import output_notebook
-
-# Leitura do arquivo CSV
-data = pd.read_csv("World Energy Consumption.csv")
-
-
-# Calculando os quartis e limites para o gráfico de caixa e bigodes
-q1 = np.percentile(dados, 25, axis=1)
-q2 = np.percentile(dados, 50, axis=1)
-q3 = np.percentile(dados, 75, axis=1)
-iqr = q3 - q1
-upper = q3 + 1.5 * iqr
-lower = q1 - 1.5 * iqr
-
-# Configurando a saída para o notebook (opcional)
-output_notebook()
-
-# Criando a figura
-p = figure(plot_width=400, plot_height=400)
-
-# Plotando as linhas verticais (bigodes)
-for i, d in enumerate(dados):
-    p.segment(i + 0.5, lower[i], i + 0.5, q1[i], line_color="black")
-    p.segment(i + 0.5, upper[i], i + 0.5, q3[i], line_color="black")
-
-# Plotando as caixas
-p.vbar(x=np.arange(1, len(dados) + 1), top=q2, bottom=q3, width=0.7, fill_color="#E08E79", line_color="black")
-p.vbar(x=np.arange(1, len(dados) + 1), top=q2, bottom=q1, width=0.7, fill_color="#3B8686", line_color="black")
-
-# Mostrando o gráfico
-show(p)
-'''

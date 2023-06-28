@@ -62,6 +62,7 @@ scatterplot_gdp_nuclear_share.xaxis.axis_label_text_color = 'MidnightBlue'
 
 scatterplot_gdp_nuclear_share.xaxis.axis_label_text_font_size = "20px" #Tamanho da fonte do título dos eixos
 scatterplot_gdp_nuclear_share.yaxis.axis_label_text_font_size = "20px"
+scatterplot_gdp_nuclear_share.xaxis[0].formatter.use_scientific = False # Retirar o modo de escala em notação científica
 
 # Anotação
 scatterplot_gdp_nuclear_share.add_layout(Label(x = 2700, y = 35,
@@ -70,7 +71,7 @@ scatterplot_gdp_nuclear_share.add_layout(Label(x = 2700, y = 35,
                                        text_color = "Black", 
                                        text_alpha = 0.7))
 
-scatterplot_gdp_nuclear_share.xaxis[0].formatter.use_scientific = False # Retirar o modo de escala em notação científica
+
 
 
 # Fundo
@@ -238,6 +239,12 @@ glyph_renderer.line_width= 3.5
 #Anotação
 box_annotation = BoxAnnotation(left = 2010, right = 2015, fill_color = "red", fill_alpha = 0.2)
 line_year_nuclear_Japan.add_layout(box_annotation)
+
+line_year_nuclear_Japan.add_layout(Label(x = 2009, y = 300,
+                                       text = "2011 ocorre acidente \nnuclear de Fukushima.",
+                                       text_font_size = "14px",
+                                       text_color = "Black", 
+                                       text_alpha = 0.7))
 
 """Germany"""
 data_source = ColumnDataSource(data= data[data["country"]=="Germany"])

@@ -1,6 +1,5 @@
 # Importando as funções e métodos necessários
 from bokeh.io import output_file, save
-from bokeh.models import Div
 from bokeh.layouts import column
 
 # Pegando os textos e os gráficos dos arquivos de petróleo

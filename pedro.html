@@ -65,7 +65,24 @@ Com relação aos seus títulos, da mesma forma que anteriormente, criei-os de u
 
 </center>
 
-<p>O objetivo dessa terceira visualização é comparar as altas e as baixas da produção de petróleo dos Estados Unidos, da Rússia e da Arábia Saudita, que são, atualmente, os maiores produtores do mundo. Desse modo, optei pela utilização dos gráficos de barras para proporcionar melhor essa análise simultânea de vários momentos da história.</p>
+<p>O objetivo dessa terceira visualização é comparar as altas e as baixas na produção de petróleo dos Estados Unidos, da Rússia e da Arábia Saudita, que são, atualmente, os maiores produtores do mundo. Desse modo, optei pela utilização dos gráficos de barras para proporcionar melhor essa análise simultânea de vários momentos da história.</p>
+
+<p>Inicialmente, agrupei os dados desses países de acordo com o valor da variação anual na produção, separando-os nos anos em que essa variação foi positiva e negativa. Assim, consegui plotar os gráficos de forma que esses dois grupos possuíssem cores diferentes: verde para os positivos e vermelho para os negativos, o que melhora a percepção dos momentos de subida e de queda. Além disso, ajustei as dimensões dos gráficos para que todos tivessem o mesmo tamanho e se adequassem ao formato de gridplot.</p>
+
+<p>Em seguida, comecei a customizar os eixos. Primeiramente, ajustei os limites dos eixos x e y para que todos os gráficos mantivessem a mesma proporção e para que não ocorresse qualquer interpretação equivocada. Após isso, mais uma vez, retirei os ticks secundários por considerá-los irrelevantes.</br>
+Pensei em tirar totalmente os eixos x dos dois gráficos de cima e deixar como referência apenas o de baixo. No entanto, dois problemas surgiram: primeiro, os valores dos anos estavam muito longe dos dados do primeiro gráfico, dificultando sua análise; e segundo, como os gráficos são móveis graças à interatividade, se os dois primeiros fossem movimentados, seria perdida totalmente a informação dos anos, já que o eixo do gráfico de baixo não se aplicaria mais. Assim, decidi manter os 3 eixos.</br>
+Depois, apenas coloquei e configurei os títulos dos eixos da mesma forma que anteriormente, mas colocando o título do eixo x apenas no gráfico de baixo e o do eixo y apenas no do meio, já que não há necessidade de repeti-los por serem a mesma variável nos 3 gráficos.</p>
+
+<p>A seguir, inseri o título de cada gráfico como o nome do país correspondente. Nesse caso, optei por alinhá-los à esquerda para que ficassem mais separados de todas as outras informações. Além disso, infelizmente, não há uma maneira (não encontramos, pelo menos) de colocar um título no gridplot em si. Portanto, ele acabou sem um título próprio.</p>
+
+<p>Com relação ao fundo, novamente, a única alteração que fiz foi tornar os grids um pouco mais sutis.</p>
+
+<p>A respeito das ferramentas, mantive nessa visualização as mesmas do segundo gráfico, apenas com a mudança de que configurei o hover para exibir o ano correspondente a cada barra e o seu valor da variação anual, o que avaliei como útil para melhorar o detalhamento das informações. Assim como antes, ativei o autohide e exclui a logo do Bokeh. Finalmente, mudei a posição da toolbar de cima para a lateral direita dos gráficos, pois a montagem já estava um pouco grande demais em altura.</p>
+
+<p>Por fim, adicionei uma anotação em caixa e em texto em cada gráfico, destacando e explicando os momentos de maior variação em cada um. No dos Estados Unidos, destaquei o aumento na produção a partir de 2010 causada pelo desenvolvimento das tecnologias para extração e produção do petróleo de xisto. No da Rússia, comentei sobre a forte queda em 1990 provocada pelo fim da União Soviética. E, no da Arábia Saudita, abordei a intensa baixa na produção em 1980 gerada principalmente pela guerra entre Irã e Iraque.</br>
+As caixas foram feitas com certa transparência para não encobrirem o gráfico e as cores foram escolhidas de acordo com o aspecto da informação: verde para a positiva e vermelho para as negativas.</p>
+
+<p>Por fim, para montar o gridplot, optei por colocar os três gráficos um acima do outro, de modo a alinhar as marcações do eixo x. Fiz isso para que fossem mais facilmente comparáveis as informações ao longo dos anos.</p>
 
 </body>
 

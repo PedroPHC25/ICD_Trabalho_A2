@@ -1,7 +1,6 @@
 from bokeh.io import output_file, show
 from bokeh.models import ColumnDataSource
 from bokeh.plotting import figure
-from bokeh.layouts import gridplot
 import pandas as pd
 
 #GRÁFICO DE BARRAS DE GERAÇÃO DE ELETRICIDADE A PARTIR DO VENTO POR PAÍS (MEDIDO EM TERAWATT-HORA)

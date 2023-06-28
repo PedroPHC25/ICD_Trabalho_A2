@@ -27,7 +27,7 @@ scatterplot_gdp_nuclear_share = figure(width= 700, height = 700,
                                           tooltips = [("País", "@z"),
                                                       ("Energia nuclear", "@y"),
                                                       ("PIB", "@x")])
-scatterplot_gdp_nuclear_share.circle(x = "x", y = "y", size = "y", color = "RoyalBlue", 
+scatterplot_gdp_nuclear_share.circle(x = "x", y = "y", size = "y", color = "MidnightBlue", 
                                      alpha = 0.5, source = data_source)
 
 
@@ -62,23 +62,25 @@ scatterplot_gdp_nuclear_share.xaxis.axis_label_text_color = 'MidnightBlue'
 scatterplot_gdp_nuclear_share.xaxis.axis_label_text_font_size = "20px" #Tamanho da fonte do título dos eixos
 scatterplot_gdp_nuclear_share.yaxis.axis_label_text_font_size = "20px"
 
+# Anotação
 scatterplot_gdp_nuclear_share.add_layout(Label(x = 2700, y = 35,
                                        text = "França foi o país que a energia nuclear \nteve mais participação no consumo de \neletricidade no ano 2000.",
                                        text_font_size = "14px",
                                        text_color = "Black", 
                                        text_alpha = 0.7))
 
-scatterplot_gdp_nuclear_share.xaxis[0].formatter.use_scientific = False
+scatterplot_gdp_nuclear_share.xaxis[0].formatter.use_scientific = False # Retirar o modo de escala em notação científica
 
 
 # Fundo
 scatterplot_gdp_nuclear_share.background_fill_color = ("WhiteSmoke")
 # scatterplot_gdp_nuclear_share.background_fill_alpha = 0.9
 
-show(scatterplot_gdp_nuclear_share)
+# show(scatterplot_gdp_nuclear_share)
 
 
 output_file("nuclear_rascunho3.html")
+
 """EUA"""
 data_source = ColumnDataSource(data=data[data["country"]=="United States"]) #Cria o ColumnDataSource
 line_year_nuclear_EUA = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
@@ -105,8 +107,8 @@ line_year_nuclear_EUA.yaxis.major_label_orientation = "vertical"
 
 line_year_nuclear_EUA.xaxis.axis_label_text_font ="Arial" #Fonte do título do eixo
 line_year_nuclear_EUA.yaxis.axis_label_text_font ="Arial"
-line_year_nuclear_EUA.yaxis.axis_label_text_color = 'RoyalBlue' #cor do título do eixo
-line_year_nuclear_EUA.xaxis.axis_label_text_color = 'RoyalBlue'
+line_year_nuclear_EUA.yaxis.axis_label_text_color = 'MidnightBlue' #cor do título do eixo
+line_year_nuclear_EUA.xaxis.axis_label_text_color = 'MidnightBlue'
 
 line_year_nuclear_EUA.xaxis.axis_label_text_font_size = "20px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_EUA.yaxis.axis_label_text_font_size = "20px"
@@ -142,8 +144,8 @@ line_year_nuclear_France.yaxis.major_label_orientation = "vertical"
 
 line_year_nuclear_France.xaxis.axis_label_text_font ="Arial" #Fonte do título do eixo
 line_year_nuclear_France.yaxis.axis_label_text_font ="Arial"
-line_year_nuclear_France.yaxis.axis_label_text_color = 'RoyalBlue' #cor do título do eixo
-line_year_nuclear_France.xaxis.axis_label_text_color = 'RoyalBlue'
+line_year_nuclear_France.yaxis.axis_label_text_color = 'MidnightBlue' #cor do título do eixo
+line_year_nuclear_France.xaxis.axis_label_text_color = 'MidnightBlue'
 
 line_year_nuclear_France.xaxis.axis_label_text_font_size = "20px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_France.yaxis.axis_label_text_font_size = "20px"
@@ -177,8 +179,8 @@ line_year_nuclear_Japan.yaxis.major_label_orientation = "vertical"
 
 line_year_nuclear_Japan.xaxis.axis_label_text_font ="Arial" #Fonte do título do eixo
 line_year_nuclear_Japan.yaxis.axis_label_text_font ="Arial"
-line_year_nuclear_Japan.yaxis.axis_label_text_color = 'RoyalBlue' #cor do título do eixo
-line_year_nuclear_Japan.xaxis.axis_label_text_color = 'RoyalBlue'
+line_year_nuclear_Japan.yaxis.axis_label_text_color = 'MidnightBlue' #cor do título do eixo
+line_year_nuclear_Japan.xaxis.axis_label_text_color = 'MidnightBlue'
 
 line_year_nuclear_Japan.xaxis.axis_label_text_font_size = "20px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_Japan.yaxis.axis_label_text_font_size = "20px"
@@ -213,8 +215,8 @@ line_year_nuclear_Germany.yaxis.major_label_orientation = "vertical"
 
 line_year_nuclear_Germany.xaxis.axis_label_text_font ="Arial" #Fonte do título do eixo
 line_year_nuclear_Germany.yaxis.axis_label_text_font ="Arial"
-line_year_nuclear_Germany.yaxis.axis_label_text_color = 'RoyalBlue' #cor do título do eixo
-line_year_nuclear_Germany.xaxis.axis_label_text_color = 'RoyalBlue'
+line_year_nuclear_Germany.yaxis.axis_label_text_color = 'MidnightBlue' #cor do título do eixo
+line_year_nuclear_Germany.xaxis.axis_label_text_color = 'MidnightBlue'
 
 line_year_nuclear_Germany.xaxis.axis_label_text_font_size = "20px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_Germany.yaxis.axis_label_text_font_size = "20px"
@@ -248,8 +250,8 @@ line_year_nuclear_Russia.yaxis.major_label_orientation = "vertical"
 
 line_year_nuclear_Russia.xaxis.axis_label_text_font ="Arial" #Fonte do título do eixo
 line_year_nuclear_Russia.yaxis.axis_label_text_font ="Arial"
-line_year_nuclear_Russia.yaxis.axis_label_text_color = 'RoyalBlue' #cor do título do eixo
-line_year_nuclear_Russia.xaxis.axis_label_text_color = 'RoyalBlue'
+line_year_nuclear_Russia.yaxis.axis_label_text_color = 'MidnightBlue' #cor do título do eixo
+line_year_nuclear_Russia.xaxis.axis_label_text_color = 'MidnightBlue'
 
 line_year_nuclear_Russia.xaxis.axis_label_text_font_size = "20px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_Russia.yaxis.axis_label_text_font_size = "20px"
@@ -283,8 +285,8 @@ line_year_nuclear_SouthKorea.yaxis.major_label_orientation = "vertical"
 
 line_year_nuclear_SouthKorea.xaxis.axis_label_text_font ="Arial" #Fonte do título do eixo
 line_year_nuclear_SouthKorea.yaxis.axis_label_text_font ="Arial"
-line_year_nuclear_SouthKorea.yaxis.axis_label_text_color = 'RoyalBlue' #cor do título do eixo
-line_year_nuclear_SouthKorea.xaxis.axis_label_text_color = 'RoyalBlue'
+line_year_nuclear_SouthKorea.yaxis.axis_label_text_color = 'MidnightBlue' #cor do título do eixo
+line_year_nuclear_SouthKorea.xaxis.axis_label_text_color = 'MidnightBlue'
 
 line_year_nuclear_SouthKorea.xaxis.axis_label_text_font_size = "20px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_SouthKorea.yaxis.axis_label_text_font_size = "20px"
@@ -297,7 +299,7 @@ line_year_nuclear_SouthKorea.background_fill_color = ("WhiteSmoke")
 plot = gridplot([[line_year_nuclear_EUA, line_year_nuclear_France, line_year_nuclear_Japan],
                   [line_year_nuclear_Germany, line_year_nuclear_Russia, line_year_nuclear_SouthKorea]])
 
-# show(plot)
+show(plot)
 
 output_file("nuclear_rascunho4.html")
 
@@ -336,7 +338,7 @@ bar_rank_nuclear.title.align = "center"
 bar_rank_nuclear.xaxis.axis_label = "anos"  #título do eixo x
 bar_rank_nuclear.xaxis.minor_tick_line_color = "black" 
 bar_rank_nuclear.xaxis.minor_tick_in = 5
-bar_rank_nuclear.xaxis.major_label_orientation = "vertical"
+bar_rank_nuclear.xaxis.major_label_orientation = "horizontal"
 bar_rank_nuclear.yaxis.axis_label = "Geração de energia nuclear(terawatts-hora) "  #título do eixo y
 bar_rank_nuclear.yaxis.minor_tick_line_color = "black"
 bar_rank_nuclear.yaxis.minor_tick_in = 5
@@ -344,8 +346,8 @@ bar_rank_nuclear.yaxis.major_label_orientation = "vertical"
 
 bar_rank_nuclear.xaxis.axis_label_text_font ="Arial" #Fonte do título do eixo
 bar_rank_nuclear.yaxis.axis_label_text_font ="Arial"
-bar_rank_nuclear.yaxis.axis_label_text_color = 'RoyalBlue' #cor do título do eixo
-bar_rank_nuclear.xaxis.axis_label_text_color = 'RoyalBlue'
+bar_rank_nuclear.yaxis.axis_label_text_color = 'MidnightBlue' #cor do título do eixo
+bar_rank_nuclear.xaxis.axis_label_text_color = 'MidnightBlue'
 
 bar_rank_nuclear.xaxis.axis_label_text_font_size = "15px" #Tamnho da fonte do título dos eixos
 bar_rank_nuclear.yaxis.axis_label_text_font_size = "20px"
@@ -357,4 +359,4 @@ bar_rank_nuclear.background_fill_color = ("WhiteSmoke")
 
 
 # print(top)
-# show(bar_rank_nuclear)
+show(bar_rank_nuclear)

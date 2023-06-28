@@ -3,7 +3,7 @@ import pandas as pd
 from bokeh.models import ColumnDataSource, Slider
 from bokeh.layouts import column
 
-# Gráfico de barras com os maiores consumidores de energia vinda do carvão
+# Gráfico de barras interativo com os maiores consumidores de energia vinda do carvão
 
 output_file("rank_interativo.html")
 
@@ -12,7 +12,6 @@ data = pd.read_csv("World Energy Consumption.csv")
 
 
 # Filtrando os dados
-
 #Retirando os continentes e organizações
 data_country = data[~data["iso_code"].isnull()] 
 data_country = data_country[data_country["country"] != "World"]
@@ -27,17 +26,16 @@ rank_data = rank_data.head(10)
 
 
 # Gráfico de barras
-
 # Dados dos eixos
 source = ColumnDataSource(rank_data)
 
 # Construção do gráfico de barras
 rank = figure(x_range = rank_data["country"],
               tools = "pan, wheel_zoom, reset, hover, save",
-              tooltips = [("Consumo", "@coal_consumption")],
+              tooltips = [("Consumo", "@coal_consumption{1,11}")],
               x_axis_label = "Países",
-              y_axis_label = "Consumo em terawatt por hora")
-# Customização da proporção e grid
+              y_axis_label = "Consumo em terawatts por hora")
+# Customização da proporção, grid e eixos
 rank.height = 550
 rank.width = 1000
 rank.xgrid.grid_line_color = None

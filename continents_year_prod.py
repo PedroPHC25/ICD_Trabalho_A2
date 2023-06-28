@@ -30,9 +30,10 @@ coal_africa.add_layout(box_annotation)
 
 # Linha do tempo com a produção anual de energia da África
 coal_africa.line(x= "year", 
-            y="coal_production", 
-            source=coal_africa_data, 
-            line_color = "green")
+                 y="coal_production", 
+                 source=coal_africa_data, 
+                 line_color = "green", 
+                 line_width=2)
 
 
 # Oriente Médio
@@ -44,17 +45,23 @@ coal_sc_am_data = ColumnDataSource(coal_sc_am_data)
 
 # Criando e customizando o plot
 coal_sc_am = figure(tools = "")
-coal_sc_am.title = "América do Sul e Central"
 coal_sc_am.y_range = Range1d(start=0, end = 7500)
 coal_sc_am.x_range = Range1d(start=1893, end = 2025)
 coal_sc_am.add_tools(hover)
 coal_sc_am.add_layout(box_annotation)
 
+# Título do eixo x
+coal_sc_am.title = "América do Sul e Central"
+coal_sc_am.xaxis.axis_label = "Ano"
+coal_sc_am.axis.axis_label_text_font_style = "bold"
+coal_sc_am.xaxis.axis_label_text_font_size = "20px"
+
 # Linha do tempo com a produção anual de energia do Oriente Médio
 coal_sc_am.line(x= "year", 
-             y="coal_production", 
-             source=coal_sc_am_data,
-             line_color = "red")
+                y="coal_production", 
+                source=coal_sc_am_data,
+                line_color = "red", 
+                line_width=2)
 
 
 # Europa 
@@ -67,13 +74,17 @@ coal_europa.y_range = Range1d(start=0, end = 7500)
 coal_europa.add_tools(hover)
 coal_europa.add_layout(box_annotation)
 
-# Títulos
+# Título eixo y
 coal_europa.title = "Europa"
-coal_europa.yaxis.axis_label = "Produção de energia pelo carvão"
+coal_europa.yaxis.axis_label = "Produção de energia a partir do carvão"
+coal_europa.axis.axis_label_text_font_style = "bold"
+coal_europa.yaxis.axis_label_text_font_size = "13px"
+
 # Linha do tempo com a produção anual de energia da Europa
-coal_europa.line(x= "year", 
-            y="coal_production", 
-            source=coal_europa_data)
+coal_europa.line(x= "year",
+                 y="coal_production", 
+                 source=coal_europa_data, 
+                 line_width=2)
 
 # América do norte
 # Filtrando os dados 
@@ -85,16 +96,23 @@ coal_am_norte.y_range = Range1d(start=0, end = 7500)
 coal_am_norte.add_tools(hover)
 coal_am_norte.add_layout(box_annotation)
 
-# Títulos
-coal_am_norte.yaxis.axis_label = "Produção de energia pelo carvão"
-coal_am_norte.axis.axis_label_text_font_style = "normal"
-coal_am_norte.xaxis.axis_label_text_font = "georgia"
+# Título do eixo x
+coal_am_norte.xaxis.axis_label = "Ano"
+coal_am_norte.axis.axis_label_text_font_style = "bold"
+coal_am_norte.xaxis.axis_label_text_font_size = "20px"
 coal_am_norte.title = "América do Norte"
+
+# Título do eixo y
+coal_am_norte.yaxis.axis_label = "Produção de energia a partir do carvão"
+coal_am_norte.axis.axis_label_text_font_style = "bold"
+coal_am_norte.yaxis.axis_label_text_font_size = "13px"
+
 # Linha do tempo com a produção anual de energia da América do Norte
 coal_am_norte.line(x= "year", 
-              y="coal_production", 
-              source=coal_am_norte_data,
-              line_color = "gold")
+                   y="coal_production", 
+                   source=coal_am_norte_data,
+                   line_color = "gold", 
+                   line_width=2)
 
 
 # Grid 2x2, com todas as linhas do tempo

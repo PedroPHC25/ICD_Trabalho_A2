@@ -4,6 +4,7 @@ from bokeh.io import output_file, save, show
 import pandas as pd
 from bokeh.models import ColumnDataSource
 from bokeh.layouts import gridplot
+from bokeh.models.annotations import Span, BoxAnnotation
 
 
 data = pd.read_csv("World Energy Consumption.csv")
@@ -61,6 +62,7 @@ scatterplot_gdp_nuclear_share.xaxis.axis_label_text_color = 'MidnightBlue'
 
 scatterplot_gdp_nuclear_share.xaxis.axis_label_text_font_size = "20px" #Tamanho da fonte do título dos eixos
 scatterplot_gdp_nuclear_share.yaxis.axis_label_text_font_size = "20px"
+scatterplot_gdp_nuclear_share.xaxis[0].formatter.use_scientific = False # Retirar o modo de escala em notação científica
 
 # Anotação
 scatterplot_gdp_nuclear_share.add_layout(Label(x = 2700, y = 35,
@@ -69,7 +71,7 @@ scatterplot_gdp_nuclear_share.add_layout(Label(x = 2700, y = 35,
                                        text_color = "Black", 
                                        text_alpha = 0.7))
 
-scatterplot_gdp_nuclear_share.xaxis[0].formatter.use_scientific = False # Retirar o modo de escala em notação científica
+
 
 
 # Fundo
@@ -84,7 +86,7 @@ output_file("nuclear_rascunho3.html")
 """EUA"""
 data_source = ColumnDataSource(data=data[data["country"]=="United States"]) #Cria o ColumnDataSource
 line_year_nuclear_EUA = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
-line_year_nuclear_EUA.line(x = "year", y = "nuclear_electricity", source = data_source)
+renderer = line_year_nuclear_EUA.line(x = "year", y = "nuclear_electricity", source = data_source, color="RoyalBlue")
 # ferramnetas
 line_year_nuclear_EUA.toolbar.logo = None #retira a logo
 line_year_nuclear_EUA.toolbar.autohide = True #deixa o barra de ferramentas invisível
@@ -113,6 +115,13 @@ line_year_nuclear_EUA.xaxis.axis_label_text_color = 'MidnightBlue'
 line_year_nuclear_EUA.xaxis.axis_label_text_font_size = "25px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_EUA.yaxis.axis_label_text_font_size = "25px"
 
+# line_year_nuclear_EUA.x_range = Range1d(start = 0, end=10)  #muda a escala dos eixos
+line_year_nuclear_EUA.y_range = Range1d(start = 0, end = 850)
+
+#Glifo
+glyph_renderer = renderer.glyph #pega o renderzador do glifo
+glyph_renderer.line_width= 3.5
+
 
 # Fundo
 line_year_nuclear_EUA.background_fill_color = ("WhiteSmoke")
@@ -131,7 +140,7 @@ line_year_nuclear_EUA.ygrid.grid_line_alpha = 0.6  #transparencia do gride
 """France"""
 data_source = ColumnDataSource(data= data[data["country"]=="France"])
 line_year_nuclear_France = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
-line_year_nuclear_France.line(x = "year", y = "nuclear_electricity", source = data_source)
+renderer = line_year_nuclear_France.line(x = "year", y = "nuclear_electricity", source = data_source, color="RoyalBlue")
 # ferramnetas
 line_year_nuclear_France.toolbar.logo = None #retira a logo
 line_year_nuclear_France.toolbar.autohide = True #deixa o barra de ferramentas invisível
@@ -160,6 +169,8 @@ line_year_nuclear_France.xaxis.axis_label_text_color = 'MidnightBlue'
 line_year_nuclear_France.xaxis.axis_label_text_font_size = "25px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_France.yaxis.axis_label_text_font_size = "25px"
 
+line_year_nuclear_France.y_range = Range1d(start = 0, end = 850)
+
 # Fundo
 line_year_nuclear_France.background_fill_color = ("WhiteSmoke")
 
@@ -173,10 +184,14 @@ line_year_nuclear_France.ygrid.grid_line_alpha = 0.6  #transparencia do gride
 
 # line_year_nuclear_EUA.grid.grid_line_dash = [1, 42] #pontilhamento, quanros traços para quantos espaços
 
+#Glifo
+glyph_renderer = renderer.glyph #pega o renderzador do glifo
+glyph_renderer.line_width= 3.5
+
 """Japan"""
 data_source = ColumnDataSource(data= data[data["country"]=="Japan"])
 line_year_nuclear_Japan = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
-line_year_nuclear_Japan.line(x = "year", y = "nuclear_electricity", source = data_source)
+renderer = line_year_nuclear_Japan.line(x = "year", y = "nuclear_electricity", source = data_source, color="RoyalBlue")
 # ferramnetas
 line_year_nuclear_Japan.toolbar.logo = None #retira a logo
 line_year_nuclear_Japan.toolbar.autohide = True #deixa o barra de ferramentas invisível
@@ -205,6 +220,8 @@ line_year_nuclear_Japan.xaxis.axis_label_text_color = 'MidnightBlue'
 line_year_nuclear_Japan.xaxis.axis_label_text_font_size = "25px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_Japan.yaxis.axis_label_text_font_size = "25px"
 
+line_year_nuclear_Japan.y_range = Range1d(start = 0, end = 850)
+
 # Fundo
 line_year_nuclear_Japan.background_fill_color = ("WhiteSmoke")
 
@@ -215,11 +232,24 @@ line_year_nuclear_Japan.xgrid.grid_line_alpha = 0.6  #transparencia do gride
 line_year_nuclear_Japan.ygrid.grid_line_color = "LightGray"
 line_year_nuclear_Japan.ygrid.grid_line_alpha = 0.6  #transparencia do gride
 
+#Glifo
+glyph_renderer = renderer.glyph #pega o renderzador do glifo
+glyph_renderer.line_width= 3.5
+
+#Anotação
+box_annotation = BoxAnnotation(left = 2010, right = 2015, fill_color = "red", fill_alpha = 0.2)
+line_year_nuclear_Japan.add_layout(box_annotation)
+
+line_year_nuclear_Japan.add_layout(Label(x = 2009, y = 300,
+                                       text = "2011 ocorre acidente \nnuclear de Fukushima.",
+                                       text_font_size = "14px",
+                                       text_color = "Black", 
+                                       text_alpha = 0.7))
 
 """Germany"""
 data_source = ColumnDataSource(data= data[data["country"]=="Germany"])
 line_year_nuclear_Germany = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
-line_year_nuclear_Germany.line(x = "year", y = "nuclear_electricity", source = data_source)
+renderer = line_year_nuclear_Germany.line(x = "year", y = "nuclear_electricity", source = data_source, color="RoyalBlue")
 # ferramnetas
 line_year_nuclear_Germany.toolbar.logo = None #retira a logo
 line_year_nuclear_Germany.toolbar.autohide = True #deixa o barra de ferramentas invisível
@@ -248,6 +278,9 @@ line_year_nuclear_Germany.xaxis.axis_label_text_color = 'MidnightBlue'
 line_year_nuclear_Germany.xaxis.axis_label_text_font_size = "25px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_Germany.yaxis.axis_label_text_font_size = "25px"
 
+line_year_nuclear_Germany.y_range = Range1d(start = 0, end = 850)
+
+
 # Fundo
 line_year_nuclear_Germany.background_fill_color = ("WhiteSmoke")
 
@@ -258,10 +291,14 @@ line_year_nuclear_Germany.xgrid.grid_line_alpha = 0.6  #transparencia do gride
 line_year_nuclear_Germany.ygrid.grid_line_color = "LightGray"
 line_year_nuclear_Germany.ygrid.grid_line_alpha = 0.6  #transparencia do gride
 
+#Glifo
+glyph_renderer = renderer.glyph #pega o renderzador do glifo
+glyph_renderer.line_width= 3.5
+
 """Russia"""
 data_source = ColumnDataSource(data= data[data["country"]=="Russia"])
 line_year_nuclear_Russia = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
-line_year_nuclear_Russia.line(x = "year", y = "nuclear_electricity", source = data_source)
+renderer = line_year_nuclear_Russia.line(x = "year", y = "nuclear_electricity", source = data_source, color="RoyalBlue")
 # ferramnetas
 line_year_nuclear_Russia.toolbar.logo = None #retira a logo
 line_year_nuclear_Russia.toolbar.autohide = True #deixa o barra de ferramentas invisível
@@ -290,6 +327,9 @@ line_year_nuclear_Russia.xaxis.axis_label_text_color = 'MidnightBlue'
 line_year_nuclear_Russia.xaxis.axis_label_text_font_size = "25px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_Russia.yaxis.axis_label_text_font_size = "25px"
 
+line_year_nuclear_Russia.y_range = Range1d(start = 0, end = 850)
+
+
 # Fundo
 line_year_nuclear_Russia.background_fill_color = ("WhiteSmoke")
 
@@ -300,10 +340,14 @@ line_year_nuclear_Russia.xgrid.grid_line_alpha = 0.6  #transparencia do gride
 line_year_nuclear_Russia.ygrid.grid_line_color = "LightGray"
 line_year_nuclear_Russia.ygrid.grid_line_alpha = 0.6  #transparencia do gride
 
+#Glifo
+glyph_renderer = renderer.glyph #pega o renderzador do glifo
+glyph_renderer.line_width= 3.5
+
 """South Korea"""
 data_source = ColumnDataSource(data= data[data["country"]=="South Korea"])
 line_year_nuclear_SouthKorea = figure(width= 650, height = 600, tools = "box_zoom, pan, reset, save, wheel_zoom")
-line_year_nuclear_SouthKorea.line(x = "year", y = "nuclear_electricity", source = data_source)
+renderer = line_year_nuclear_SouthKorea.line(x = "year", y = "nuclear_electricity", source = data_source, color="RoyalBlue")
 # ferramnetas
 line_year_nuclear_SouthKorea.toolbar.logo = None #retira a logo
 line_year_nuclear_SouthKorea.toolbar.autohide = True #deixa o barra de ferramentas invisível
@@ -332,6 +376,7 @@ line_year_nuclear_SouthKorea.xaxis.axis_label_text_color = 'MidnightBlue'
 line_year_nuclear_SouthKorea.xaxis.axis_label_text_font_size = "25px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_SouthKorea.yaxis.axis_label_text_font_size = "25px"
 
+line_year_nuclear_SouthKorea.y_range = Range1d(start = 0, end = 850)
 
 
 # Fundo
@@ -343,6 +388,10 @@ line_year_nuclear_SouthKorea.xgrid.grid_line_alpha = 0.6  #transparencia do grid
 
 line_year_nuclear_SouthKorea.ygrid.grid_line_color = "LightGray"
 line_year_nuclear_SouthKorea.ygrid.grid_line_alpha = 0.6  #transparencia do gride
+
+#Glifo
+glyph_renderer = renderer.glyph #pega o renderzador do glifo
+glyph_renderer.line_width= 3.5
 
 plot = gridplot([[line_year_nuclear_EUA, line_year_nuclear_France, line_year_nuclear_Japan],
                   [line_year_nuclear_Germany, line_year_nuclear_Russia, line_year_nuclear_SouthKorea]])

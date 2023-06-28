@@ -27,9 +27,6 @@ data_negative_united_states = data.loc[data["country"] == "United States"].loc[d
 data_negative_russia = data.loc[data["country"] == "Russia"].loc[data["oil_prod_change_twh"] < 0]
 data_negative_saudi_arabia = data.loc[data["country"] == "Saudi Arabia"].loc[data["oil_prod_change_twh"] < 0]
 
-# Gerando um CDS apenas com os dados do mundo
-cds_oil_world = ColumnDataSource(data[data["country"] == "World"])
-
 # Gerando CDSs com os dados de 2019 separados com base no consumo de petróleo do país
 cds_oil_2019_high_consumption = ColumnDataSource(data_2019_high_consumption)
 cds_oil_2019_low_consumption = ColumnDataSource(data_2019_low_consumption)
@@ -366,4 +363,4 @@ grid = gridplot([[graph_united_states],
                  toolbar_location = "right")
 
 # Salvando a visualização
-save(grid)
+# save(grid)

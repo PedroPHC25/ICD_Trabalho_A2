@@ -62,3 +62,9 @@ p3.yaxis.axis_label_text_color = "#8A5556"  #Alterando a cor do texto do rótulo
 p3.yaxis.major_label_text_font_style = "bold"  #Colocando em negrito os rótulos das escalas do eixo y
 
 p3.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico
+
+#Configurando a saída para um arquivo HTML
+output_file("dispersao.html")
+
+#Exibindo o grid
+show(p3)

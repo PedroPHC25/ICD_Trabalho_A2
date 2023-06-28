@@ -17,8 +17,7 @@ africa_data = data[data["country"] == "Africa"]
 source = ColumnDataSource(africa_data)
 africa = figure(title="África", 
                 x_axis_label="Ano", 
-                y_axis_label="Produção de energia pelo carvão",
-                )
+                y_axis_label="Produção de energia pelo carvão")
 
 # Linha do tempo com a produção anual de energia da África
 africa.line(x= "year", 

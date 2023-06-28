@@ -16,7 +16,8 @@ africa_data = data[data["country"] == "Africa"]
 # Convertendo o arquivo para CDS
 source = ColumnDataSource(africa_data)
 africa = figure(tools = "pan, wheel_zoom, reset, hover, save",
-                 tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")])
+                 tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")],
+                 y_range = (0,7500))
 africa.title="África"
 
 # Linha do tempo com a produção anual de energia da África
@@ -32,14 +33,14 @@ oriente_data = data[data["country"] == "Middle East"]
 # Convertendo o arquivo para CDS
 source = ColumnDataSource(oriente_data)
 oriente = figure(tools = "pan, wheel_zoom, reset, hover, save",
-                 tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")])
+                 tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")],
+                 y_range = (0,7500))
 oriente.title = "Oriente Médio"
 # Linha do tempo com a produção anual de energia do Oriente Médio
 oriente.line(x= "year", 
              y="coal_production", 
              source=source,
-             line_color = "red",
-             )
+             line_color = "red")
 
 
 # Europa 
@@ -47,11 +48,12 @@ oriente.line(x= "year",
 europa_data = data[data["country"] == "Europe"]
 # Convertendo o arquivo para CDS
 source = ColumnDataSource(europa_data)
-europa = figure(y_axis_label="Produção de energia pelo carvão",
-                tools = "pan, wheel_zoom, reset, hover, save",
-                tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")])
-europa
+europa = figure(tools = "pan, wheel_zoom, reset, hover, save",
+                tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")],
+                y_range = (0,7500))
+# Títulos
 europa.title = "Europa"
+europa.yaxis.axis_label = "Produção de energia pelo carvão"
 # Linha do tempo com a produção anual de energia da Europa
 europa.line(x= "year", 
             y="coal_production", 
@@ -62,10 +64,13 @@ europa.line(x= "year",
 am_norte_data = data[data["country"] == "North America"]
 # Convertendo o arquivo para CDS
 source = ColumnDataSource(am_norte_data)
-am_norte = figure(y_axis_label="Produção de energia pelo carvão",
-                 tools = "pan, wheel_zoom, reset, hover, save",
-                 tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")])
-europa
+am_norte = figure(tools = "pan, wheel_zoom, reset, hover, save",
+                 tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")],
+                 y_range = (0,7500))
+# Títulos
+am_norte.yaxis.axis_label = "Produção de energia pelo carvão"
+am_norte.axis.axis_label_text_font_style = "normal"
+am_norte.xaxis.axis_label_text_font = "georgia"
 am_norte.title = "América do Norte"
 # Linha do tempo com a produção anual de energia da América do Norte
 am_norte.line(x= "year", 

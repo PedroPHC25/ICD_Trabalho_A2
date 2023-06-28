@@ -1,4 +1,8 @@
-<html>
+from bokeh.models import Div
+
+# Este módulo contém as partes do texto em HTML da página dos gráficos sobre petróleo.
+
+oil_text_1 = Div(text = """<html>
 
 <head>
 <title>Visualizações sobre petróleo</title>
@@ -10,11 +14,10 @@
 
 <h1>Visualizações sobre petróleo e seus produtores e consumidores</h1>
 
-<h2>Gráfico "Produção de petróleo das 5 maiores regiões produtoras (1900 - 2020)"</h2>
+<h2>Gráfico "Produção de petróleo das 5 maiores regiões produtoras (1900 - 2020)"</h2>""")
 
-##############################################################################################################
 
-</center>
+oil_text_2 = Div(text = """</center>
 
 <p>O objetivo dessa visualização é exibir a evolução da produção de petróleo ao longo dos anos, olhando mais especificamente para as regiões do mundo que mais concentram essa produção: Oriente Médio, América do Norte, África, Ásia e Américas Central e do Sul. Dessa forma, o tipo de gráfico mais adequado para essa situação era o gráfico de linhas.</p>
 
@@ -33,11 +36,10 @@ Em seguida, é claro que era necessária uma legenda para essas cores. Assim, cr
 
 <center>
 
-<h2>Gráfico "Consumo de petróleo x População em 2019"</h2>
+<h2>Gráfico "Consumo de petróleo x População em 2019"</h2>""")
 
-##############################################################################################################
 
-</center>
+oil_text_3 = Div(text = """</center>
 
 <p>O objetivo dessa segunda visualização é mostrar a correlação existente entre a população dos países e seu consumo de petróleo. Para isso, é claro, foi utilizado um gráfico de dispersão.</p>
 
@@ -59,11 +61,10 @@ Com relação aos seus títulos, da mesma forma que anteriormente, criei-os de u
 
 <center>
 
-<h2>Gráfico "Variação anual da produção de petróleo dos 3 maiores produtores mundiais (1900 - 2020)"</h2>
+<h2>Gráfico "Variação anual da produção de petróleo dos 3 maiores produtores mundiais (1900 - 2020)"</h2>""")
 
-##############################################################################################################
 
-</center>
+oil_text_4 = Div(text = """</center>
 
 <p>O objetivo dessa terceira visualização é comparar as altas e as baixas na produção de petróleo dos Estados Unidos, da Rússia e da Arábia Saudita, que são, atualmente, os maiores produtores do mundo. Desse modo, optei pela utilização dos gráficos de barras para proporcionar melhor essa análise simultânea de vários momentos da história.</p>
 
@@ -87,4 +88,4 @@ Além disso, inseri anotações em linha para deixar mais destacada a reta y = 0
 
 </body>
 
-</html>
+</html>""")

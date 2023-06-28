@@ -4,7 +4,7 @@ from bokeh.plotting import figure
 from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource, Range1d, Label, PrintfTickFormatter, Div
 from bokeh.layouts import gridplot, column
-from bokeh.models.annotations import BoxAnnotation
+from bokeh.models.annotations import BoxAnnotation, Span
 
 
 data = pd.read_csv("World Energy Consumption.csv")
@@ -26,9 +26,6 @@ data_positive_saudi_arabia = data.loc[data["country"] == "Saudi Arabia"].loc[dat
 data_negative_united_states = data.loc[data["country"] == "United States"].loc[data["oil_prod_change_twh"] < 0]
 data_negative_russia = data.loc[data["country"] == "Russia"].loc[data["oil_prod_change_twh"] < 0]
 data_negative_saudi_arabia = data.loc[data["country"] == "Saudi Arabia"].loc[data["oil_prod_change_twh"] < 0]
-
-# Gerando um CDS apenas com os dados do mundo
-cds_oil_world = ColumnDataSource(data[data["country"] == "World"])
 
 # Gerando CDSs com os dados de 2019 separados com base no consumo de petróleo do país
 cds_oil_2019_high_consumption = ColumnDataSource(data_2019_high_consumption)
@@ -306,9 +303,23 @@ graph_russia.ygrid.grid_line_alpha = 0.4
 graph_saudi_arabia.xgrid.grid_line_alpha = 0.4
 graph_saudi_arabia.ygrid.grid_line_alpha = 0.4
 
+# Criando uma anotação para destacar a linha y = 0
+graph_united_states.add_layout(Span(location = 0,
+                                    dimension = "width",
+                                    line_color = "black",
+                                    line_width = 0.5))
+graph_russia.add_layout(Span(location = 0,
+                             dimension = "width",
+                             line_color = "black",
+                             line_width = 0.5))
+graph_saudi_arabia.add_layout(Span(location = 0,
+                                   dimension = "width",
+                                   line_color = "black",
+                                   line_width = 0.5))
+
 # Criando uma anotação no gráfico referente aos Estados Unidos
-graph_united_states.add_layout(BoxAnnotation(left = 2009, 
-                                             right = 2019,
+graph_united_states.add_layout(BoxAnnotation(left = 2008.5, 
+                                             right = 2019.5,
                                              fill_color = "green",
                                              fill_alpha = 0.3))
 graph_united_states.add_layout(Label(x = 2005, 
@@ -319,8 +330,8 @@ graph_united_states.add_layout(Label(x = 2005,
                                      text_align = "right"))
 
 # Criando uma anotação no gráfico referente à Rússia
-graph_russia.add_layout(BoxAnnotation(left = 1988, 
-                                      right = 1996, 
+graph_russia.add_layout(BoxAnnotation(left = 1987.5, 
+                                      right = 1996.5, 
                                       fill_color = "red", 
                                       fill_alpha = 0.3))
 graph_russia.add_layout(Label(x = 1984, 
@@ -332,8 +343,8 @@ graph_russia.add_layout(Label(x = 1984,
                               text_align = "right"))
 
 # Criando uma anotação no gráfico referente à Árábia Saudita
-graph_saudi_arabia.add_layout(BoxAnnotation(left = 1981,
-                                            right = 1985,
+graph_saudi_arabia.add_layout(BoxAnnotation(left = 1980.5,
+                                            right = 1985.5,
                                             fill_color = "red",
                                             fill_alpha = 0.3))
 graph_saudi_arabia.add_layout(Label(x = 1970,

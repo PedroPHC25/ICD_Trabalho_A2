@@ -4,7 +4,7 @@ from bokeh.plotting import figure
 from bokeh.io import output_file, save, show
 from bokeh.models import ColumnDataSource, Range1d, Label, PrintfTickFormatter, Div
 from bokeh.layouts import gridplot, column
-from bokeh.models.annotations import BoxAnnotation
+from bokeh.models.annotations import BoxAnnotation, Span
 
 
 data = pd.read_csv("World Energy Consumption.csv")
@@ -306,9 +306,23 @@ graph_russia.ygrid.grid_line_alpha = 0.4
 graph_saudi_arabia.xgrid.grid_line_alpha = 0.4
 graph_saudi_arabia.ygrid.grid_line_alpha = 0.4
 
+# Criando uma anotação para destacar a linha y = 0
+graph_united_states.add_layout(Span(location = 0,
+                                    dimension = "width",
+                                    line_color = "black",
+                                    line_width = 0.5))
+graph_russia.add_layout(Span(location = 0,
+                             dimension = "width",
+                             line_color = "black",
+                             line_width = 0.5))
+graph_saudi_arabia.add_layout(Span(location = 0,
+                                   dimension = "width",
+                                   line_color = "black",
+                                   line_width = 0.5))
+
 # Criando uma anotação no gráfico referente aos Estados Unidos
-graph_united_states.add_layout(BoxAnnotation(left = 2009, 
-                                             right = 2019,
+graph_united_states.add_layout(BoxAnnotation(left = 2008.5, 
+                                             right = 2019.5,
                                              fill_color = "green",
                                              fill_alpha = 0.3))
 graph_united_states.add_layout(Label(x = 2005, 
@@ -319,8 +333,8 @@ graph_united_states.add_layout(Label(x = 2005,
                                      text_align = "right"))
 
 # Criando uma anotação no gráfico referente à Rússia
-graph_russia.add_layout(BoxAnnotation(left = 1988, 
-                                      right = 1996, 
+graph_russia.add_layout(BoxAnnotation(left = 1987.5, 
+                                      right = 1996.5, 
                                       fill_color = "red", 
                                       fill_alpha = 0.3))
 graph_russia.add_layout(Label(x = 1984, 
@@ -332,8 +346,8 @@ graph_russia.add_layout(Label(x = 1984,
                               text_align = "right"))
 
 # Criando uma anotação no gráfico referente à Árábia Saudita
-graph_saudi_arabia.add_layout(BoxAnnotation(left = 1981,
-                                            right = 1985,
+graph_saudi_arabia.add_layout(BoxAnnotation(left = 1980.5,
+                                            right = 1985.5,
                                             fill_color = "red",
                                             fill_alpha = 0.3))
 graph_saudi_arabia.add_layout(Label(x = 1970,
@@ -352,4 +366,4 @@ grid = gridplot([[graph_united_states],
                  toolbar_location = "right")
 
 # Salvando a visualização
-# save(grid)
+save(grid)

@@ -4,6 +4,7 @@ from bokeh.io import output_file, save, show
 import pandas as pd
 from bokeh.models import ColumnDataSource
 from bokeh.layouts import gridplot
+from bokeh.models.annotations import Span, BoxAnnotation
 
 
 data = pd.read_csv("World Energy Consumption.csv")
@@ -220,7 +221,6 @@ line_year_nuclear_Japan.yaxis.axis_label_text_font_size = "25px"
 
 line_year_nuclear_Japan.y_range = Range1d(start = 0, end = 850)
 
-
 # Fundo
 line_year_nuclear_Japan.background_fill_color = ("WhiteSmoke")
 
@@ -234,6 +234,10 @@ line_year_nuclear_Japan.ygrid.grid_line_alpha = 0.6  #transparencia do gride
 #Glifo
 glyph_renderer = renderer.glyph #pega o renderzador do glifo
 glyph_renderer.line_width= 3.5
+
+#Anotação
+box_annotation = BoxAnnotation(left = 2010, right = 2015, fill_color = "red", fill_alpha = 0.2)
+line_year_nuclear_Japan.add_layout(box_annotation)
 
 """Germany"""
 data_source = ColumnDataSource(data= data[data["country"]=="Germany"])

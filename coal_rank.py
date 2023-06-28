@@ -29,12 +29,13 @@ rank_data = rank_data.head(10)
 # Gráfico de barras
 
 # Dados dos eixos
-x = rank_data["country"]
-y = rank_data["coal_consumption"]
+source = ColumnDataSource(rank_data)
 
 # Construção do gráfico de barras
 rank = figure(x_range = rank_data["country"])
-rank.vbar(x=x, top=y, width=0.5)
+rank.width = 1000
+rank.height = 550
+rank.vbar(x="country", top="coal_consumption", width=0.5, source=source)
 
 # Função de atualização do gráfico com base no valor do slider
 def update_plot(attr, old, new):

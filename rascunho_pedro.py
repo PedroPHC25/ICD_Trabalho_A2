@@ -353,9 +353,3 @@ grid = gridplot([[graph_united_states],
 
 # Salvando a visualização
 # save(grid)
-
-output_file("petroleo.html")
-
-text = Div(text = "")
-
-show(column(text, graph_best_regions))

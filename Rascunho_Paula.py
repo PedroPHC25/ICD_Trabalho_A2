@@ -440,7 +440,7 @@ cinco_países = cinco_países.head(10)
 #Adicionando cada cor à um continente
 cinco_países["continent"] = ["América do norte", "Europa", "Ásia", "Ásia", "Ásia", "América do norte", "Europa", "Europa", "Europa", "Europa"]
 
-color_dict = {"América do norte":"blue", "Europa": "orange", "Ásia": "gray"}
+color_dict = {"América do norte":"Coral", "Europa": "SteelBlue", "Ásia": "DarkSeaGreen"}
 
 colors = []
 
@@ -467,9 +467,9 @@ bar_rank_nuclear.toolbar.autohide = True #deixa o barra de ferramentas invisíve
 bar_rank_nuclear.toolbar_location = "below" #define a localização barra de ferramentas
 # título
 bar_rank_nuclear.title.text = "Os 10 países que mais consumiram energia nuclear em 2018."
-bar_rank_nuclear.title.text_color = "MidnightBlue"
+bar_rank_nuclear.title.text_color = "#00075F"
 bar_rank_nuclear.title.text_font = "Arial"
-bar_rank_nuclear.title.text_font_size = "20px"
+bar_rank_nuclear.title.text_font_size = "22px"
 bar_rank_nuclear.title.align = "center"
 # Eixos
 bar_rank_nuclear.xaxis.axis_label = "anos"  #título do eixo x

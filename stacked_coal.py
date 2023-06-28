@@ -33,9 +33,7 @@ cols = ['#00ff00', '#009900', '#00cc99']
 coal_stacked = figure(y_range = stacked_countries["country"] ,
              height=500,
              tools = "pan, wheel_zoom, reset, hover, save",
-             tooltips = [("Geração de eletricidade (TWh)", "@coal_electricity{1,11}"),
-                         ("Produção de energia(TWh)", "@coal_production{1,11}"),
-                         ("Consumo de energia (TWh)", "@coal_consumption{1,11}")])
+             tooltips = "$name @country: @$name{1,11}")
 coal_stacked.hbar_stack(coal_products,
                y="country",
                source=source,

@@ -1,16 +1,12 @@
 # Importando as bibliotecas necessárias
 from bokeh.plotting import figure
-from bokeh.io import output_file, save, show
-from bokeh.models import ColumnDataSource, Range1d, Label, PrintfTickFormatter, Div
-from bokeh.layouts import gridplot, column
-from bokeh.models.annotations import BoxAnnotation, Span
+from bokeh.models import Label
+from bokeh.models.annotations import BoxAnnotation
 
 # Pegando os dados do arquivo gerador de CDS
 from cds_generator import cds_oil_middle_east, cds_oil_north_america, cds_oil_africa, cds_oil_asia, cds_oil_south_and_central_america
 
 # Este é um gráfico de linhas mostrando a evolução da produção de petróleo das 5 maiores regiões produtoras ao longo dos anos
-
-output_file("rascunho_pedro_1.html")
 
 # Criando o objeto figure com as ferramentas desejadas
 graph_best_regions = figure(tools = "pan, wheel_zoom, reset, save")

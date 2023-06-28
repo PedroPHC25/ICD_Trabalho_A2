@@ -29,15 +29,16 @@ africa.line(x= "year",
 
 # Oriente Médio
 # Filtrando os dados
-oriente_data = data[data["country"] == "Middle East"]
+sc_am_data = data[data["country"] == "South & Central America"]
 # Convertendo o arquivo para CDS
-source = ColumnDataSource(oriente_data)
-oriente = figure(tools = "pan, wheel_zoom, reset, hover, save",
+source = ColumnDataSource(sc_am_data)
+sc_am = figure(tools = "pan, wheel_zoom, reset, hover, save",
                  tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")],
-                 y_range = (0,7500))
-oriente.title = "Oriente Médio"
+                 y_range = (0,7500),
+                 x_range = (1893, 2025))
+sc_am.title = "América do Sul e Central"
 # Linha do tempo com a produção anual de energia do Oriente Médio
-oriente.line(x= "year", 
+sc_am.line(x= "year", 
              y="coal_production", 
              source=source,
              line_color = "red")
@@ -80,6 +81,6 @@ am_norte.line(x= "year",
 
 
 # Grid 2x2, com todas as linhas do tempo
-grid = gridplot([[europa, africa], [am_norte, oriente]], width=500, height=300)
+grid = gridplot([[europa, africa], [am_norte, sc_am]], width=500, height=300)
 
 show(grid)

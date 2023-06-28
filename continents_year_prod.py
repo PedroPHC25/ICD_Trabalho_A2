@@ -16,7 +16,7 @@ africa_data = data[data["country"] == "Africa"]
 # Convertendo o arquivo para CDS
 source = ColumnDataSource(africa_data)
 africa = figure(tools = "pan, wheel_zoom, reset, hover, save",
-                 tooltips = [("Ano", "@year"),("Produção", "@coal_production")])
+                 tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")])
 africa.title="África"
 
 # Linha do tempo com a produção anual de energia da África
@@ -32,7 +32,7 @@ oriente_data = data[data["country"] == "Middle East"]
 # Convertendo o arquivo para CDS
 source = ColumnDataSource(oriente_data)
 oriente = figure(tools = "pan, wheel_zoom, reset, hover, save",
-                 tooltips = [("Ano", "@year"),("Produção", "@coal_production")])
+                 tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")])
 oriente.title = "Oriente Médio"
 # Linha do tempo com a produção anual de energia do Oriente Médio
 oriente.line(x= "year", 
@@ -49,7 +49,7 @@ europa_data = data[data["country"] == "Europe"]
 source = ColumnDataSource(europa_data)
 europa = figure(y_axis_label="Produção de energia pelo carvão",
                 tools = "pan, wheel_zoom, reset, hover, save",
-                tooltips = [("Ano", "@year"),("Produção", "@coal_production")])
+                tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")])
 europa
 europa.title = "Europa"
 # Linha do tempo com a produção anual de energia da Europa
@@ -64,7 +64,7 @@ am_norte_data = data[data["country"] == "North America"]
 source = ColumnDataSource(am_norte_data)
 am_norte = figure(y_axis_label="Produção de energia pelo carvão",
                  tools = "pan, wheel_zoom, reset, hover, save",
-                 tooltips = [("Ano", "@year"),("Produção", "@coal_production")])
+                 tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")])
 europa
 am_norte.title = "América do Norte"
 # Linha do tempo com a produção anual de energia da América do Norte

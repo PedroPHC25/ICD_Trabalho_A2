@@ -1,4 +1,4 @@
-from bokeh.models import ColumnDataSource, HoverTool
+from bokeh.models import ColumnDataSource, HoverTool, Label
 from bokeh.plotting import figure, output_file, show
 from bokeh.plotting import figure, show
 import pandas as pd
@@ -59,10 +59,18 @@ coal_stacked.add_tools(hover)
 coal_stacked.legend.click_policy= "mute"
 coal_stacked.toolbar.logo = None
 
+# Customização do grid e linhas de contorno
 coal_stacked.ygrid.grid_line_color = None
-coal_stacked.legend.location = "top_right"
 coal_stacked.axis.minor_tick_line_color = None
 coal_stacked.outline_line_color = None
+coal_stacked.legend.location = "top_right"
 coal_stacked.legend.orientation = "horizontal"
+
+# Adicionando uma anotaçã no gráfico
+coal_stacked.add_layout(Label(x = 10000, y = 9.8,
+                              text = "Clique na legenda para\nocultar a categoria desejada",
+                              text_align = "left",
+                              text_font_size = "13px",
+                              text_color = "black"))
 
 show(coal_stacked)

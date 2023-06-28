@@ -402,106 +402,80 @@ show(plot)
 
 output_file("nuclear_rascunho4.html")
 
+
 # Filtrando os dados
 
 #Retirando os continentes e organizações
-cinco_países = data[~data["iso_code"].isnull()] 
-cinco_países = cinco_países[cinco_países["country"] != "World"]
+best_countries_nuclear = data[~data["iso_code"].isnull()] 
+best_countries_nuclear = best_countries_nuclear[best_countries_nuclear["country"] != "World"]
 
 # Selecionando um ano
-cinco_países = cinco_países[cinco_países["year"] == 2018]
+best_countries_nuclear = best_countries_nuclear[best_countries_nuclear["year"] == 2018]
 
 # Ordenando e selecionando as colunas desejadas
-cinco_países = cinco_países.sort_values("nuclear_consumption", ascending= False)
-cinco_países = cinco_países[["country", "year", "nuclear_consumption"]]
-cinco_países = cinco_países.head(10)
+best_countries_nuclear = best_countries_nuclear.sort_values("nuclear_consumption", ascending= False)
+best_countries_nuclear_nuclear = best_countries_nuclear[["country", "year", "nuclear_consumption"]]
+best_countries_nuclear = best_countries_nuclear.head(10)
+
 #Adicionando cada cor à um continente
-cinco_países["continent"] = ["América do norte", "Europa", "Ásia", "Ásia", "Ásia", "América do norte", "Europa", "Europa", "Europa", "Europa"]
+best_countries_nuclear["continent"] = ["América do norte", "Europa", "Ásia", "Ásia", "Ásia", "América do norte", "Europa", "Europa", "Europa", "Europa"]
 
 color_dict = {"América do norte":"Tomato", "Europa": "SteelBlue", "Ásia": "Khaki"}
 
 colors = []
 
-for each_element in cinco_países["continent"]:
+for each_element in best_countries_nuclear["continent"]:
     colors.append(color_dict[each_element])
 
-cinco_países["color"] = colors
+best_countries_nuclear["color"] = colors
 
-# data_source = ColumnDataSource(data= cinco_países)
-data_europe = ColumnDataSource(cinco_países[cinco_países["continent"] == "Europa"])
-dat_asia = ColumnDataSource(cinco_países[cinco_países["continent"] == "Ásia"])
-data_america = ColumnDataSource(cinco_países[cinco_países["continent"] == "América do norte"])
+# data_source = ColumnDataSource(data= best_countries_nuclear)
+data_europe = ColumnDataSource(best_countries_nuclear[best_countries_nuclear["continent"] == "Europa"])
+dat_asia = ColumnDataSource(best_countries_nuclear[best_countries_nuclear["continent"] == "Ásia"])
+data_america = ColumnDataSource(best_countries_nuclear[best_countries_nuclear["continent"] == "América do norte"])
 
-print(cinco_países["color"])
-
-# Gráfico de barras
-bar_rank_nuclear = figure(x_range = cinco_países["country"], 
+# Gerando o gráfico de barras
+bar_rank_nuclear = figure(x_range = best_countries_nuclear["country"], 
                           width= 800, height = 600, 
                           tools = "box_zoom, pan, reset, save, wheel_zoom",
                           tooltips = [("País", "@country"),
                                       ("Consumo de Energia nuclear", "@nuclear_consumption")])
-# pais = cinco_países["country"]
-# y = cinco_países["nuclear_consumption"]
-# bar_rank_nuclear.vbar(x="country", top="nuclear_consumption", color = "color", width=0.5, source = data_source)
 
 bar_rank_nuclear.vbar(x="country", top="nuclear_consumption", legend_label = "Europa", fill_alpha = 0.9, color = "color", width=0.5, source = data_europe)
 bar_rank_nuclear.vbar(x="country", top="nuclear_consumption", legend_label = "Ásia", fill_alpha = 0.8, color = "color", width=0.5, source = dat_asia)
 bar_rank_nuclear.vbar(x="country", top="nuclear_consumption", legend_label = "América do norte", fill_alpha = 0.8, color = "color", width=0.5, source = data_america)
 
-# --------------------------------------------------------------------------------------
-# gas = ColumnDataSource(elements[elements["standard state"] == "gas"])
-# liquid = ColumnDataSource(elements[elements["standard state"] == "liquid"])
-# solid = ColumnDataSource(elements[elements["standard state"] == "solid"])
-
-# plot.circle(x = "atomic radius", y = "boiling point", size = "size", color = "color", fill_alpha = 0.13, legend_label = "Gas", source = gas)
-# plot.circle(x = "atomic radius", y = "boiling point", size = "size", color = "color", fill_alpha = 0.13, legend_label = "Liquid", source = liquid)
-# plot.circle(x = "atomic radius", y = "boiling point", size = "size", color = "color", fill_alpha = 0.13, legend_label = "Solid", source = solid)
-
-# --------------------------------------------------------------------------------------
 # ferramnetas
 bar_rank_nuclear.toolbar.logo = None #retira a logo
 bar_rank_nuclear.toolbar.autohide = True #deixa o barra de ferramentas invisível
 bar_rank_nuclear.toolbar_location = "below" #define a localização barra de ferramentas
+
 # título
 bar_rank_nuclear.title.text = "Os 10 países que mais consumiram energia nuclear em 2018"
 bar_rank_nuclear.title.text_color = "#00075F"
 bar_rank_nuclear.title.text_font = "Arial"
 bar_rank_nuclear.title.text_font_size = "22px"
 bar_rank_nuclear.title.align = "center"
+
 # Eixos
 bar_rank_nuclear.xaxis.axis_label = "País"  #título do eixo x
 bar_rank_nuclear.xaxis.minor_tick_line_color = "black" 
 bar_rank_nuclear.xaxis.minor_tick_in = 5
 bar_rank_nuclear.axis.axis_label_text_font_style= "normal"
 bar_rank_nuclear.xaxis.major_label_orientation = "horizontal"
-# bar_rank_nuclear.xaxis.major_label_overrides = {'United States': 'Estados Unidos'} 
-                                                    #  'France': 'França', 
-                                                    #  'China': 'China', 
-                                                    #  'Russia': 'Rússia',
-                                                    #  'South Korea': 'Coréia do Sul', 
-                                                    #  'Canada': 'Canadá', 
-                                                    #  'Ukraine': 'Ucrânia',
-                                                    #  'Germany': 'Alemanha',
-                                                    #  'Sweden': 'Suécia',
-                                                    #  'United Kingdom': 'Reino \nUnido'}
 bar_rank_nuclear.yaxis.axis_label = "Consumo de energia primária nuclear (TWh) "  #título do eixo y
 bar_rank_nuclear.yaxis.minor_tick_line_color = "black"
 bar_rank_nuclear.yaxis.minor_tick_in = 5
 bar_rank_nuclear.yaxis.major_label_orientation = "horizontal"
-
 bar_rank_nuclear.xaxis.axis_label_text_font ="Arial" #Fonte do título do eixo
 bar_rank_nuclear.yaxis.axis_label_text_font ="Arial"
 bar_rank_nuclear.yaxis.axis_label_text_color = '#00075F' #cor do título do eixo
 bar_rank_nuclear.yaxis[0].ticker.num_minor_ticks = 0
 bar_rank_nuclear.xaxis.axis_label_text_color = '#00075F'
-
 bar_rank_nuclear.xaxis.axis_label_text_font_size = "20px" #Tamnho da fonte do título dos eixos
 bar_rank_nuclear.yaxis.axis_label_text_font_size = "20px"
-
 
 # Fundo
 bar_rank_nuclear.background_fill_color = ("WhiteSmoke")
 
-
-# print(top)
 show(bar_rank_nuclear)

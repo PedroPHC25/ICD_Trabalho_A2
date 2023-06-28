@@ -34,13 +34,16 @@ source = ColumnDataSource(rank_data)
 # Construção do gráfico de barras
 rank = figure(x_range = rank_data["country"],
               tools = "pan, wheel_zoom, reset, hover, save",
-              tooltips = [("Consumo", "@coal_consumption")])
+              tooltips = [("Consumo", "@coal_consumption")],
+              x_axis_label = "Países",
+              y_axis_label = "Consumo em terawatt por hora")
 # Customização da proporção e grid
 rank.height = 550
 rank.width = 1000
 rank.xgrid.grid_line_color = None
 rank.ygrid.grid_line_color = None
 rank.toolbar_location = None
+rank.title = "Maiores consumidores da energia primária vinda do carvão"
 # Gráfico de barras
 rank.vbar(x="country", top="coal_consumption", width=0.5, source=source)
 
@@ -56,7 +59,7 @@ def update_plot(attr, old, new):
 
 # Criando o slider
 initial_year = 1965
-year_slider = Slider(title="ano", start=1965, end=2019, step=1, value=initial_year)
+year_slider = Slider(title="Ano", start=1965, end=2019, step=1, value=initial_year)
 year_slider.on_change('value', update_plot)
 
 # Combinando o gráfico e o slider em uma única figura

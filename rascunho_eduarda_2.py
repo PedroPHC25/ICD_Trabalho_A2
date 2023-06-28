@@ -1,9 +1,8 @@
 from bokeh.io import output_file, show
 from bokeh.models import ColumnDataSource
 from bokeh.plotting import figure
-from bokeh.layouts import gridplot
 import pandas as pd
-
+'''
 #GRÁFICO DE BARRAS DE GERAÇÃO DE ELETRICIDADE A PARTIR DO VENTO POR PAÍS (MEDIDO EM TERAWATT-HORA)
 
 data = pd.read_csv("World Energy Consumption.csv") #Lendo o arquivo
@@ -54,5 +53,56 @@ p.yaxis.major_label_text_font_style = "bold"  #Colocando em negrito os rótulos 
 p.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico
 
 #Configurando a saída para um arquivo HTML
+output_file("barras_eduarda.html")
+show(p)
+'''
+
+import pandas as pd
+from bokeh.io import output_file, show
+from bokeh.models import ColumnDataSource
+from bokeh.plotting import figure
+
+# Lendo o arquivo
+data = pd.read_csv("World Energy Consumption.csv")
+
+# Filtrando dados do ano de 2020
+df_filtered = data[data['year'] == 2020]
+
+# Ordenando os valores de 'wind_electricity' em ordem decrescente
+df_sorted = df_filtered.sort_values('wind_electricity', ascending=False)
+
+# Selecionando os 10 maiores valores da coluna 'wind_electricity'
+df_top_10 = df_sorted.head(10)
+
+# Selecionando apenas as colunas desejadas ('country' e 'wind_electricity')
+df_top_10_filtered = df_top_10[['country', 'wind_electricity']]
+
+#Identificando o país com o maior valor de wind_electricity
+pais_maior_geracao = df_top_10_filtered[df_top_10_filtered['wind_electricity'] == df_top_10_filtered['wind_electricity'].max()]['country'].iloc[0]
+
+#Excluindo o país com o maior valor de wind_electricity
+df_top_10_filtered = df_top_10_filtered[df_top_10_filtered['country'] != pais_maior_geracao]
+
+# Adicionando cada cor a um continente
+df_top_10_filtered["continent"] = ["Asia", "America", "Europe", "Europe", "Asia", "America", "Europe", "Europe", "America"]
+color_dict = {"America": "Tomato", "Europe": "SteelBlue", "Asia": "Khaki"}
+
+colors = [color_dict[continent] for continent in df_top_10_filtered["continent"]]
+
+df_top_10_filtered["color"] = colors
+
+# Criando ColumnDataSource
+data_organized = ColumnDataSource(df_top_10_filtered)
+
+# Criando a figura e plotando as barras
+p = figure(x_range=df_top_10_filtered['country'], height=600, width=1200,
+           title="ELECTRICITY GENERATION FROM WIND BY COUNTRY IN 2020")
+p.vbar(x='country', top='wind_electricity', width=0.9, fill_color='color', line_color='black', source=data_organized)
+
+# Ajustando os títulos dos eixos
+p.xaxis.axis_label = "COUNTRY"
+p.yaxis.axis_label = "ELECTRICITY GENERATION FROM WIND (TWh)"
+
+# Configurando a saída para um arquivo HTML
 output_file("barras_eduarda.html")
 show(p)

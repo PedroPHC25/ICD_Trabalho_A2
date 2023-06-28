@@ -1,7 +1,6 @@
 from bokeh.io import output_file, show
-from bokeh.models import ColumnDataSource
+from bokeh.models import ColumnDataSource, Label, BoxAnnotation
 from bokeh.plotting import figure
-from bokeh.layouts import gridplot
 import pandas as pd
 
 #GRÁFICO DE LINHA CONSUMO PER CAPITA DE ELETRICIDADE DO VENTO PARA O BRASIL NOS ÚLTIMOS 50 ANOS
@@ -37,6 +36,24 @@ p1.yaxis.major_label_text_font_style = "bold"  #Colocando em negrito os rótulos
 
 p1.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico 
 
+text_lines = [
+    "In 2009, 10 projects were under construction, with a capacity of 256 MW,",
+    "and in 2010, 45 started their construction to generate 2,139 MW,",
+    "in several states. There is a public-private partnership."
+]
+text = '\n'.join(text_lines)
+
+p1.add_layout(Label(x=2016, y=500,
+                    text=text,
+                    text_align="right",
+                    text_font_size="12px",
+                    text_color="#8A5556",
+                    text_alpha=1))
+
+annotation = BoxAnnotation(left=2010, right=2020, fill_color='#D49495', fill_alpha=0.3)
+p1.add_layout(annotation)
+
+                                      
 #Configurando a saída para um arquivo HTML
 output_file("linha_brazil.html")
 

@@ -140,6 +140,10 @@ p4 = figure(title="ANNUAL PERCENTAGE CHANGE IN WIND CONSUMPTION",
 p4.line(df_brazil['year'], df_brazil['wind_cons_change_pct'], line_width=6, color='#D49495', legend_label='Brazil')
 p4.line(df_united['year'], df_united['wind_cons_change_pct'], line_width=4, color='#8A5556', legend_label='United States')
 
+# Configurando a escala do eixo y
+p4.y_range.start = 0
+p4.y_range.end = 3500
+
 #Ajustando a legenda:
 p4.legend.location = "top_left"
 p4.legend.title = "COUNTRIES"
@@ -149,7 +153,6 @@ p4.title.text_font_size = "10pt"  #Alterando o tamanho da fonte do título
 p4.title.text_color = "#8A5556"  #Alterando a cor do texto do título 
 p4.title.text_align = "center"  #Alinhando o título no centro do gráfico
 p4.title.text_baseline = "middle"  #Alinhando o título verticalmente ao centro
-
 
 p4.xaxis.axis_label_text_font = "Georgia"  #Alterando a fonte do rótulo do eixo x 
 p4.xaxis.axis_label_text_font_size = "10pt"  #Alterando o tamanho da fonte do rótulo do eixo x 

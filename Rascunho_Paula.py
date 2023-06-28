@@ -113,6 +113,9 @@ line_year_nuclear_EUA.xaxis.axis_label_text_color = 'MidnightBlue'
 line_year_nuclear_EUA.xaxis.axis_label_text_font_size = "25px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_EUA.yaxis.axis_label_text_font_size = "25px"
 
+# line_year_nuclear_EUA.x_range = Range1d(start = 0, end=10)  #muda a escala dos eixos
+line_year_nuclear_EUA.y_range = Range1d(start = 0, end = 850)
+
 
 # Fundo
 line_year_nuclear_EUA.background_fill_color = ("WhiteSmoke")
@@ -160,6 +163,8 @@ line_year_nuclear_France.xaxis.axis_label_text_color = 'MidnightBlue'
 line_year_nuclear_France.xaxis.axis_label_text_font_size = "25px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_France.yaxis.axis_label_text_font_size = "25px"
 
+line_year_nuclear_France.y_range = Range1d(start = 0, end = 850)
+
 # Fundo
 line_year_nuclear_France.background_fill_color = ("WhiteSmoke")
 
@@ -205,6 +210,9 @@ line_year_nuclear_Japan.xaxis.axis_label_text_color = 'MidnightBlue'
 line_year_nuclear_Japan.xaxis.axis_label_text_font_size = "25px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_Japan.yaxis.axis_label_text_font_size = "25px"
 
+line_year_nuclear_Japan.y_range = Range1d(start = 0, end = 850)
+
+
 # Fundo
 line_year_nuclear_Japan.background_fill_color = ("WhiteSmoke")
 
@@ -248,6 +256,9 @@ line_year_nuclear_Germany.xaxis.axis_label_text_color = 'MidnightBlue'
 line_year_nuclear_Germany.xaxis.axis_label_text_font_size = "25px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_Germany.yaxis.axis_label_text_font_size = "25px"
 
+line_year_nuclear_Germany.y_range = Range1d(start = 0, end = 850)
+
+
 # Fundo
 line_year_nuclear_Germany.background_fill_color = ("WhiteSmoke")
 
@@ -289,6 +300,9 @@ line_year_nuclear_Russia.xaxis.axis_label_text_color = 'MidnightBlue'
 
 line_year_nuclear_Russia.xaxis.axis_label_text_font_size = "25px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_Russia.yaxis.axis_label_text_font_size = "25px"
+
+line_year_nuclear_Russia.y_range = Range1d(start = 0, end = 850)
+
 
 # Fundo
 line_year_nuclear_Russia.background_fill_color = ("WhiteSmoke")
@@ -332,6 +346,7 @@ line_year_nuclear_SouthKorea.xaxis.axis_label_text_color = 'MidnightBlue'
 line_year_nuclear_SouthKorea.xaxis.axis_label_text_font_size = "25px" #Tamnho da fonte do título dos eixos
 line_year_nuclear_SouthKorea.yaxis.axis_label_text_font_size = "25px"
 
+line_year_nuclear_SouthKorea.y_range = Range1d(start = 0, end = 850)
 
 
 # Fundo

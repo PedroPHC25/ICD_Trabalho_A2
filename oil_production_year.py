@@ -1,4 +1,4 @@
-# Importando as bibliotecas necessárias
+# Importando as funções e métodos necessários
 from bokeh.plotting import figure
 from bokeh.models import Label
 from bokeh.models.annotations import BoxAnnotation

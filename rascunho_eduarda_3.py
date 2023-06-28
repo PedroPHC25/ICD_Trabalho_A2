@@ -3,7 +3,6 @@ import pandas as pd
 from bokeh.plotting import figure, show, output_file
 from bokeh.models import Slope, ColumnDataSource
 from scipy import stats
-from sklearn.linear_model import RANSACRegressor
 from bokeh.layouts import gridplot
 
 
@@ -61,14 +60,17 @@ p3.title.text_font_size = "14pt"
 p3.title.text_color = "#8A5556"
 p3.title.text_align = "center"
 p3.title.text_baseline = "middle"
+
 p3.xaxis.axis_label_text_font = "Georgia"
 p3.xaxis.axis_label_text_font_size = "16pt"
 p3.xaxis.axis_label_text_color = "#8A5556"
 p3.xaxis.major_label_text_font_style = "bold"
+
 p3.yaxis.axis_label_text_font = "Georgia"
 p3.yaxis.axis_label_text_font_size = "16pt"
 p3.yaxis.axis_label_text_color = "#8A5556"
 p3.yaxis.major_label_text_font_style = "bold"
+
 p3.background_fill_color = "#D4D3A9"
 
 
@@ -132,7 +134,7 @@ p4.yaxis.major_label_text_font_style = "bold"
 p4.background_fill_color = "#D4D3A9"
 
 #Criando um grid com os gráficos
-grid2 = gridplot([[p4], [p3]])
+grid2 = gridplot([p4, p3], ncols=2)
 
 #Configurando a saída para um arquivo HTML
 output_file("grid2.html")

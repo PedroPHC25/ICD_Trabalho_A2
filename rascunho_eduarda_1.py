@@ -18,9 +18,15 @@ p1 = figure(title="ANNUAL PERCENTAGE CHANGE IN WIND CONSUMPTION",
            y_axis_label='WIND ENERGY PER CAPITA',
            width=600, height=300)
 
-#Plotando os gráficos de linha para cada país:
-p1.line(df_brazil['year'], df_brazil['wind_cons_change_pct'], line_width=6, color='#D49495', legend_label='Brazil')
-p1.line(df_india['year'], df_india['wind_cons_change_pct'], line_width=4, color='#8A5556', legend_label='India')
+# Criando a origem de dados para os dados do Brasil
+source_brazil = ColumnDataSource(df_brazil)
+
+# Criando a origem de dados para os dados da Índia
+source_india = ColumnDataSource(df_india)
+
+# Plotando os gráficos de linha para cada país, usando as origens de dados
+p1.line('year', 'wind_cons_change_pct', line_width=6, color='#D49495', legend_label='Brazil', source=source_brazil)
+p1.line('year', 'wind_cons_change_pct', line_width=4, color='#8A5556', legend_label='India', source=source_india)
 
 #Ajustando a legenda:
 p1.legend.location = "top_left"
@@ -31,7 +37,6 @@ p1.title.text_font_size = "10pt"  #Alterando o tamanho da fonte do título
 p1.title.text_color = "#8A5556"  #Alterando a cor do texto do título 
 p1.title.text_align = "center"  #Alinhando o título no centro do gráfico
 p1.title.text_baseline = "middle"  #Alinhando o título verticalmente ao centro
-
 
 p1.xaxis.axis_label_text_font = "Georgia"  #Alterando a fonte do rótulo do eixo x 
 p1.xaxis.axis_label_text_font_size = "10pt"  #Alterando o tamanho da fonte do rótulo do eixo x 
@@ -58,9 +63,15 @@ p2 = figure(title="ANNUAL PERCENTAGE CHANGE IN WIND CONSUMPTION",
            y_axis_label='WIND ENERGY PER CAPITA',
           width=600, height=300)
 
-#Plotando os gráficos de linha para cada país:
-p2.line(df_brazil['year'], df_brazil['wind_cons_change_pct'], line_width=6, color='#D49495', legend_label='Brazil')
-p2.line(df_argentina['year'], df_argentina['wind_cons_change_pct'], line_width=4, color='#8A5556', legend_label='Argentina')
+# Criando a origem de dados para os dados do Brasil
+source_brazil = ColumnDataSource(df_brazil)
+
+# Criando a origem de dados para os dados da Argentina
+source_argentina = ColumnDataSource(df_argentina)
+
+# Plotando os gráficos de linha para cada país, usando as origens de dados
+p2.line('year', 'wind_cons_change_pct', line_width=6, color='#D49495', legend_label='Brazil', source=source_brazil)
+p2.line('year', 'wind_cons_change_pct', line_width=4, color='#8A5556', legend_label='Argentina', source=source_argentina)
 
 #Ajustando a legenda:
 p2.legend.location = "top_left"
@@ -98,9 +109,15 @@ p3 = figure(title="ANNUAL PERCENTAGE CHANGE IN WIND CONSUMPTION",
            y_axis_label='WIND ENERGY PER CAPITA',
            width=600, height=300)
 
-#Plotando os gráficos de linha para cada país:
-p3.line(df_brazil['year'], df_brazil['wind_cons_change_pct'], line_width=6, color='#D49495', legend_label='Brazil')
-p3.line(df_china['year'], df_china['wind_cons_change_pct'], line_width=4, color='#8A5556', legend_label='China')
+# Criando a origem de dados para os dados do Brasil
+source_brazil = ColumnDataSource(df_brazil)
+
+# Criando a origem de dados para os dados da China
+source_china = ColumnDataSource(df_china)
+
+# Plotando os gráficos de linha para cada país, usando as origens de dados
+p3.line('year', 'wind_cons_change_pct', line_width=6, color='#D49495', legend_label='Brazil', source=source_brazil)
+p3.line('year', 'wind_cons_change_pct', line_width=4, color='#8A5556', legend_label='China', source=source_china)
 
 #Ajustando a legenda:
 p3.legend.location = "top_left"
@@ -111,7 +128,6 @@ p3.title.text_font_size = "10pt"  #Alterando o tamanho da fonte do título
 p3.title.text_color = "#8A5556"  #Alterando a cor do texto do título 
 p3.title.text_align = "center"  #Alinhando o título no centro do gráfico
 p3.title.text_baseline = "middle"  #Alinhando o título verticalmente ao centro
-
 
 p3.xaxis.axis_label_text_font = "Georgia"  #Alterando a fonte do rótulo do eixo x 
 p3.xaxis.axis_label_text_font_size = "10pt"  #Alterando o tamanho da fonte do rótulo do eixo x 
@@ -136,9 +152,15 @@ p4 = figure(title="ANNUAL PERCENTAGE CHANGE IN WIND CONSUMPTION",
            y_axis_label='WIND ENERGY PER CAPITA',
            width=600, height=300)
 
-#Plotando os gráficos de linha para cada país:
-p4.line(df_brazil['year'], df_brazil['wind_cons_change_pct'], line_width=6, color='#D49495', legend_label='Brazil')
-p4.line(df_united['year'], df_united['wind_cons_change_pct'], line_width=4, color='#8A5556', legend_label='United States')
+# Criando a origem de dados para os dados do Brasil
+source_brazil = ColumnDataSource(df_brazil)
+
+# Criando a origem de dados para os dados dos Estados Unidos
+source_united = ColumnDataSource(df_united)
+
+# Plotando os gráficos de linha para cada país, usando as origens de dados
+p4.line('year', 'wind_cons_change_pct', line_width=6, color='#D49495', legend_label='Brazil', source=source_brazil)
+p4.line('year', 'wind_cons_change_pct', line_width=4, color='#8A5556', legend_label='United States', source=source_united)
 
 # Configurando a escala do eixo y
 p4.y_range.start = 0
@@ -177,9 +199,15 @@ p5 = figure(title="ANNUAL PERCENTAGE CHANGE IN WIND CONSUMPTION",
            y_axis_label='WIND ENERGY PER CAPITA',
            width=600, height=300)
 
-#Plotando os gráficos de linha para cada país:
-p5.line(df_brazil['year'], df_brazil['wind_cons_change_pct'], line_width=6, color='#D49495', legend_label='Brazil')
-p5.line(df_germany['year'], df_germany['wind_cons_change_pct'], line_width=4, color='#8A5556', legend_label='Germany')
+# Criando a origem de dados para os dados do Brasil
+source_brazil = ColumnDataSource(df_brazil)
+
+# Criando a origem de dados para os dados da Alemanha
+source_germany = ColumnDataSource(df_germany)
+
+# Plotando os gráficos de linha para cada país, usando as origens de dados
+p5.line('year', 'wind_cons_change_pct', line_width=6, color='#D49495', legend_label='Brazil', source=source_brazil)
+p5.line('year', 'wind_cons_change_pct', line_width=4, color='#8A5556', legend_label='Germany', source=source_germany)
 
 #Ajustando a legenda:
 p5.legend.location = "top_left"
@@ -216,9 +244,15 @@ p6 = figure(title="ANNUAL PERCENTAGE CHANGE IN WIND CONSUMPTION",
            y_axis_label='WIND ENERGY PER CAPITA',
            width=600, height=300)
 
-#Plotando os gráficos de linha para cada país:
-p6.line(df_brazil['year'], df_brazil['wind_cons_change_pct'], line_width=6, color='#D49495', legend_label='Brazil')
-p6.line(df_kingdom['year'], df_kingdom['wind_cons_change_pct'], line_width=4, color='#8A5556', legend_label='Reino Unido')
+# Criando a origem de dados para os dados do Brasil
+source_brazil = ColumnDataSource(df_brazil)
+
+# Criando a origem de dados para os dados do Reino Unido
+source_kingdom = ColumnDataSource(df_kingdom)
+
+# Plotando os gráficos de linha para cada país, usando as origens de dados
+p6.line('year', 'wind_cons_change_pct', line_width=6, color='#D49495', legend_label='Brazil', source=source_brazil)
+p6.line('year', 'wind_cons_change_pct', line_width=4, color='#8A5556', legend_label='Reino Unido', source=source_kingdom)
 
 #Ajustando a legenda:
 p6.legend.location = "top_left"

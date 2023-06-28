@@ -36,9 +36,9 @@ graph_pop_consumption.yaxis.minor_tick_line_color = None
 # Ajustando os rótulos dos eixos
 graph_pop_consumption.xaxis[0].formatter = PrintfTickFormatter(format="%5f")
 graph_pop_consumption.yaxis[0].formatter = PrintfTickFormatter(format="%5f")
-graph_pop_consumption.xaxis.major_label_overrides = {1000000: '1 milhão', 
-                                                     10000000: '10 milhões', 
-                                                     100000000: '100 milhões', 
+graph_pop_consumption.xaxis.major_label_overrides = {1000000: "1 milhão", 
+                                                     10000000: "10 milhões", 
+                                                     100000000: "100 milhões", 
                                                      1000000000: "1 bilhão"}
 
 # Inserindo e customizando o título

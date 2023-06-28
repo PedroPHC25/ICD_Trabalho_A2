@@ -1,43 +1,52 @@
 import pandas as pd
 from bokeh.plotting import figure, output_file, show
-from bokeh.models import ColumnDataSource
+from bokeh.models import ColumnDataSource, Range1d, HoverTool
 from bokeh.layouts import gridplot
+from bokeh.models.annotations import BoxAnnotation
 
 # Gráfico da produção de energia dos continentes ao longo do tempo
 
-output_file("continents.html")
+output_file("coal_continents.html")
 
 # Lendo o arquivo csv
 data = pd.read_csv("World Energy Consumption.csv")
+
+# Especificando as ferramentas e anotações
+hover = HoverTool(tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")])
+box_annotation = BoxAnnotation(left=1964, right=1981, fill_color = "DeepPink", fill_alpha = 0.42)
 
 # África
 # Filtrando apenas os dados da África
 africa_data = data[data["country"] == "Africa"]
 # Convertendo o arquivo para CDS
-source = ColumnDataSource(africa_data)
-africa = figure(tools = "pan, wheel_zoom, reset, hover, save",
-                 tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")],
-                 y_range = (0,7500))
+africa_data = ColumnDataSource(africa_data)
+africa = figure(tools = "")
 africa.title="África"
+africa.y_range = Range1d(start=0, end = 7500)
+africa.add_tools(hover)
+africa.add_layout(box_annotation)
 
 # Linha do tempo com a produção anual de energia da África
 africa.line(x= "year", 
             y="coal_production", 
-            source=source, 
+            source=africa_data, 
             line_color = "green")
 
 
 # Oriente Médio
 # Filtrando os dados
-oriente_data = data[data["country"] == "Middle East"]
+sc_am_data = data[data["country"] == "South & Central America"]
 # Convertendo o arquivo para CDS
-source = ColumnDataSource(oriente_data)
-oriente = figure(tools = "pan, wheel_zoom, reset, hover, save",
-                 tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")],
-                 y_range = (0,7500))
-oriente.title = "Oriente Médio"
+source = ColumnDataSource(sc_am_data)
+sc_am = figure(tools = "")
+sc_am.title = "América do Sul e Central"
+sc_am.y_range = Range1d(start=0, end = 7500)
+sc_am.x_range = Range1d(start=1893, end = 2025)
+sc_am.add_tools(hover)
+sc_am.add_layout(box_annotation)
+
 # Linha do tempo com a produção anual de energia do Oriente Médio
-oriente.line(x= "year", 
+sc_am.line(x= "year", 
              y="coal_production", 
              source=source,
              line_color = "red")
@@ -48,9 +57,11 @@ oriente.line(x= "year",
 europa_data = data[data["country"] == "Europe"]
 # Convertendo o arquivo para CDS
 source = ColumnDataSource(europa_data)
-europa = figure(tools = "pan, wheel_zoom, reset, hover, save",
-                tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")],
-                y_range = (0,7500))
+europa = figure(tools = "")
+europa.y_range = Range1d(start=0, end = 7500)
+europa.add_tools(hover)
+europa.add_layout(box_annotation)
+
 # Títulos
 europa.title = "Europa"
 europa.yaxis.axis_label = "Produção de energia pelo carvão"
@@ -64,9 +75,11 @@ europa.line(x= "year",
 am_norte_data = data[data["country"] == "North America"]
 # Convertendo o arquivo para CDS
 source = ColumnDataSource(am_norte_data)
-am_norte = figure(tools = "pan, wheel_zoom, reset, hover, save",
-                 tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")],
-                 y_range = (0,7500))
+am_norte = figure(tools = "")
+am_norte.y_range = Range1d(start=0, end = 7500)
+am_norte.add_tools(hover)
+am_norte.add_layout(box_annotation)
+
 # Títulos
 am_norte.yaxis.axis_label = "Produção de energia pelo carvão"
 am_norte.axis.axis_label_text_font_style = "normal"
@@ -80,6 +93,8 @@ am_norte.line(x= "year",
 
 
 # Grid 2x2, com todas as linhas do tempo
-grid = gridplot([[europa, africa], [am_norte, oriente]], width=500, height=300)
+grid = gridplot([[europa, africa], [am_norte, sc_am]], width=500, height=300)
+
+grid.toolbar.logo = None
 
 show(grid)

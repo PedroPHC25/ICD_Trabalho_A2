@@ -6,7 +6,7 @@ import pandas as pd
 
 # Gráfico de barras empilhadas 
 
-output_file("continents.html")
+output_file("coal_stacked.html")
 
 # Lendo o arquivo csv
 data = pd.read_csv("World Energy Consumption.csv")
@@ -18,7 +18,7 @@ stacked_countries = data[data["year"] == 1995]
 stacked_countries = stacked_countries[["country", "coal_electricity","coal_production","coal_consumption"]]
 
 # Países que vão estar no gráfico
-countries = ["Ukraine","Vietnam", "United States", "United Kingdom", "Turkey", "Thailand", "Spain", "South Korea", "Russia", "Poland", "New Zealand", "Mexico", "Japan", "India", "Germany", "Canada", "Brazil"]
+countries = ["Ukraine", "United States", "United Kingdom", "Spain", "South Korea", "Russia", "Poland", "Japan", "India", "Germany", "Canada", "Brazil"]
 
 # Colocando no dataframe só so países da lista acima
 stacked_countries.set_index("country", inplace = True)

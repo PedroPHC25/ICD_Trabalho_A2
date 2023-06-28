@@ -16,7 +16,7 @@ data_2000 = data_countries.loc[data_countries["year"]==2000]
 data_2000["gdp_em_bi"] = data_2000["gdp"]/ 1000000000
 
 output_file("nuclear_rascunho.html")
-print(data_2000)
+# print(data_2000)
 # Cria um dicionário que corresponde x e y com as colunas 'population' e 'nuclear_share_energy', do dataframe 'data_2000'.
 # E gera o ColumnDataSource com esse dicionário.
 data_pib_nuclear = {"x": data_2000["gdp_em_bi"], "y": data_2000["nuclear_share_energy"], "z": data_2000["country"]}
@@ -48,11 +48,13 @@ scatterplot_gdp_nuclear_share.title.align = "center"
 scatterplot_gdp_nuclear_share.xaxis.axis_label = "Produto interno bruto em bilhões"  #título do eixo x
 scatterplot_gdp_nuclear_share.xaxis.minor_tick_line_color = "black" 
 scatterplot_gdp_nuclear_share.xaxis.minor_tick_in = 5
+scatterplot_gdp_nuclear_share.xaxis[0].ticker.num_minor_ticks = 0
 scatterplot_gdp_nuclear_share.xaxis.major_label_orientation = "horizontal"
 
 scatterplot_gdp_nuclear_share.yaxis.axis_label = "Participação da energia nuclear no consumo de eletricidade "  #título do eixo y
 scatterplot_gdp_nuclear_share.yaxis.minor_tick_line_color = "black"
 scatterplot_gdp_nuclear_share.yaxis.minor_tick_in = 5
+scatterplot_gdp_nuclear_share.yaxis[0].ticker.num_minor_ticks = 0
 scatterplot_gdp_nuclear_share.yaxis.major_label_orientation = "vertical"
 
 scatterplot_gdp_nuclear_share.xaxis.axis_label_text_font ="Arial" #Fonte do título do eixo
@@ -60,10 +62,12 @@ scatterplot_gdp_nuclear_share.yaxis.axis_label_text_font ="Arial"
 scatterplot_gdp_nuclear_share.axis.axis_label_text_font_style= "normal"
 scatterplot_gdp_nuclear_share.yaxis.axis_label_text_color = 'MidnightBlue' #cor do título do eixo
 scatterplot_gdp_nuclear_share.xaxis.axis_label_text_color = 'MidnightBlue'
-
 scatterplot_gdp_nuclear_share.xaxis.axis_label_text_font_size = "20px" #Tamanho da fonte do título dos eixos
 scatterplot_gdp_nuclear_share.yaxis.axis_label_text_font_size = "20px"
 scatterplot_gdp_nuclear_share.xaxis[0].formatter.use_scientific = False # Retirar o modo de escala em notação científica
+
+
+
 
 # Anotação
 scatterplot_gdp_nuclear_share.add_layout(Label(x = 2700, y = 35,
@@ -79,7 +83,7 @@ scatterplot_gdp_nuclear_share.add_layout(Label(x = 2700, y = 35,
 scatterplot_gdp_nuclear_share.background_fill_color = ("WhiteSmoke")
 # scatterplot_gdp_nuclear_share.background_fill_alpha = 0.9
 
-show(scatterplot_gdp_nuclear_share)
+# show(scatterplot_gdp_nuclear_share)
 
 
 output_file("nuclear_rascunho3.html")
@@ -412,10 +416,11 @@ line_year_nuclear_SouthKorea.ygrid.grid_line_alpha = 0.6  #transparencia do grid
 glyph_renderer = renderer.glyph #pega o renderzador do glifo
 glyph_renderer.line_width= 3.5
 
+#Junção dos gráficos
 plot = gridplot([[line_year_nuclear_EUA, line_year_nuclear_France, line_year_nuclear_Japan],
                   [line_year_nuclear_Germany, line_year_nuclear_Russia, line_year_nuclear_SouthKorea]])
 
-show(plot)
+# show(plot)
 
 output_file("nuclear_rascunho4.html")
 
@@ -432,24 +437,36 @@ cinco_países = cinco_países[cinco_países["year"] == 2018]
 cinco_países = cinco_países.sort_values("nuclear_consumption", ascending= False)
 cinco_países = cinco_países[["country", "year", "nuclear_consumption"]]
 cinco_países = cinco_países.head(10)
+#Adicionando cada cor à um continente
+cinco_países["continent"] = ["América do norte", "Europa", "Ásia", "Ásia", "Ásia", "América do norte", "Europa", "Europa", "Europa", "Europa"]
 
+color_dict = {"América do norte":"blue", "Europa": "orange", "Ásia": "gray"}
+
+colors = []
+
+for each_element in cinco_países["continent"]:
+    colors.append(color_dict[each_element])
+
+cinco_países["color"] = colors
+
+data_source = ColumnDataSource(data= cinco_países)
 
 # Gráfico de barras
 bar_rank_nuclear = figure(x_range = cinco_países["country"], 
-                          width= 650, height = 600, 
+                          width= 750, height = 600, 
                           tools = "box_zoom, pan, reset, save, wheel_zoom",
-                          tooltips = [("País", "@z"),
+                          tooltips = [("País", "@country"),
                                       ("Consumo de Energia nuclear", "@nuclear_consumption")])
 # pais = cinco_países["country"]
 # y = cinco_países["nuclear_consumption"]
-bar_rank_nuclear.vbar(x=cinco_países["country"], top=cinco_países["nuclear_consumption"], width=0.5, source = cinco_países)
+bar_rank_nuclear.vbar(x="country", top="nuclear_consumption", color = "color", width=0.5, source = data_source)
 
 # ferramnetas
 bar_rank_nuclear.toolbar.logo = None #retira a logo
 bar_rank_nuclear.toolbar.autohide = True #deixa o barra de ferramentas invisível
 bar_rank_nuclear.toolbar_location = "below" #define a localização barra de ferramentas
 # título
-bar_rank_nuclear.title.text = "Os 10 países que mais consomiram energia nuclear em 2018."
+bar_rank_nuclear.title.text = "Os 10 países que mais consumiram energia nuclear em 2018."
 bar_rank_nuclear.title.text_color = "MidnightBlue"
 bar_rank_nuclear.title.text_font = "Arial"
 bar_rank_nuclear.title.text_font_size = "20px"
@@ -458,20 +475,31 @@ bar_rank_nuclear.title.align = "center"
 bar_rank_nuclear.xaxis.axis_label = "anos"  #título do eixo x
 bar_rank_nuclear.xaxis.minor_tick_line_color = "black" 
 bar_rank_nuclear.xaxis.minor_tick_in = 5
+bar_rank_nuclear.axis.axis_label_text_font_style= "normal"
 bar_rank_nuclear.xaxis.major_label_orientation = "horizontal"
-bar_rank_nuclear.yaxis.axis_label = "Geração de energia nuclear(TWh) "  #título do eixo y
+# bar_rank_nuclear.xaxis.major_label_overrides = {'United States': 'Estados Unidos'} 
+                                                    #  'France': 'França', 
+                                                    #  'China': 'China', 
+                                                    #  'Russia': 'Rússia',
+                                                    #  'South Korea': 'Coréia do Sul', 
+                                                    #  'Canada': 'Canadá', 
+                                                    #  'Ukraine': 'Ucrânia',
+                                                    #  'Germany': 'Alemanha',
+                                                    #  'Sweden': 'Suécia',
+                                                    #  'United Kingdom': 'Reino \nUnido'}
+bar_rank_nuclear.yaxis.axis_label = "Consumo de energia primária nuclear(TWh) "  #título do eixo y
 bar_rank_nuclear.yaxis.minor_tick_line_color = "black"
 bar_rank_nuclear.yaxis.minor_tick_in = 5
-bar_rank_nuclear.yaxis.major_label_orientation = "vertical"
+bar_rank_nuclear.yaxis.major_label_orientation = "horizontal"
 
 bar_rank_nuclear.xaxis.axis_label_text_font ="Arial" #Fonte do título do eixo
 bar_rank_nuclear.yaxis.axis_label_text_font ="Arial"
 bar_rank_nuclear.yaxis.axis_label_text_color = 'MidnightBlue' #cor do título do eixo
+bar_rank_nuclear.yaxis[0].ticker.num_minor_ticks = 0
 bar_rank_nuclear.xaxis.axis_label_text_color = 'MidnightBlue'
 
 bar_rank_nuclear.xaxis.axis_label_text_font_size = "20px" #Tamnho da fonte do título dos eixos
 bar_rank_nuclear.yaxis.axis_label_text_font_size = "20px"
-
 
 
 # Fundo

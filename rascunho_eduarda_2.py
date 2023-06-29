@@ -36,27 +36,16 @@ df_top_10_filtered["color"] = colors
 # Criando ColumnDataSource
 data_organized = ColumnDataSource(df_top_10_filtered)
 
-# Criando a figura e plotando as barras
+# Criando a figura, plotando as barras e criando legendas
 p = figure(x_range=df_top_10_filtered['country'], height=600, width=1200,
            title="ELECTRICITY GENERATION FROM WIND BY COUNTRY IN 2020")
+
+#Criando a legenda 
+p.vbar(x="country", top='wind_electricity', legend_label = "Europe", fill_alpha = 1, line_color='none',color = "#D49495", width=0.5, source = data_organized)
+p.vbar(x="country", top='wind_electricity', legend_label = "Asia", fill_alpha = 1, line_color='none',color = "#8A5556", width=0.5, source = data_organized)
+p.vbar(x="country", top='wind_electricity', legend_label = "America", fill_alpha = 1, line_color='none', color = "#87864D", width=0.5, source = data_organized)
+
 p.vbar(x='country', top='wind_electricity', width=0.9, fill_color='color', line_color='none', source=data_organized)
-
-from bokeh.models import Rect
-
-legend_items = []
-for continent, color in color_dict.items():
-    glyph = Rect(x='x', y='y', width=0, height=0, fill_color=color)
-    legend_item = LegendItem(label=continent, index=0, renderers=[glyph], label_text_color=color)
-    legend_items.append(legend_item)
-
-legend = Legend(items=legend_items, label_standoff=5, click_policy="hide")
-p.add_layout(legend, 'right')
-
-legend.spacing = 5
-legend.margin = 5
-legend.padding = 5
-legend.label_text_font_size = '10pt'
-
 
 #Ajustando os títulos dos eixos
 p.xaxis.axis_label = "COUNTRY"

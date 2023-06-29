@@ -31,7 +31,7 @@ scatterplot_gdp_nuclear_share = figure(width= 700, height = 700,
                                         tools = "box_zoom, pan, reset, save, wheel_zoom, hover",
                                         tooltips = [("País", "@z"),
                                                     ("Energia nuclear", "@y"),
-                                                    ("PIB", "@x")])
+                                                    ("PIB", "@x")]) 
 
 scatterplot_gdp_nuclear_share.circle(x = "x", y = "y", size = "y", color = "MidnightBlue", 
                                      alpha = 0.5, source = cds_nuclear_gdp_share_country)

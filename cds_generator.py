@@ -176,3 +176,25 @@ coal_rank_data = coal_rank_data[["country", "year", "coal_consumption"]]
 coal_rank_data = coal_rank_data.head(10)
 
 cds_coal_rank_data = ColumnDataSource(coal_rank_data)
+
+# África
+# Filtrando apenas os dados da África
+coal_africa_data = data[data["country"] == "Africa"]
+coal_africa_data = ColumnDataSource(coal_africa_data)
+
+# Oriente Médio
+# Filtrando os dados
+coal_sc_am_data = data[data["country"] == "South & Central America"]
+coal_sc_am_data = ColumnDataSource(coal_sc_am_data)
+
+# Europa 
+# Filtrando os dados
+coal_europa_data = data[data["country"] == "Europe"]
+# Convertendo o arquivo para CDS
+coal_europa_data = ColumnDataSource(coal_europa_data)
+
+# América do norte
+# Filtrando os dados 
+coal_am_norte_data = data[data["country"] == "North America"]
+# Convertendo o arquivo para CDS
+coal_am_norte_data = ColumnDataSource(coal_am_norte_data)

@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-from bokeh.plotting import figure, show, output_file
+from bokeh.plotting import figure, show, output_file, save
 from bokeh.models import Slope, ColumnDataSource
 from scipy import stats
 from bokeh.layouts import gridplot
@@ -134,10 +134,11 @@ p4.yaxis.major_label_text_font_style = "bold"
 p4.background_fill_color = "#D4D3A9"
 
 #Criando um grid com os gráficos
-grid2 = gridplot([[p4], [p3]])
+grid2_eduarda = gridplot([[p4], [p3]])
 
 #Configurando a saída para um arquivo HTML
-output_file("grid2.html")
+output_file("grid2_eduarda.html")
 
 #Exibindo o grid
-show(grid2)
+show(grid2_eduarda)
+save(grid2_eduarda)

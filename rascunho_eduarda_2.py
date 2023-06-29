@@ -1,5 +1,5 @@
 import pandas as pd
-from bokeh.io import output_file, show
+from bokeh.io import output_file, show, save 
 from bokeh.models import ColumnDataSource
 from bokeh.plotting import figure
 
@@ -68,6 +68,7 @@ p.yaxis.major_label_text_font_style = "bold"  #Colocando em negrito os rótulos 
 p.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico
 
 #Configurando a saída para um arquivo HTML
+save(p)
 output_file("barras_eduarda.html")
 show(p)
 

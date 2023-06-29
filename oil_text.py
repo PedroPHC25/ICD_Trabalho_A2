@@ -73,7 +73,7 @@ Depois, apenas coloquei e configurei os títulos dos eixos da mesma forma que an
 As caixas foram feitas com certa transparência para não encobrirem o gráfico e as cores foram escolhidas de acordo com o aspecto da informação: verde para a positiva e vermelho para as negativas.</br>
 Além disso, inseri anotações em linha para deixar mais destacada a reta y = 0, de modo que é mais compreensível a localização da origem do gráfico.</p> </br>
 
-<p>Por fim, para montar o gridplot, optei por colocar os três gráficos um acima do outro, de modo a alinhar as marcações do eixo x. Fiz isso para que fossem mais facilmente comparáveis as informações ao longo dos anos.</p> </br>
+<p>Por fim, para montar o gridplot, optei por colocar os três gráficos um acima do outro, de modo a alinhar as marcações do eixo x. Fiz isso para que fossem mais facilmente comparáveis as informações ao longo dos <a href="../drafts/easter_egg.html">anos</a>.</p> </br>
 
 <b> Autor: Pedro Henrique Coterli </b>
 

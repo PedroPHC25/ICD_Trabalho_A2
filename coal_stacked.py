@@ -1,43 +1,22 @@
 from bokeh.models import ColumnDataSource, HoverTool, Label
 from bokeh.plotting import figure, output_file, show
 import pandas as pd
+from cds_generator import cds_coal_stacked, coal_stacked_countries
+
 
 # Gráfico de barras empilhadas 
 
 output_file("coal_stacked.html")
 
-# Lendo o arquivo csv
-data = pd.read_csv("World Energy Consumption.csv")
-
-# Filtrando a base de dados
-coal_stacked_countries = data[data["year"] == 1995]
-coal_stacked_countries = coal_stacked_countries[["country", "coal_electricity","coal_production","coal_consumption"]]
-
-# Renomenando as colunas
-coal_stacked_countries["Eletricidade"] = coal_stacked_countries["coal_electricity"]
-coal_stacked_countries["Produção"] = coal_stacked_countries["coal_production"]
-coal_stacked_countries["Consumo"] = coal_stacked_countries["coal_consumption"]
-
-# Categoria de cada parte da barra empilhada
+# # Categoria de cada parte da barra empilhada
 coal_products = ["Produção","Consumo","Eletricidade"]
 
-# Países que vão estar no gráfico
-countries = ["China","United States", "India", "Russia", "Germany", "Poland", "Japan", "Ukraine", "United Kingdom", "Canada", "South Korea", "Spain", "Brazil"]
-
-# Colocando no dataframe só os países da lista acima
-coal_stacked_countries.set_index("country", inplace = True)
-coal_stacked_countries = coal_stacked_countries.loc[countries]
-coal_stacked_countries.reset_index(inplace= True)
-
-# Fazendo o gráfico de barras empilhadas horizontalmente
-
-coal_stacked_cds = ColumnDataSource(coal_stacked_countries)
 colors = ['#00ff00', '#009900', '#00cc99']
 
 coal_stacked = figure(y_range = coal_stacked_countries["country"], tools = "")
 coal_stacked.hbar_stack(coal_products,
                         y="country",
-                        source=coal_stacked_cds,
+                        source=cds_coal_stacked,
                         color=colors,
                         height=0.5,
                         legend_label= coal_products)

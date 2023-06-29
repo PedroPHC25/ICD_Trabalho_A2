@@ -176,3 +176,50 @@ coal_rank_data = coal_rank_data[["country", "year", "coal_consumption"]]
 coal_rank_data = coal_rank_data.head(10)
 
 cds_coal_rank_data = ColumnDataSource(coal_rank_data)
+
+# África
+# Filtrando apenas os dados da África
+coal_africa_data = data[data["country"] == "Africa"]
+coal_africa_data = ColumnDataSource(coal_africa_data)
+
+# Oriente Médio
+# Filtrando os dados
+coal_sc_am_data = data[data["country"] == "South & Central America"]
+coal_sc_am_data = ColumnDataSource(coal_sc_am_data)
+
+# Europa 
+# Filtrando os dados
+coal_europa_data = data[data["country"] == "Europe"]
+# Convertendo o arquivo para CDS
+coal_europa_data = ColumnDataSource(coal_europa_data)
+
+# América do norte
+# Filtrando os dados 
+coal_am_norte_data = data[data["country"] == "North America"]
+# Convertendo o arquivo para CDS
+coal_am_norte_data = ColumnDataSource(coal_am_norte_data)
+
+
+# Filtrando a base de dados
+coal_stacked_countries = data[data["year"] == 1995]
+coal_stacked_countries = coal_stacked_countries[["country", "coal_electricity","coal_production","coal_consumption"]]
+
+# Renomenando as colunas
+coal_stacked_countries["Eletricidade"] = coal_stacked_countries["coal_electricity"]
+coal_stacked_countries["Produção"] = coal_stacked_countries["coal_production"]
+coal_stacked_countries["Consumo"] = coal_stacked_countries["coal_consumption"]
+
+# Categoria de cada parte da barra empilhada
+coal_products = ["Produção","Consumo","Eletricidade"]
+
+# Países que vão estar no gráfico
+countries = ["China","United States", "India", "Russia", "Germany", "Poland", "Japan", "Ukraine", "United Kingdom", "Canada", "South Korea", "Spain", "Brazil"]
+
+# Colocando no dataframe só os países da lista acima
+coal_stacked_countries.set_index("country", inplace = True)
+coal_stacked_countries = coal_stacked_countries.loc[countries]
+coal_stacked_countries.reset_index(inplace= True)
+
+# Fazendo o gráfico de barras empilhadas horizontalmente
+
+cds_coal_stacked = ColumnDataSource(coal_stacked_countries)

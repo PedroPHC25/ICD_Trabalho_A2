@@ -15,6 +15,12 @@ from wind_grid_comparison_six_countries import wind_grid_comparison_graph
 from wind_grid_scatter_plot import wind_grid_scatter_plot
 from wind_line_brazil_evolution import wind_line_brazil_evolution_graph
 
+# Pegando os textos e os gráficos dos arquivos de energia nuclear
+from nuclear_text import nuclear_text_1, nuclear_text_2, nuclear_text_3, nuclear_text_4
+from nuclear_bar_country_consumption import bar_rank_nuclear
+from nuclear_line_year_electricity import plot
+from nuclear_scatter_pib_energy import scatterplot_gdp_nuclear_share
+
 # Gerando a página sobre petróleo
 output_file("html_pages/oil.html")
 
@@ -38,3 +44,14 @@ save(column(wind_text_0,
             wind_text_3, 
             wind_line_brazil_evolution_graph, 
             wind_text_4))
+
+#  Gerando a página sobre energia nuclear
+output_file("html_pages/nuclear.html")
+
+save(column(nuclear_text_1, 
+            scatterplot_gdp_nuclear_share, 
+            nuclear_text_2, 
+            plot, 
+            nuclear_text_3, 
+            bar_rank_nuclear, 
+            nuclear_text_4))

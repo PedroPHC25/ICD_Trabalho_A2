@@ -1,6 +1,5 @@
 from bokeh.models import ColumnDataSource, HoverTool, Label
 from bokeh.plotting import figure, output_file, show
-from bokeh.plotting import figure, show
 import pandas as pd
 
 # Gráfico de barras empilhadas 
@@ -35,14 +34,14 @@ coal_stacked_countries.reset_index(inplace= True)
 coal_stacked_cds = ColumnDataSource(coal_stacked_countries)
 colors = ['#00ff00', '#009900', '#00cc99']
 
-coal_stacked = figure(y_range = coal_stacked_countries["country"],
-                     tools = "")
+coal_stacked = figure(y_range = coal_stacked_countries["country"], tools = "")
 coal_stacked.hbar_stack(coal_products,
                         y="country",
                         source=coal_stacked_cds,
                         color=colors,
                         height=0.5,
                         legend_label= coal_products)
+
 
 # Tamanho do gráfico
 coal_stacked.height = 550

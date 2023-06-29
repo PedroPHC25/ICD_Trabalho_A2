@@ -116,7 +116,10 @@ wind_source = ColumnDataSource(df_filtered_country)
 
 
 
-# Seleciona os dados do ano 2000
+# Cria um data frame com todos os países excluindo a soma dos continentes e do mundo ("world"), que estão no dado original.
+data_countries = data.loc[data["country"] != "World"].dropna(subset = ["iso_code"])
+
+#  Seleciona os dados do ano 2000
 data_nuclear_2000 = data_countries.loc[data_countries["year"]==2000]
 data_nuclear_2000["gdp_in_bi"] = data_nuclear_2000["gdp"]/ 1000000000
 

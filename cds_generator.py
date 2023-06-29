@@ -166,3 +166,13 @@ best_countries_nuclear["color"] = colors
 data_europe = ColumnDataSource(best_countries_nuclear[best_countries_nuclear["continent"] == "Europa"])
 data_asia = ColumnDataSource(best_countries_nuclear[best_countries_nuclear["continent"] == "Ásia"])
 data_america = ColumnDataSource(best_countries_nuclear[best_countries_nuclear["continent"] == "América do norte"])
+
+# Selecionando um ano
+coal_rank_data = data_countries[data_countries["year"] == 1965]
+
+# Ordenando e selecionando as colunas desejadas
+coal_rank_data = coal_rank_data.sort_values("coal_consumption", ascending= False)
+coal_rank_data = coal_rank_data[["country", "year", "coal_consumption"]]
+coal_rank_data = coal_rank_data.head(10)
+
+cds_coal_rank_data = ColumnDataSource(coal_rank_data)

@@ -1,11 +1,11 @@
 from bokeh.models import Div
 
-# Este módulo contém as partes do texto em HTML da página dos gráficos sobre petróleo.
+# Este módulo contém as partes do texto em HTML da página dos gráficos sobre energia eólica.
 
-oil_text_1 = Div(text = """<html>
+wind_text_1 = Div(text = """<html>
 
 <head>
-<title>Visualizações sobre petróleo</title>
+<title>Visualizações sobre energia eólica</title>
 
 </head>
 
@@ -16,7 +16,7 @@ oil_text_1 = Div(text = """<html>
 <h2>Gráfico "Produção de petróleo das 5 maiores regiões produtoras (1900 - 2020)"</h2>""")
 
 
-oil_text_2 = Div(text = """</br> <p>O objetivo dessa visualização é exibir a evolução da produção de petróleo ao longo dos anos, olhando mais especificamente para as regiões do mundo que mais concentram essa produção: Oriente Médio, América do Norte, África, Ásia e Américas Central e do Sul. Dessa forma, o tipo de gráfico mais adequado para essa situação era o gráfico de linhas.</p> </br>
+wind_text_2 = Div(text = """</br> <p>O objetivo dessa visualização é exibir a evolução da produção de petróleo ao longo dos anos, olhando mais especificamente para as regiões do mundo que mais concentram essa produção: Oriente Médio, América do Norte, África, Ásia e Américas Central e do Sul. Dessa forma, o tipo de gráfico mais adequado para essa situação era o gráfico de linhas.</p> </br>
 
 <p>A primeira coisa a se fazer após a plotagem das linhas era sua diferenciação, já que estavam todas idênticas. Para isso, foi utilizado o atributo de cor, selecionando-se cores que se destacassem umas das outras: amarelo, laranja, verde, azul e vermelho. Preferi optar por cores mais primárias e "distantes" para que não acontecesse qualquer confusão com relação a qual linha representa qual região. </br>
 Em seguida, é claro que era necessária uma legenda para essas cores. Assim, criei-a na parte superior esquerda do gráfico para que não encobrisse parte dos dados.</p> </br>
@@ -34,7 +34,7 @@ Em seguida, é claro que era necessária uma legenda para essas cores. Assim, cr
 <h2>Gráfico "Consumo de petróleo x População em 2019"</h2>""")
 
 
-oil_text_3 = Div(text = """</br> <p>O objetivo dessa segunda visualização é mostrar a correlação existente entre a população dos países e seu consumo de petróleo. Para isso, é claro, foi utilizado um gráfico de dispersão.</p> </br>
+wind_text_3 = Div(text = """</br> <p>O objetivo dessa segunda visualização é mostrar a correlação existente entre a população dos países e seu consumo de petróleo. Para isso, é claro, foi utilizado um gráfico de dispersão.</p> </br>
 
 <p>Antes de realizar a plotagem dos dados, separei os registros de acordo com sua média de consumo por habitante: os países cuja média estava acima da mundial e os países nos quais ela estava abaixo. Dessa forma, pude agrupá-los por meio da cor, caracterizando-os como vermelhos e verdes, respectivamente. Tentei fazer com que essa média fosse representada por meio de um degradê de cores, mas a diferença entre esses valores era tão pequena (questão de até milionésimos) que a variação dessas cores se tornou quase inexistente. Assim, preferi manter o modelo de 2 categorias.</br>
 Após isso, novamente criei a legenda para os dados, indicando que os pontos vermelhos representavam os países com média de consumo de petróleo acima da mundial e que os verdes representavam os cuja média estava abaixo da global.</p> </br>
@@ -55,7 +55,7 @@ Com relação aos seus títulos, da mesma forma que anteriormente, criei-os de u
 <h2>Gráfico "Variação anual da produção de petróleo dos 3 maiores produtores mundiais (1900 - 2020)"</h2>""")
 
 
-oil_text_4 = Div(text = """</br> <p>O objetivo dessa terceira visualização é comparar as altas e as baixas na produção de petróleo dos Estados Unidos, da Rússia e da Arábia Saudita, que são, atualmente, os maiores produtores do mundo. Desse modo, optei pela utilização dos gráficos de barras para proporcionar melhor essa análise simultânea de vários momentos da história.</p> </br>
+wind_text_4 = Div(text = """</br> <p>O objetivo dessa terceira visualização é comparar as altas e as baixas na produção de petróleo dos Estados Unidos, da Rússia e da Arábia Saudita, que são, atualmente, os maiores produtores do mundo. Desse modo, optei pela utilização dos gráficos de barras para proporcionar melhor essa análise simultânea de vários momentos da história.</p> </br>
 
 <p>Inicialmente, agrupei os dados desses países de acordo com o valor da variação anual na produção, separando-os nos anos em que essa variação foi positiva e negativa. Assim, consegui plotar os gráficos de forma que esses dois grupos possuíssem cores diferentes: verde para os positivos e vermelho para os negativos, o que melhora a percepção dos momentos de subida e de queda. Além disso, ajustei as dimensões dos gráficos para que todos tivessem o mesmo tamanho e se adequassem ao formato de gridplot.</p> </br>
 
@@ -75,7 +75,9 @@ Além disso, inseri anotações em linha para deixar mais destacada a reta y = 0
 
 <p>Por fim, para montar o gridplot, optei por colocar os três gráficos um acima do outro, de modo a alinhar as marcações do eixo x. Fiz isso para que fossem mais facilmente comparáveis as informações ao longo dos anos.</p> </br>
 
-<b> Autor: Pedro Henrique Coterli </b>
+
+
+
 
 </body>
 

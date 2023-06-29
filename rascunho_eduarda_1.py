@@ -1,4 +1,4 @@
-from bokeh.io import output_file, show
+from bokeh.io import output_file, show, save
 from bokeh.models import ColumnDataSource
 from bokeh.plotting import figure
 from bokeh.layouts import gridplot
@@ -278,10 +278,11 @@ p6.yaxis.major_label_text_font_style = "bold"  #Colocando em negrito os rótulos
 p6.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico
 
 #Criando um grid com os gráficos
-grid = gridplot([[p1, p2, p3], [p4, p5, p6]])
+grid1_eduarda = gridplot([[p1, p2, p3], [p4, p5, p6]])
 
 #Configurando a saída para um arquivo HTML
 output_file("grid.html")
 
-#Exibindo o grid
-show(grid)
+#Salvando e exibindo o grid
+save(grid1_eduarda)
+show(grid1_eduarda)

@@ -2,35 +2,14 @@ from bokeh.plotting import figure, output_file, show, curdoc
 import pandas as pd
 from bokeh.models import ColumnDataSource, Slider, HoverTool, Range1d
 from bokeh.layouts import column
+from cds_generator import data_countries, coal_rank_data, cds_coal_rank_data
 
 # Gráfico de barras interativo com os maiores consumidores de energia vinda do carvão
 
 output_file("rank_interativo.html")
 
-# Lendo o arquivo csv
-data = pd.read_csv("World Energy Consumption.csv")
-
-
-# Filtrando os dados
-#Retirando os continentes e organizações
-data_country = data[~data["iso_code"].isnull()] 
-data_country = data_country[data_country["country"] != "World"]
-
-# Selecionando um ano
-rank_data = data_country[data_country["year"] == 1965]
-
-# Ordenando e selecionando as colunas desejadas
-rank_data = rank_data.sort_values("coal_consumption", ascending= False)
-rank_data = rank_data[["country", "year", "coal_consumption"]]
-rank_data = rank_data.head(10)
-
-
-# Gráfico de barras
-# Dados dos eixos
-source = ColumnDataSource(rank_data)
-
 # Construção do gráfico de barras
-rank = figure(x_range = rank_data["country"], tools = "")
+rank = figure(x_range = coal_rank_data["country"], tools = "")
 
 # Customizando as legendas e os eixos
 rank.axis.axis_label_text_font_style = "bold"
@@ -47,7 +26,6 @@ hover = HoverTool(tooltips = [("Consumo", "@coal_consumption{1,11}")])
 rank.add_tools(hover)
 rank.toolbar.logo = None
 
-
 # Customização da proporção, grid e eixos
 rank.height = 550
 rank.width = 1000
@@ -58,16 +36,16 @@ rank.title = "Maiores consumidores da energia primária vinda do carvão"
 
 # Gráfico de barras
 verde = "#009900"
-rank.vbar(x="country", top="coal_consumption", width=0.5, source=source, color = verde )
+rank.vbar(x="country", top="coal_consumption", width=0.5, source=cds_coal_rank_data, color = verde )
 
 # Função de atualização do gráfico com base no valor do slider
 def update_plot(attr, old, new):
     year = year_slider.value
-    new_data = data_country[data_country["year"] == year]
+    new_data = data_countries[data_countries["year"] == year]
     new_data = new_data.sort_values("coal_consumption", ascending=False)
     new_data = new_data[["country", "year", "coal_consumption"]]
     new_data = new_data.head(10)
-    source.data = ColumnDataSource.from_df(new_data)
+    cds_coal_rank_data.data = ColumnDataSource.from_df(new_data)
     rank.x_range.factors = list(new_data["country"])
 
 # Criando o slider

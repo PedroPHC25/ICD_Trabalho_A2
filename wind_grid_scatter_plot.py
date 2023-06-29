@@ -134,11 +134,11 @@ p4.yaxis.major_label_text_font_style = "bold"
 p4.background_fill_color = "#D4D3A9"
 
 #Criando um grid com os gráficos
-grid2_eduarda = gridplot([[p4], [p3]])
+wind_grid_scatter_plot = gridplot([[p4], [p3]])
 
 #Configurando a saída para um arquivo HTML
-output_file("grid2_eduarda.html")
+output_file("wind_grid_scatter_plot.html")
 
 #Exibindo o grid
-show(grid2_eduarda)
-save(grid2_eduarda)
+show(wind_grid_scatter_plot)
+save(wind_grid_scatter_plot)

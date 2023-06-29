@@ -191,7 +191,7 @@ p4.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico
 #5: BRASIL E ALEMANHA
 data = pd.read_csv("World Energy Consumption.csv") #Lendo o arquivo
 df_brazil = data[data['country'] == 'Brazil'] #Filtrando dados do Brasil
-df_germany = data[data['country'] == 'Germany'] #Filtrando dados da Argentina
+df_germany = data[data['country'] == 'Germany'] #Filtrando dados da Alemanha
 
 #Criando a figura:
 p5 = figure(title="ANNUAL PERCENTAGE CHANGE IN WIND CONSUMPTION", 
@@ -264,7 +264,6 @@ p6.title.text_color = "#8A5556"  #Alterando a cor do texto do título
 p6.title.text_align = "center"  #Alinhando o título no centro do gráfico
 p6.title.text_baseline = "middle"  #Alinhando o título verticalmente ao centro
 
-
 p6.xaxis.axis_label_text_font = "Georgia"  #Alterando a fonte do rótulo do eixo x 
 p6.xaxis.axis_label_text_font_size = "10pt"  #Alterando o tamanho da fonte do rótulo do eixo x 
 p6.xaxis.axis_label_text_color = "#8A5556"  #Alterando a cor do texto do rótulo do eixo x 
@@ -278,11 +277,11 @@ p6.yaxis.major_label_text_font_style = "bold"  #Colocando em negrito os rótulos
 p6.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico
 
 #Criando um grid com os gráficos
-grid1_eduarda = gridplot([[p1, p2, p3], [p4, p5, p6]])
+wind_grid_comparison_graph = gridplot([[p1, p2, p3], [p4, p5, p6]])
 
 #Configurando a saída para um arquivo HTML
-output_file("grid.html")
+output_file("wind_grid_comparison_graph.html")
 
 #Salvando e exibindo o grid
-save(grid1_eduarda)
-show(grid1_eduarda)
+save(wind_grid_comparison_graph)
+show(wind_grid_comparison_graph)

@@ -9,7 +9,7 @@ from oil_population_consumption import graph_pop_consumption
 from oil_variation_year import oil_grid
 
 # Gerando a página sobre petróleo
-output_file("oil.html")
+output_file("html_pages/oil.html")
 
 save(column(oil_text_1, 
             graph_best_regions, 

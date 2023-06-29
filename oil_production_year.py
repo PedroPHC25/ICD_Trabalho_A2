@@ -53,15 +53,16 @@ graph_best_regions.legend.location = "top_left"
 # Inserindo e personalizando o título
 graph_best_regions.title.text = "Produção de petróleo das 5 maiores regiões produtoras (1900 - 2020)"
 graph_best_regions.title.text_font = "arial"
-graph_best_regions.title.text_font_size = "15px"
+graph_best_regions.title.text_font_size = "17px"
 graph_best_regions.title.align = "center"
 
 # Inserindo e ajustando os rótulos dos eixos
 graph_best_regions.xaxis.axis_label = "Ano"
-graph_best_regions.yaxis.axis_label = "Produção (em terawatts-hora)"
+graph_best_regions.yaxis.axis_label = "Produção (terawatts-hora)"
 graph_best_regions.axis.axis_label_text_font_style = "normal"
 graph_best_regions.xaxis.axis_label_text_font = "arial"
 graph_best_regions.yaxis.axis_label_text_font = "arial"
+graph_best_regions.axis.axis_label_text_font_size = "16px"
 
 # Ajustando o grid
 graph_best_regions.xgrid.grid_line_alpha = 0.4

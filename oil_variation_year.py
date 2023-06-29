@@ -69,23 +69,25 @@ graph_saudi_arabia.yaxis.minor_tick_line_color = None
 # Adicionando os títulos dos gráficos
 graph_united_states.title.text = "Estados Unidos"
 graph_united_states.title.text_font = "arial"
-graph_united_states.title.text_font_size = "15px"
+graph_united_states.title.text_font_size = "17px"
 
 graph_russia.title.text = "Rússia"
 graph_russia.title.text_font = "arial"
-graph_russia.title.text_font_size = "15px"
+graph_russia.title.text_font_size = "17px"
 
 graph_saudi_arabia.title.text = "Arábia Saudita"
 graph_saudi_arabia.title.text_font = "arial"
-graph_saudi_arabia.title.text_font_size = "15px"
+graph_saudi_arabia.title.text_font_size = "17px"
 
 # Configurando os títulos dos eixos
 graph_saudi_arabia.xaxis.axis_label = "Ano"
-graph_russia.yaxis.axis_label = "Variação anual da produção\nde petróleo (em terawatts-hora)"
+graph_russia.yaxis.axis_label = "Variação anual da produção\nde petróleo (terawatts-hora)"
 graph_saudi_arabia.axis.axis_label_text_font_style = "normal"
 graph_russia.axis.axis_label_text_font_style = "normal"
 graph_saudi_arabia.xaxis.axis_label_text_font = "arial"
 graph_russia.yaxis.axis_label_text_font = "arial"
+graph_saudi_arabia.axis.axis_label_text_font_size = "14px"
+graph_russia.axis.axis_label_text_font_size = "14px"
 
 # Ajustando o grid
 graph_united_states.xgrid.grid_line_alpha = 0.4

@@ -14,13 +14,13 @@ data_countries = data.loc[data["country"] != "World"].dropna(subset = ["iso_code
 
 # Seleciona os dados do ano 2000
 data_nuclear_2000 = data_countries.loc[data_countries["year"]==2000]
-data_nuclear_2000["gdp_em_bi"] = data_nuclear_2000["gdp"]/ 1000000000
+data_nuclear_2000["gdp_in_bi"] = data_nuclear_2000["gdp"]/ 1000000000
 
 output_file("nuclear_rascunho.html")
 
-# Cria um dicionário que corresponde x, y e z com as colunas 'population', 'nuclear_share_energy' e 'country', do dataframe 'data_nuclear_2000'.
+# Cria um dicionário que corresponde x, y e z com as colunas 'gdp_in_bi', 'nuclear_share_energy' e 'country', do dataframe 'data_nuclear_2000'.
 # E gera o ColumnDataSource com esse dicionário.
-data_gdp_nuclear = {"x": data_nuclear_2000["gdp_em_bi"], 
+data_gdp_nuclear = {"x": data_nuclear_2000["gdp_in_bi"], 
                     "y": data_nuclear_2000["nuclear_share_energy"], 
                     "z": data_nuclear_2000["country"]}
 

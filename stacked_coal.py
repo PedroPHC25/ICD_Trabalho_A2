@@ -19,12 +19,12 @@ coal_stacked_countries["Produção"] = coal_stacked_countries["coal_production"]
 coal_stacked_countries["Consumo"] = coal_stacked_countries["coal_consumption"]
 
 # Categoria de cada parte da barra empilhada
-coal_products = ["Eletricidade","Produção","Consumo"]
+coal_products = ["Produção","Consumo","Eletricidade"]
 
 # Países que vão estar no gráfico
-countries = ["United States", "India", "Russia", "Germany", "Poland", "Japan", "Ukraine", "United Kingdom", "Canada", "South Korea", "Spain", "Brazil"]
+countries = ["China","United States", "India", "Russia", "Germany", "Poland", "Japan", "Ukraine", "United Kingdom", "Canada", "South Korea", "Spain", "Brazil"]
 
-# Colocando no dataframe só so países da lista acima
+# Colocando no dataframe só os países da lista acima
 coal_stacked_countries.set_index("country", inplace = True)
 coal_stacked_countries = coal_stacked_countries.loc[countries]
 coal_stacked_countries.reset_index(inplace= True)
@@ -66,7 +66,7 @@ coal_stacked.legend.location = "top_right"
 coal_stacked.legend.orientation = "horizontal"
 
 # Adicionando uma anotaçã no gráfico
-coal_stacked.add_layout(Label(x = 10000, y = 9.8,
+coal_stacked.add_layout(Label(x = 11300, y = 10.7,
                               text = "Clique na legenda para\nocultar a categoria desejada",
                               text_align = "left",
                               text_font_size = "13px",

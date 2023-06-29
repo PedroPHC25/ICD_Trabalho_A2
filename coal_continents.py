@@ -3,24 +3,17 @@ from bokeh.plotting import figure, output_file, show
 from bokeh.models import ColumnDataSource, Range1d, HoverTool
 from bokeh.layouts import gridplot
 from bokeh.models.annotations import BoxAnnotation
+from cds_generator import coal_africa_data, coal_sc_am_data, coal_europa_data, coal_am_norte_data
 
 # Gráfico da produção de energia dos continentes ao longo do tempo
 
 output_file("coal_continents.html")
-
-# Lendo o arquivo csv
-data = pd.read_csv("World Energy Consumption.csv")
 
 # Especificando as ferramentas e anotações
 hover = HoverTool(tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")])
 box_annotation = BoxAnnotation(left=1964, right=1981, fill_color = "silver", fill_alpha = 0.45)
 
 # África
-# Filtrando apenas os dados da África
-coal_africa_data = data[data["country"] == "Africa"]
-# Convertendo o arquivo para CDS
-coal_africa_data = ColumnDataSource(coal_africa_data)
-
 # Criando e customizando o plot
 coal_africa = figure(tools = "")
 coal_africa.title="África"
@@ -38,12 +31,6 @@ coal_africa.line(x= "year",
 
 
 # Oriente Médio
-# Filtrando os dados
-coal_sc_am_data = data[data["country"] == "South & Central America"]
-
-# Convertendo o arquivo para CDS
-coal_sc_am_data = ColumnDataSource(coal_sc_am_data)
-
 # Criando e customizando o plot
 coal_sc_am = figure(tools = "")
 coal_sc_am.y_range = Range1d(start=0, end = 7500)
@@ -67,10 +54,7 @@ coal_sc_am.line(x= "year",
 
 
 # Europa 
-# Filtrando os dados
-coal_europa_data = data[data["country"] == "Europe"]
-# Convertendo o arquivo para CDS
-coal_europa_data = ColumnDataSource(coal_europa_data)
+
 coal_europa = figure(tools = "")
 coal_europa.y_range = Range1d(start=0, end = 7500)
 coal_europa.add_tools(hover)
@@ -90,10 +74,6 @@ coal_europa.line(x= "year",
                  legend_label = "Europa")
 
 # América do norte
-# Filtrando os dados 
-coal_am_norte_data = data[data["country"] == "North America"]
-# Convertendo o arquivo para CDS
-coal_am_norte_data = ColumnDataSource(coal_am_norte_data)
 coal_am_norte = figure(tools = "")
 coal_am_norte.y_range = Range1d(start=0, end = 7500)
 coal_am_norte.add_tools(hover)
@@ -122,8 +102,8 @@ coal_am_norte.legend.location = "top_left"
 
 
 # Grid 2x2, com todas as linhas do tempo
-grid = gridplot([[coal_europa, coal_africa], [coal_am_norte, coal_sc_am]], width=500, height=300)
+coal_grid = gridplot([[coal_europa, coal_africa], [coal_am_norte, coal_sc_am]], width=500, height=300)
 
-grid.toolbar.logo = None
+coal_grid.toolbar.logo = None
 
-show(grid)
+show(coal_grid)

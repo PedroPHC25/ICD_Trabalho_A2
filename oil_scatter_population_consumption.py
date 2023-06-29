@@ -44,15 +44,16 @@ graph_pop_consumption.xaxis.major_label_overrides = {1000000: "1 milhão",
 # Inserindo e customizando o título
 graph_pop_consumption.title.text = "Consumo de petróleo x População em 2019"
 graph_pop_consumption.title.text_font = "arial"
-graph_pop_consumption.title.text_font_size = "15px"
+graph_pop_consumption.title.text_font_size = "17px"
 graph_pop_consumption.title.align = "center"
 
 # Adicionando os títulos dos eixos
 graph_pop_consumption.xaxis.axis_label = "População"
-graph_pop_consumption.yaxis.axis_label = "Consumo (em terawatts-hora)"
+graph_pop_consumption.yaxis.axis_label = "Consumo (terawatts-hora)"
 graph_pop_consumption.axis.axis_label_text_font_style = "normal"
 graph_pop_consumption.xaxis.axis_label_text_font = "arial"
 graph_pop_consumption.yaxis.axis_label_text_font = "arial"
+graph_pop_consumption.axis.axis_label_text_font_size = "16px"
 
 # Gerando a legenda
 graph_pop_consumption.legend.location = "top_left"

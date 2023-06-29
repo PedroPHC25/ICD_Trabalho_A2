@@ -1,4 +1,4 @@
-from bokeh.io import output_file, show
+from bokeh.io import output_file, show, save
 from bokeh.models import ColumnDataSource, Label, BoxAnnotation
 from bokeh.plotting import figure
 import pandas as pd
@@ -59,3 +59,4 @@ output_file("linha_brazil.html")
 
 #Exibindo o grid
 show(p1)
+save(p1)

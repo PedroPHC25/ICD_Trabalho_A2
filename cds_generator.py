@@ -113,3 +113,53 @@ source2 = ColumnDataSource(df_filtered_year)
 df_filtered_country = data[(data['country'] == 'Brazil') & (data['year'] >= (data['year'].max() - 50))]
 
 wind_source = ColumnDataSource(df_filtered_country)
+
+
+
+# Seleciona os dados do ano 2000
+data_nuclear_2000 = data_countries.loc[data_countries["year"]==2000]
+data_nuclear_2000["gdp_in_bi"] = data_nuclear_2000["gdp"]/ 1000000000
+
+# Cria um dicionário que corresponde x, y e z com as colunas 'gdp_in_bi', 'nuclear_share_energy' e 'country', do dataframe 'data_nuclear_2000'.
+# E gera o ColumnDataSource com esse dicionário.
+data_gdp_nuclear = {"x": data_nuclear_2000["gdp_in_bi"], 
+                    "y": data_nuclear_2000["nuclear_share_energy"], 
+                    "z": data_nuclear_2000["country"]}
+
+cds_nuclear_gdp_share_country = data_source = ColumnDataSource(data=data_gdp_nuclear)
+
+cds_nuclear_eua = ColumnDataSource(data=data[data["country"]=="United States"]) #Cria o ColumnDataSource apenas com os EUA
+cds_nuclear_france = ColumnDataSource(data= data[data["country"]=="France"])
+cds_nuclear_japan = ColumnDataSource(data= data[data["country"]=="Japan"])
+cds_nuclear_germany = ColumnDataSource(data= data[data["country"]=="Germany"])
+cds_nuclear_russia = ColumnDataSource(data= data[data["country"]=="Russia"])
+cds_nuclear_korea = ColumnDataSource(data= data[data["country"]=="South Korea"])
+
+# Filtrando os dados
+
+#Retirando os continentes e organizações
+best_countries_nuclear = data[~data["iso_code"].isnull()] 
+best_countries_nuclear = best_countries_nuclear[best_countries_nuclear["country"] != "World"]
+
+# Selecionando um ano
+best_countries_nuclear = best_countries_nuclear[best_countries_nuclear["year"] == 2018]
+
+# Ordenando e selecionando as colunas desejadas
+best_countries_nuclear = best_countries_nuclear.sort_values("nuclear_consumption", ascending= False)
+best_countries_nuclear_nuclear = best_countries_nuclear[["country", "year", "nuclear_consumption"]]
+best_countries_nuclear = best_countries_nuclear.head(10)
+
+#Adicionando cada cor à um continente
+best_countries_nuclear["continent"] = ["América do norte", "Europa", "Ásia", "Ásia", "Ásia", "América do norte", "Europa", "Europa", "Europa", "Europa"]
+color_dict = {"América do norte":"Tomato", "Europa":"SteelBlue", "Ásia": "Khaki"}
+colors = []
+
+for each_element in best_countries_nuclear["continent"]:
+    colors.append(color_dict[each_element])
+
+best_countries_nuclear["color"] = colors
+
+#Gera os ColumnDataSources 
+data_europe = ColumnDataSource(best_countries_nuclear[best_countries_nuclear["continent"] == "Europa"])
+data_asia = ColumnDataSource(best_countries_nuclear[best_countries_nuclear["continent"] == "Ásia"])
+data_america = ColumnDataSource(best_countries_nuclear[best_countries_nuclear["continent"] == "América do norte"])

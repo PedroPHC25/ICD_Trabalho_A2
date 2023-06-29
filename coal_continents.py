@@ -33,7 +33,8 @@ coal_africa.line(x= "year",
                  y="coal_production", 
                  source=coal_africa_data, 
                  line_color = "green", 
-                 line_width=2)
+                 line_width=2,
+                 legend_label = "África")
 
 
 # Oriente Médio
@@ -61,7 +62,8 @@ coal_sc_am.line(x= "year",
                 y="coal_production", 
                 source=coal_sc_am_data,
                 line_color = "red", 
-                line_width=2)
+                line_width=2,
+                legend_label = "América do Sul e Central")
 
 
 # Europa 
@@ -84,7 +86,8 @@ coal_europa.yaxis.axis_label_text_font_size = "13px"
 coal_europa.line(x= "year",
                  y="coal_production", 
                  source=coal_europa_data, 
-                 line_width=2)
+                 line_width=2,
+                 legend_label = "Europa")
 
 # América do norte
 # Filtrando os dados 
@@ -112,7 +115,10 @@ coal_am_norte.line(x= "year",
                    y="coal_production", 
                    source=coal_am_norte_data,
                    line_color = "gold", 
-                   line_width=2)
+                   line_width=2,
+                   legend_label = "América do Norte")
+
+coal_am_norte.legend.location = "top_left"
 
 
 # Grid 2x2, com todas as linhas do tempo

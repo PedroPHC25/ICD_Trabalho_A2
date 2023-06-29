@@ -75,6 +75,8 @@ Além disso, inseri anotações em linha para deixar mais destacada a reta y = 0
 
 <p>Por fim, para montar o gridplot, optei por colocar os três gráficos um acima do outro, de modo a alinhar as marcações do eixo x. Fiz isso para que fossem mais facilmente comparáveis as informações ao longo dos anos.</p> </br>
 
+<b> Autor: Pedro Henrique Coterli </b>
+
 </body>
 
 </html>""")

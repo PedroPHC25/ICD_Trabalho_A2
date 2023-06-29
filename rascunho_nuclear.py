@@ -35,3 +35,65 @@ show(bar_year_nuclear)
 # show(bar_year_nuclear)
 
 
+
+#deu errado
+
+# output_file("nuclear_rascunho2.html")
+
+# data_2019 = data.loc[data["year"]>=2019]
+# data_2019_world = data_2019.loc[data_2019["country"]== "world"]
+# print(data_2019_world)
+
+# data_nuclear_2019 = {"x": data_2019_world["year"], "y": data_2019["nuclear_share_energy"]}
+# data_source = ColumnDataSource(data=data_nuclear_2019)
+# print(data_source)
+# bar_nuclear_2019 = figure()
+# bar_nuclear_2019.vbar(x= "year", top= "nuclear_share_energy", data = data_source, width=0.5)
+
+# show(bar_nuclear_2019)
+
+
+# Seleciona os dados a partir do ano 2000
+
+# data_anos = data.sort_values("year", ascending= False)
+# data_anos = data_anos[["country", "year", "nuclear_electricity"]]
+# data_anos = data_anos.head(5)
+
+# bar_19_20_nuclear = figure(x_range = data_anos["year"])
+# anos = data_anos["year"]
+# y = data_anos["nuclear_electricity"]
+# bar_19_20_nuclear.vbar(x=anos, top=y, width=0.5)
+
+# data_pib_nuclear_elec = {"x": data_anos["year"], "y": data["nuclear_electricity"]}
+
+# data_source = ColumnDataSource(data=data_pib_nuclear_elec )
+
+#  #configura o tamanho e as ferramentas pretendidas
+# scatterplot_gdp_nuclear = figure( tools = "box_zoom, pan, reset, save, wheel_zoom")
+
+# scatterplot_gdp_nuclear.vbar(x = "x", y = "y", source = data_source)
+
+# # scatterplot_gdp_nuclear.xaxis[0].formatter.use_scientific=False
+
+
+################################################################################################################################
+
+# pais = cinco_países["country"]
+# y = cinco_países["nuclear_consumption"]
+# bar_rank_nuclear.vbar(x="country", top="nuclear_consumption", color = "color", width=0.5, source = data_source)
+
+
+# bar_rank_nuclear.xaxis.major_label_overrides = {'United States': 'Estados Unidos'} 
+                                                    #  'France': 'França', 
+                                                    #  'China': 'China', 
+                                                    #  'Russia': 'Rússia',
+                                                    #  'South Korea': 'Coréia do Sul', 
+                                                    #  'Canada': 'Canadá', 
+                                                    #  'Ukraine': 'Ucrânia',
+                                                    #  'Germany': 'Alemanha',
+                                                    #  'Sweden': 'Suécia',
+                                                    #  'United Kingdom': 'Reino \nUnido'}
+
+
+# data_source = ColumnDataSource(data= best_countries_nuclear)
+

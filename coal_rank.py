@@ -1,6 +1,6 @@
 from bokeh.plotting import figure, output_file, show, curdoc
 import pandas as pd
-from bokeh.models import ColumnDataSource, Slider
+from bokeh.models import ColumnDataSource, Slider, HoverTool, Range1d
 from bokeh.layouts import column
 
 # Gráfico de barras interativo com os maiores consumidores de energia vinda do carvão
@@ -17,7 +17,7 @@ data_country = data[~data["iso_code"].isnull()]
 data_country = data_country[data_country["country"] != "World"]
 
 # Selecionando um ano
-rank_data = data_country[data_country["year"] == 2015]
+rank_data = data_country[data_country["year"] == 1965]
 
 # Ordenando e selecionando as colunas desejadas
 rank_data = rank_data.sort_values("coal_consumption", ascending= False)
@@ -30,11 +30,24 @@ rank_data = rank_data.head(10)
 source = ColumnDataSource(rank_data)
 
 # Construção do gráfico de barras
-rank = figure(x_range = rank_data["country"],
-              tools = "pan, wheel_zoom, reset, hover, save",
-              tooltips = [("Consumo", "@coal_consumption{1,11}")],
-              x_axis_label = "Países",
-              y_axis_label = "Consumo em terawatts por hora")
+rank = figure(x_range = rank_data["country"], tools = "")
+
+# Customizando as legendas e os eixos
+rank.axis.axis_label_text_font_style = "bold"
+
+rank.xaxis.axis_label = "Países"
+rank.xaxis.axis_label_text_font_size = "20px"
+
+rank.yaxis.axis_label = "Consumo (TWh)"
+rank.yaxis.axis_label_text_font_size = "20px"
+rank.y_range = Range1d(start=0, end = 24000)
+
+# Colocando o hover
+hover = HoverTool(tooltips = [("Consumo", "@coal_consumption{1,11}")])
+rank.add_tools(hover)
+rank.toolbar.logo = None
+
+
 # Customização da proporção, grid e eixos
 rank.height = 550
 rank.width = 1000
@@ -42,8 +55,10 @@ rank.xgrid.grid_line_color = None
 rank.ygrid.grid_line_color = None
 rank.toolbar_location = None
 rank.title = "Maiores consumidores da energia primária vinda do carvão"
+
 # Gráfico de barras
-rank.vbar(x="country", top="coal_consumption", width=0.5, source=source)
+verde = "#009900"
+rank.vbar(x="country", top="coal_consumption", width=0.5, source=source, color = verde )
 
 # Função de atualização do gráfico com base no valor do slider
 def update_plot(attr, old, new):

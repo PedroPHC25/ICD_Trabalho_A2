@@ -14,13 +14,13 @@ data_countries = data.loc[data["country"] != "World"].dropna(subset = ["iso_code
 
 # Seleciona os dados do ano 2000
 data_nuclear_2000 = data_countries.loc[data_countries["year"]==2000]
-data_nuclear_2000["gdp_em_bi"] = data_nuclear_2000["gdp"]/ 1000000000
+data_nuclear_2000["gdp_in_bi"] = data_nuclear_2000["gdp"]/ 1000000000
 
 output_file("nuclear_rascunho.html")
 
-# Cria um dicionário que corresponde x, y e z com as colunas 'population', 'nuclear_share_energy' e 'country', do dataframe 'data_nuclear_2000'.
+# Cria um dicionário que corresponde x, y e z com as colunas 'gdp_in_bi', 'nuclear_share_energy' e 'country', do dataframe 'data_nuclear_2000'.
 # E gera o ColumnDataSource com esse dicionário.
-data_gdp_nuclear = {"x": data_nuclear_2000["gdp_em_bi"], 
+data_gdp_nuclear = {"x": data_nuclear_2000["gdp_in_bi"], 
                     "y": data_nuclear_2000["nuclear_share_energy"], 
                     "z": data_nuclear_2000["country"]}
 
@@ -420,7 +420,7 @@ best_countries_nuclear = best_countries_nuclear.head(10)
 #Adicionando cada cor à um continente
 best_countries_nuclear["continent"] = ["América do norte", "Europa", "Ásia", "Ásia", "Ásia", "América do norte", "Europa", "Europa", "Europa", "Europa"]
 
-color_dict = {"América do norte":"Tomato", "Europa": "SteelBlue", "Ásia": "Khaki"}
+color_dict = {"América do norte":"Tomato", "Europa":"SteelBlue", "Ásia": "Khaki"}
 
 colors = []
 
@@ -429,9 +429,9 @@ for each_element in best_countries_nuclear["continent"]:
 
 best_countries_nuclear["color"] = colors
 
-# data_source = ColumnDataSource(data= best_countries_nuclear)
+#Gera os ColumnDataSources 
 data_europe = ColumnDataSource(best_countries_nuclear[best_countries_nuclear["continent"] == "Europa"])
-dat_asia = ColumnDataSource(best_countries_nuclear[best_countries_nuclear["continent"] == "Ásia"])
+data_asia = ColumnDataSource(best_countries_nuclear[best_countries_nuclear["continent"] == "Ásia"])
 data_america = ColumnDataSource(best_countries_nuclear[best_countries_nuclear["continent"] == "América do norte"])
 
 # Gerando o gráfico de barras
@@ -442,7 +442,7 @@ bar_rank_nuclear = figure(x_range = best_countries_nuclear["country"],
                                       ("Consumo de Energia nuclear", "@nuclear_consumption")])
 
 bar_rank_nuclear.vbar(x="country", top="nuclear_consumption", legend_label = "Europa", fill_alpha = 0.9, color = "color", width=0.5, source = data_europe)
-bar_rank_nuclear.vbar(x="country", top="nuclear_consumption", legend_label = "Ásia", fill_alpha = 0.8, color = "color", width=0.5, source = dat_asia)
+bar_rank_nuclear.vbar(x="country", top="nuclear_consumption", legend_label = "Ásia", fill_alpha = 0.8, color = "color", width=0.5, source = data_asia)
 bar_rank_nuclear.vbar(x="country", top="nuclear_consumption", legend_label = "América do norte", fill_alpha = 0.8, color = "color", width=0.5, source = data_america)
 
 # ferramnetas

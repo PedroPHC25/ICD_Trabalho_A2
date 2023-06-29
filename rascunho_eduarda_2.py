@@ -2,7 +2,6 @@ import pandas as pd
 from bokeh.io import output_file, show
 from bokeh.models import ColumnDataSource
 from bokeh.plotting import figure
-from bokeh.models import Legend, LegendItem
 
 # Lendo o arquivo
 data = pd.read_csv("World Energy Consumption.csv")
@@ -38,12 +37,12 @@ data_organized = ColumnDataSource(df_top_10_filtered)
 
 # Criando a figura, plotando as barras e criando legendas
 p = figure(x_range=df_top_10_filtered['country'], height=600, width=1200,
-           title="ELECTRICITY GENERATION FROM WIND BY COUNTRY IN 2020")
+           title="                               ELECTRICITY GENERATION FROM WIND BY COUNTRY IN 2020")
 
 #Criando a legenda 
-p.vbar(x="country", top='wind_electricity', legend_label = "Europe", fill_alpha = 1, line_color='none',color = "#D49495", width=0.5, source = data_organized)
-p.vbar(x="country", top='wind_electricity', legend_label = "Asia", fill_alpha = 1, line_color='none',color = "#8A5556", width=0.5, source = data_organized)
-p.vbar(x="country", top='wind_electricity', legend_label = "America", fill_alpha = 1, line_color='none', color = "#87864D", width=0.5, source = data_organized)
+p.vbar(x="country", top='wind_electricity', legend_label = "Europe", fill_alpha = 1, line_color='none',color = "#D49495", width=0.01, source = data_organized)
+p.vbar(x="country", top='wind_electricity', legend_label = "Asia", fill_alpha = 1, line_color='none',color = "#8A5556", width=0.01, source = data_organized)
+p.vbar(x="country", top='wind_electricity', legend_label = "America", fill_alpha = 1, line_color='none', color = "#87864D", width=0.01, source = data_organized)
 
 p.vbar(x='country', top='wind_electricity', width=0.9, fill_color='color', line_color='none', source=data_organized)
 
@@ -71,5 +70,4 @@ p.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico
 #Configurando a saída para um arquivo HTML
 output_file("barras_eduarda.html")
 show(p)
-
 

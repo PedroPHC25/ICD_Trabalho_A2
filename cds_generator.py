@@ -3,6 +3,10 @@ from bokeh.models import ColumnDataSource
 
 data = pd.read_csv("World Energy Consumption.csv")
 
+
+
+### PETRÓLEO ###
+
 # Gerando um dataframe apenas com os dados dos países, sem os continentes ou o mundo
 data_countries = data.loc[data["country"] != "World"].dropna(subset = ["iso_code"])
 
@@ -41,6 +45,8 @@ cds_oil_north_america = ColumnDataSource(data[data["country"] == "North America"
 cds_oil_south_and_central_america = ColumnDataSource(data[data["country"] == "South & Central America"])
 
 
+
+### ENERGIA EÓLICA ###
 
 # Filtrando dados por ano 
 df_filtered = data[data['year'] == 2020]
@@ -116,8 +122,7 @@ wind_source = ColumnDataSource(df_filtered_country)
 
 
 
-# Cria um data frame com todos os países excluindo a soma dos continentes e do mundo ("world"), que estão no dado original.
-data_countries = data.loc[data["country"] != "World"].dropna(subset = ["iso_code"])
+### ENERGIA NUCLEAR ###
 
 #  Seleciona os dados do ano 2000
 data_nuclear_2000 = data_countries.loc[data_countries["year"]==2000]
@@ -129,7 +134,7 @@ data_gdp_nuclear = {"x": data_nuclear_2000["gdp_in_bi"],
                     "y": data_nuclear_2000["nuclear_share_energy"], 
                     "z": data_nuclear_2000["country"]}
 
-cds_nuclear_gdp_share_country = data_source = ColumnDataSource(data=data_gdp_nuclear)
+cds_nuclear_gdp_share_country = ColumnDataSource(data=data_gdp_nuclear)
 
 cds_nuclear_eua = ColumnDataSource(data=data[data["country"]=="United States"]) #Cria o ColumnDataSource apenas com os EUA
 cds_nuclear_france = ColumnDataSource(data= data[data["country"]=="France"])
@@ -166,6 +171,10 @@ best_countries_nuclear["color"] = colors
 data_europe = ColumnDataSource(best_countries_nuclear[best_countries_nuclear["continent"] == "Europa"])
 data_asia = ColumnDataSource(best_countries_nuclear[best_countries_nuclear["continent"] == "Ásia"])
 data_america = ColumnDataSource(best_countries_nuclear[best_countries_nuclear["continent"] == "América do norte"])
+
+
+
+### CARVÃO ###
 
 # Selecionando um ano
 coal_rank_data = data_countries[data_countries["year"] == 1965]
@@ -219,7 +228,5 @@ countries = ["China","United States", "India", "Russia", "Germany", "Poland", "J
 coal_stacked_countries.set_index("country", inplace = True)
 coal_stacked_countries = coal_stacked_countries.loc[countries]
 coal_stacked_countries.reset_index(inplace= True)
-
-# Fazendo o gráfico de barras empilhadas horizontalmente
 
 cds_coal_stacked = ColumnDataSource(coal_stacked_countries)

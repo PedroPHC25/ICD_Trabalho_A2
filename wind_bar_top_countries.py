@@ -59,4 +59,4 @@ wind_bar_top_countries_graph.yaxis.axis_label_text_color = "#8A5556"  #Alterando
 wind_bar_top_countries_graph.yaxis.major_label_text_font_style = "bold"  #Colocando em negrito os rótulos das escalas do eixo y
 
 wind_bar_top_countries_graph.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico
-
+wind_bar_top_countries_graph.axis.axis_label_text_font_style = "normal"

@@ -63,4 +63,4 @@ bar_rank_nuclear.yaxis.axis_label_text_font_size = "20px"
 
 # Fundo
 bar_rank_nuclear.background_fill_color = ("WhiteSmoke")
-
+bar_rank_nuclear.axis.axis_label_text_font_style = "normal" #Retira o itálico

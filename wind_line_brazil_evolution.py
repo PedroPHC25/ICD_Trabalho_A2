@@ -34,6 +34,8 @@ wind_line_brazil_evolution_graph.yaxis.axis_label_text_color = "#8A5556"  #Alter
 wind_line_brazil_evolution_graph.yaxis.major_label_text_font_style = "bold"  #Colocando em negrito os rótulos das escalas do eixo y
 
 wind_line_brazil_evolution_graph.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico 
+wind_line_brazil_evolution_graph.axis.axis_label_text_font_style = "normal"
+
 
 text_lines = [
     "In 2009, 10 projects were under construction, with a capacity of 256 MW,",

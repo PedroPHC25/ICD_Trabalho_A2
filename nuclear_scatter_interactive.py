@@ -11,7 +11,7 @@ scatterplot_gdp_nuclear_share = figure(width= 700, height = 650,
                                                     ("Energia nuclear", "@y"),
                                                     ("PIB", "@x")]) 
 
-points = scatterplot_gdp_nuclear_share.circle(x = "x", y = "y",color = "MidnightBlue", alpha = 0.5,  size = "y", source = cds_nuclear_gdp_share_country) 
+points = scatterplot_gdp_nuclear_share.circle(x = "x", y = "y",color = "MediumSlateBlue", alpha = 0.5,  size = "y", source = cds_nuclear_gdp_share_country) 
 
 
 
@@ -67,7 +67,8 @@ slider = Slider(start = 0, end =50,
                 title="Tamanho dos círculos")
 slider.js_link("value", points.glyph, "size")
 
-textinput = TextInput(value = points.glyph.fill_color, width = 300)
+textinput = TextInput(value = points.glyph.fill_color, width = 300,
+                      title = "Cor dos círculos")
 textinput.js_link("value", points.glyph, "fill_color")
 
 nuclear_interactive_chart= layout([[scatterplot_gdp_nuclear_share], [div, slider],[textinput]])

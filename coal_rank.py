@@ -1,5 +1,4 @@
 from bokeh.plotting import figure, curdoc
-import pandas as pd
 from bokeh.models import ColumnDataSource, Slider, HoverTool, Range1d
 from bokeh.layouts import column
 from cds_generator import data_countries, coal_rank_data, cds_coal_rank_data

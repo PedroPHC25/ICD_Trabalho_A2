@@ -1,5 +1,5 @@
 from bokeh.plotting import figure
-from bokeh.models import Range1d, Label, Div, Spinner, TextInput
+from bokeh.models import Range1d, Label, Div, Spinner, TextInput, Slider
 from bokeh.io import output_file, save, show
 import pandas as pd
 from bokeh.models import ColumnDataSource
@@ -33,7 +33,7 @@ scatterplot_gdp_nuclear_share = figure(width= 700, height = 700,
                                                     ("Energia nuclear", "@y"),
                                                     ("PIB", "@x")]) 
 
-points = scatterplot_gdp_nuclear_share.circle(x = "x", y = "y", alpha = 0.5, source = cds_nuclear_gdp_share_country) #, color = "MidnightBlue", size = "y"
+points = scatterplot_gdp_nuclear_share.circle(x = "x", y = "y",color = "MidnightBlue", alpha = 0.5,  size = "y", source = cds_nuclear_gdp_share_country) 
 
 
 
@@ -83,16 +83,17 @@ scatterplot_gdp_nuclear_share.background_fill_color = ("WhiteSmoke")
 
 
 #Interatividade
-div = Div(text="<p>Select Size</p>")
-spinner = Spinner(title = "Circle Size", low=0, high=20, step = 1,
-                  value=points.glyph.size, width = 200)
-spinner.js_link("value", points.glyph, "size")
+div = Div()
+slider = Slider(start = 0, end =50,
+                value= 5, step = 0.5,
+                title="Tamanho dos círculos")
+slider.js_link("value", points.glyph, "size")
 
 textinput = TextInput(value = points.glyph.fill_color, width = 200)
 textinput.js_link("value", points.glyph, "fill_color")
 
-layout= layout([[div, spinner],[textinput],[scatterplot_gdp_nuclear_share] ])
+nuclear_interactive_chart= layout([[div, slider],[textinput],[scatterplot_gdp_nuclear_share] ])
 
 
-show(layout)
+show(nuclear_interactive_chart)
 

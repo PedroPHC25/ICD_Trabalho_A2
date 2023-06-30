@@ -61,6 +61,10 @@ Por fim, modifiquei a cor de fundo do gráfico, tirando o branco brilhante que p
 opitando por um tom de cinza claro que harmoniza com o restante e ao mesmo tempo não tira o foco dos outros elementos de destaque. 
 </p></br></br>
 
+<p style="text-align:justify; font-size:16px;">
+Ademais, o da direta é o mesmo gráfico com uma pequena interatividade adicionada. Nele o leitor pode escolher o tamanho dos círculos, deslizando o controle e a cor dos cículos, digitando na caixa abaixo, que aceita tanto o código em formato hexadecimal ou RGB, como o nome da cor pretendida. 
+</p></br></br>
+
 <h2 style="color:#00075F;">Grid dos 6 países que mais produzem energia nuclear (1985-2020)</h2>
 """)
 

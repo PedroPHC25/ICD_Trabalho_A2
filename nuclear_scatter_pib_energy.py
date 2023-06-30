@@ -7,20 +7,12 @@ from bokeh.io import output_file, save, show
 
 
 # Gera o scatterplot
-<<<<<<< HEAD
+
 scatterplot_gdp_nuclear_share = figure(width= 700, height = 650,
                                         tools = "box_zoom, pan, reset, save, wheel_zoom, hover",
                                         tooltips = [("País", "@z"),
                                                     ("Energia nuclear", "@y"),
                                                     ("PIB", "@x")]) 
-=======
-scatterplot_gdp_nuclear_share = figure(width= 700, 
-                                       height = 700,
-                                       tools = "box_zoom, pan, reset, save, wheel_zoom, hover",
-                                       tooltips = [("País", "@z"),
-                                                   ("Energia nuclear", "@y"),
-                                                   ("PIB", "@x")]) 
->>>>>>> 69aa160105d81035443ebe5eb3265da9931f9da2
 
 scatterplot_gdp_nuclear_share.circle(x = "x", 
                                      y = "y", 

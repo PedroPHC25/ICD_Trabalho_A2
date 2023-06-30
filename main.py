@@ -21,16 +21,14 @@ from nuclear_bar_country_consumption import bar_rank_nuclear
 from nuclear_line_year_electricity import grid_line_nuclear_contries
 from nuclear_scatter_pib_energy import grid_scatter_gdp_nuclear_share
 
-<<<<<<< HEAD
 # Pegando os textos e os gráficos dos arquivos de carvão
 from coal_text import title_html, first_graph, text_grid_graph, title_stackedbar, text_stackedbar, title_rank, text_rank
 from coal_stacked import coal_bar_stacked
 # from coal_rank import rank 
-=======
+
 # Pegando os textos e os gráficos dos arquivos de energia nuclear
 from coal_text import title_html, first_graph, text_grid_graph, title_stackedbar, text_stackedbar, title_rank, text_rank, coal_gif
 from coal_stacked import coal_bar_stacked
->>>>>>> 69aa160105d81035443ebe5eb3265da9931f9da2
 from coal_continents import coal_grid
 
 

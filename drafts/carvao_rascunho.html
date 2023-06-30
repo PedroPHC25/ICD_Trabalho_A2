@@ -36,6 +36,8 @@
 
 <p>Para esse gráfico precisei filtrar os maiores consumidores em um ano e depois foi definida uma função que atualiza o ano exibido no gráfico de acordo com o "slider". Além do slider, também está disponível o "hover" que detalha o dado da barra respectiva.</p>
 
+<p style="text-align:justify; font-size:16px;">Nesse gráfico foi usado o Bokeh Server para permitr a interatividade do gráfico entre os anos disponíveis, mas infelizmente não foi possível a implementação do gráfico em si, por isso acima está exibido um clipe curto do funcionamento em um servidor local.Para visualizar este aplicativo no modo interativo, você precisa configurar um servidor Bokeh local. Abra uma janela de linha de comando em seu diretório atual e execute <pre><code class="python">bokeh serve --show coal_rank.py</code></pre> o comando. A mensagem dessa visualização é um rank, assim as barras verticais foram escolhidas para representar os montantes de consumo.</p>
+
 <p>Novamente ocorre uma dominância da China nesse setor, especificamente a partir de 1986. Isso deve-se em parte à mudança do gás para o carvão motivada pelos preços altíssimos do gás. Outro fator determinante é a queda na qualidade do carvão extraído, o que significa que usinas e fábricas tiveram que queimar mais carvão para obter a mesma quantidade de energia.</p>
 
 <img src = ../images/coal_rank_slider.gif>

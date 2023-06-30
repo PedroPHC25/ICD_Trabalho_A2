@@ -34,7 +34,7 @@ bar_rank_nuclear.vbar(x="country",
 # ferramnetas
 bar_rank_nuclear.toolbar.logo = None #retira a logo
 bar_rank_nuclear.toolbar.autohide = True #deixa o barra de ferramentas invisível
-bar_rank_nuclear.toolbar_location = "below" #define a localização barra de ferramentas
+bar_rank_nuclear.toolbar_location = "right" #define a localização barra de ferramentas
 
 # título
 bar_rank_nuclear.title.text = "Os 10 países que mais consumiram energia nuclear em 2018"

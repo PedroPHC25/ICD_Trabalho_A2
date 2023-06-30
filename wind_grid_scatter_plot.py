@@ -10,7 +10,7 @@ from cds_generator import df_filtered_year_2000, create_column_data_source_df_fi
 
 # Criando a figura
 wind_ratio_figure = figure(height=600, width=1200, 
-            title="                       RATIO BETWEEN WIND ELECTRICITY AND WIND ENERGY (BOTH PER CAPITA)", 
+            title="RATIO BETWEEN WIND ELECTRICITY AND WIND ENERGY (BOTH PER CAPITA)", 
                                tools = "pan, wheel_zoom, reset, hover, save",
                                tooltips = [("País", "@country")])
 
@@ -37,7 +37,7 @@ wind_ratio_figure.add_layout(regression_line)
 wind_ratio_figure.title.text_font = "Georgia"
 wind_ratio_figure.title.text_font_size = "14pt"
 wind_ratio_figure.title.text_color = "#8A5556"
-wind_ratio_figure.title.text_align = "center"
+wind_ratio_figure.title.align = "center"
 wind_ratio_figure.title.text_baseline = "middle"
 
 wind_ratio_figure.xaxis.axis_label_text_font = "Georgia"
@@ -57,7 +57,7 @@ wind_ratio_figure.background_fill_color = "#D4D3A9"
 
 # Criando a figura
 wind_ratio_figure_new_scale = figure(height=600, width=1200, 
-            title="            RATIO BETWEEN WIND ELECTRICITY AND WIND ENERGY (BOTH PER CAPITA)", 
+            title="RATIO BETWEEN WIND ELECTRICITY AND WIND ENERGY (BOTH PER CAPITA)", 
                                tools = "pan, wheel_zoom, reset, hover, save",
                                tooltips = [("País", "@country")])
 
@@ -86,7 +86,7 @@ wind_ratio_figure_new_scale.add_layout(regression_line)
 wind_ratio_figure_new_scale.title.text_font = "Georgia"
 wind_ratio_figure_new_scale.title.text_font_size = "14pt"
 wind_ratio_figure_new_scale.title.text_color = "#8A5556"
-wind_ratio_figure_new_scale.title.text_align = "center"
+wind_ratio_figure_new_scale.title.align = "center"
 wind_ratio_figure_new_scale.title.text_baseline = "middle"
 
 wind_ratio_figure_new_scale.xaxis.axis_label_text_font = "Georgia"

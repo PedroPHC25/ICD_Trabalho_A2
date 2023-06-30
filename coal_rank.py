@@ -1,13 +1,11 @@
-from bokeh.plotting import figure, output_file, show, curdoc
-import pandas as pd
+from bokeh.plotting import figure, curdoc, output_file, show
 from bokeh.models import ColumnDataSource, Slider, HoverTool, Range1d
 from bokeh.layouts import column
 from cds_generator import data_countries, coal_rank_data, cds_coal_rank_data
 
 # Gráfico de barras interativo com os maiores consumidores de energia vinda do carvão
 
-output_file("rank_interativo.html")
-
+output_file("coal_bar_rank.html")
 # Construção do gráfico de barras
 rank = figure(x_range = coal_rank_data["country"], tools = "")
 

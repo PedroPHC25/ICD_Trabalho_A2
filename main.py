@@ -21,6 +21,13 @@ from nuclear_bar_country_consumption import bar_rank_nuclear
 from nuclear_line_year_electricity import plot
 from nuclear_scatter_pib_energy import scatterplot_gdp_nuclear_share
 
+# Pegando os textos e os gráficos dos arquivos de energia nuclear
+from coal_text import title_html, first_graph, text_grid_graph, title_stackedbar, text_stackedbar, title_rank, text_rank
+from coal_stacked import coal_bar_stacked
+from coal_rank import rank
+from coal_continents import coal_grid
+
+
 # Gerando a página sobre petróleo
 output_file("html_pages/oil.html")
 
@@ -55,3 +62,17 @@ save(column(nuclear_text_1,
             nuclear_text_3, 
             bar_rank_nuclear, 
             nuclear_text_4))
+
+#  Gerando a página sobre energia nuclear
+output_file("html_pages/coal.html")
+
+save(column(title_html,
+            first_graph, 
+            coal_grid,
+            text_grid_graph , 
+            title_stackedbar,
+            coal_bar_stacked, 
+            text_stackedbar, 
+            title_rank,
+            # rank,
+            text_rank))

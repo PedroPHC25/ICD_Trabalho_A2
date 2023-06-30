@@ -6,7 +6,7 @@ from bokeh.layouts import gridplot
 
 # Criando a figura
 wind_ratio_figure = figure(height=600, width=1200,
-            title="                       RATIO BETWEEN WIND ELECTRICITY AND WIND ENERGY (BOTH PER CAPITA)",
+            title="RATIO BETWEEN WIND ELECTRICITY AND WIND ENERGY (BOTH PER CAPITA)",
                                tools = "pan, wheel_zoom, reset, hover, save",
                                tooltips = [("País", "@country")])
 
@@ -43,13 +43,13 @@ wind_ratio_figure.yaxis.axis_label_text_color = "#8A5556"
 wind_ratio_figure.yaxis.major_label_text_font_style = "bold"
 
 wind_ratio_figure.background_fill_color = "#D4D3A9"
-
+wind_ratio_figure.axis.axis_label_text_font_style = "normal" #Retira o itálico
 
 #MESMO GRÁFICO, OUTRA ESCALA
 
 # Criando a figura
 wind_ratio_figure_new_scale = figure(height=600, width=1200,
-            title="            RATIO BETWEEN WIND ELECTRICITY AND WIND ENERGY (BOTH PER CAPITA)",
+            title="RATIO BETWEEN WIND ELECTRICITY AND WIND ENERGY (BOTH PER CAPITA)",
                                tools = "pan, wheel_zoom, reset, hover, save",
                                tooltips = [("País", "@country")])
 
@@ -79,15 +79,14 @@ wind_ratio_figure_new_scale.title.text_baseline = "middle"
 wind_ratio_figure_new_scale.xaxis.axis_label_text_font = "Georgia"
 wind_ratio_figure_new_scale.xaxis.axis_label_text_font_size = "16pt"
 wind_ratio_figure_new_scale.xaxis.axis_label_text_color = "#8A5556"
-wind_ratio_figure_new_scale.xaxis.major_label_text_font_style = "bold"
+
 
 
 wind_ratio_figure_new_scale.yaxis.axis_label_text_font = "Georgia"
 wind_ratio_figure_new_scale.yaxis.axis_label_text_font_size = "16pt"
 wind_ratio_figure_new_scale.yaxis.axis_label_text_color = "#8A5556"
-wind_ratio_figure_new_scale.yaxis.major_label_text_font_style = "bold"
 
-
+wind_ratio_figure_new_scale.axis.axis_label_text_font_style = "normal" #Retira o itálico
 wind_ratio_figure_new_scale.background_fill_color = "#D4D3A9"
 
 

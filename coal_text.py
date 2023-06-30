@@ -2,7 +2,7 @@ from bokeh.models import Div
 
 # Módulo com os textos presentes no arquivo sobre energia a partir do carvão
 
-title = Div(text = """<html>
+title_html = Div(text = """<html>
     <head>
         <title>Análise das atividades energéticas a partir do carvão</title>
     </head>

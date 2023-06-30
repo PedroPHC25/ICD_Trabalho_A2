@@ -7,8 +7,6 @@ from cds_generator import coal_africa_data, coal_sc_am_data, coal_europa_data, c
 
 # Gráfico da produção de energia dos continentes ao longo do tempo
 
-output_file("coal_continents.html")
-
 # Especificando as ferramentas e anotações
 hover = HoverTool(tooltips = [("Ano", "@year"),("Produção", "@coal_production{1,11}")])
 box_annotation = BoxAnnotation(left=1964, right=1981, fill_color = "silver", fill_alpha = 0.45)
@@ -105,5 +103,3 @@ coal_am_norte.legend.location = "top_left"
 coal_grid = gridplot([[coal_europa, coal_africa], [coal_am_norte, coal_sc_am]], width=500, height=300)
 
 coal_grid.toolbar.logo = None
-
-show(coal_grid)

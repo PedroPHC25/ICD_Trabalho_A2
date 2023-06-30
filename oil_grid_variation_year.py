@@ -28,7 +28,8 @@ graph_united_states.y_range = Range1d(start = -2000, end = 1200)
 
 graph_russia = figure(height = 200, 
                       tools = "pan, wheel_zoom, reset, hover, save",
-                      tooltips = [("Ano", "@year"), ("Variação", "@oil_prod_change_twh{1,11}")])
+                      tooltips = [("Ano", "@year"), 
+                                  ("Variação", "@oil_prod_change_twh{1,11}")])
 graph_russia.vbar(x = "year", 
                   top = "oil_prod_change_twh", 
                   source = cds_oil_positive_russia, 
@@ -151,7 +152,7 @@ graph_saudi_arabia.add_layout(Label(x = 1970,
 
 # Gerando o gridplot com os 3 gráficos e configurando a toolbar
 oil_grid = gridplot([[graph_united_states],
-                 [graph_russia],
-                 [graph_saudi_arabia]], 
-                 toolbar_options = dict(autohide = True, logo = None), 
-                 toolbar_location = "right")
+                     [graph_russia],
+                     [graph_saudi_arabia]], 
+                     toolbar_options = dict(autohide = True, logo = None), 
+                     toolbar_location = "right")

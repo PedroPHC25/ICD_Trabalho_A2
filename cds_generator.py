@@ -82,12 +82,8 @@ source_kingdom = ColumnDataSource(df_kingdom)
 # Gráfico de barras "ELECTRICITY GENERATION FROM WIND BY COUNTRY IN 2020" ##
 
 # Filtrando dados por ano 
-<<<<<<< HEAD
 df_filtered_year_2020 = data[data['year'] == 2020]
 df_filtered_year_2000 = data[data['year'] == 2000]
-=======
-df_filtered = data[data['year'] == 2020]
->>>>>>> db2877bd4fe422c6790f9b4baf8f95ff3d59b886
 
 # Ordenando os valores de 'wind_electricity' em ordem decrescente
 df_sorted = df_filtered_year_2020.sort_values('wind_electricity', ascending=False)
@@ -117,12 +113,7 @@ create_column_data_source_top_10_filtered = ColumnDataSource(df_top_10_filtered)
 ## Grid de dispersão "RATIO BETWEEN WIND ELECTRICITY AND WIND ENERGY (BOTH PER CAPITA)" ##
 
 # Removendo linhas com valores NaN
-<<<<<<< HEAD
 df_filtered_year = df_filtered_year_2000.dropna(subset=['wind_energy_per_capita'])
-=======
-df_filtered_year = data[data['year'] == 2000]
-df_filtered_year = df_filtered_year.dropna(subset=['wind_energy_per_capita'])
->>>>>>> db2877bd4fe422c6790f9b4baf8f95ff3d59b886
 
 # Verificando se há linhas restantes após a remoção de NaN
 if df_filtered_year.empty:
@@ -144,12 +135,8 @@ create_column_data_source_df_filtered_year = ColumnDataSource(df_filtered_year)
 
 #Filtrando os dados para o país "Brazil" nos últimos 50 anos:
 df_filtered_country = data[(data['country'] == 'Brazil') & (data['year'] >= (data['year'].max() - 50))]
-<<<<<<< HEAD
 
 df_wind_graph_line = ColumnDataSource(df_filtered_country)
-=======
-wind_source = ColumnDataSource(df_filtered_country)
->>>>>>> db2877bd4fe422c6790f9b4baf8f95ff3d59b886
 
 
 
@@ -274,7 +261,3 @@ coal_rank_data = coal_rank_data[["country", "year", "coal_consumption"]]
 coal_rank_data = coal_rank_data.head(10)
 
 cds_coal_rank_data = ColumnDataSource(coal_rank_data)
-
-
-
-

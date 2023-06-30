@@ -52,9 +52,9 @@ year_slider = Slider(title="Ano", start=1965, end=2019, step=1, value=initial_ye
 year_slider.on_change('value', update_plot)
 
 # Combinando o gráfico e o slider em uma única figura
-layout = column(year_slider, rank)
+rank_slider = column(year_slider, rank)
 
 # Adicionando o layout à aplicação
-curdoc().add_root(layout)
+curdoc().add_root(rank_slider)
 
-show(layout)
+show(rank_slider)

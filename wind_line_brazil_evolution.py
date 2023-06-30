@@ -1,6 +1,6 @@
 from bokeh.models import Label, BoxAnnotation
 from bokeh.plotting import figure
-from cds_generator import wind_source
+from cds_generator import df_wind_graph_line
 
 #GRÁFICO DE LINHA CONSUMO PER CAPITA DE ELETRICIDADE DO VENTO PARA O BRASIL NOS ÚLTIMOS 50 ANOS
 
@@ -9,7 +9,7 @@ wind_line_brazil_evolution_graph = figure(title="      PER CAPITA CONSUMPTION OF
            x_axis_label='YEAR', y_axis_label='WIND ENERGY CONSUMPTION (kWh)', width=1200, height=600)
 
 # Plotando o gráfico de linha:
-wind_line_brazil_evolution_graph.line('year', 'wind_energy_per_capita', line_width=6, line_color="#8A5556", source=wind_source)
+wind_line_brazil_evolution_graph.line('year', 'wind_energy_per_capita', line_width=6, line_color="#8A5556", source=df_wind_graph_line)
 
 wind_line_brazil_evolution_graph.title.text_font = "Georgia"  #Alterando a fonte do título 
 wind_line_brazil_evolution_graph.title.text_font_size = "14pt"  #Alterando o tamanho da fonte do título 

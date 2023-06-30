@@ -1,16 +1,16 @@
 from bokeh.plotting import figure
-from cds_generator import df_top_10_filtered, data_organized
+from cds_generator import df_top_10_filtered, create_column_data_source_top_10_filtered
 
 # Criando a figura, plotando as barras e criando legendas
 wind_bar_top_countries_graph = figure(x_range=df_top_10_filtered['country'], height=600, width=1200,
            title="                               ELECTRICITY GENERATION FROM WIND BY COUNTRY IN 2020")
 
 #Criando a legenda 
-wind_bar_top_countries_graph.vbar(x="country", top='wind_electricity', legend_label = "Europe", fill_alpha = 1, line_color='none',color = "#D49495", width=0.01, source = data_organized)
-wind_bar_top_countries_graph.vbar(x="country", top='wind_electricity', legend_label = "Asia", fill_alpha = 1, line_color='none',color = "#8A5556", width=0.01, source = data_organized)
-wind_bar_top_countries_graph.vbar(x="country", top='wind_electricity', legend_label = "America", fill_alpha = 1, line_color='none', color = "#87864D", width=0.01, source = data_organized)
+wind_bar_top_countries_graph.vbar(x="country", top='wind_electricity', legend_label = "Europe", fill_alpha = 1, line_color='none',color = "#D49495", width=0.01, source = create_column_data_source_top_10_filtered)
+wind_bar_top_countries_graph.vbar(x="country", top='wind_electricity', legend_label = "Asia", fill_alpha = 1, line_color='none',color = "#8A5556", width=0.01, source = create_column_data_source_top_10_filtered)
+wind_bar_top_countries_graph.vbar(x="country", top='wind_electricity', legend_label = "America", fill_alpha = 1, line_color='none', color = "#87864D", width=0.01, source = create_column_data_source_top_10_filtered)
 
-wind_bar_top_countries_graph.vbar(x='country', top='wind_electricity', width=0.9, fill_color='color', line_color='none', source=data_organized)
+wind_bar_top_countries_graph.vbar(x='country', top='wind_electricity', width=0.9, fill_color='color', line_color='none', source=create_column_data_source_top_10_filtered)
 
 #Ajustando os títulos dos eixos
 wind_bar_top_countries_graph.xaxis.axis_label = "COUNTRY"

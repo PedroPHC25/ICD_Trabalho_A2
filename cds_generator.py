@@ -43,11 +43,11 @@ cds_oil_south_and_central_america = ColumnDataSource(data[data["country"] == "So
 
 
 # Filtrando dados por ano 
-df_filtered = data[data['year'] == 2020]
-df_filtered_year = data[data['year'] == 2000]
+df_filtered_year_2020 = data[data['year'] == 2020]
+df_filtered_year_2000 = data[data['year'] == 2000]
 
 # Ordenando os valores de 'wind_electricity' em ordem decrescente
-df_sorted = df_filtered.sort_values('wind_electricity', ascending=False)
+df_sorted = df_filtered_year_2020.sort_values('wind_electricity', ascending=False)
 
 # Selecionando os 10 maiores valores da coluna 'wind_electricity'
 df_top_10 = df_sorted.head(10)
@@ -68,7 +68,7 @@ colors = [color_dict[continent] for continent in df_top_10_filtered["continent"]
 df_top_10_filtered["color"] = colors
 
 # Criando ColumnDataSource
-data_organized = ColumnDataSource(df_top_10_filtered)
+create_column_data_source_top_10_filtered = ColumnDataSource(df_top_10_filtered)
 
 #Filtrando dados de cada país
 df_brazil = data[data['country'] == 'Brazil'] #Filtrando dados do Brasil
@@ -89,7 +89,7 @@ source_germany = ColumnDataSource(df_germany)
 source_kingdom = ColumnDataSource(df_kingdom)
 
 # Removendo linhas com valores NaN
-df_filtered_year = df_filtered_year.dropna(subset=['wind_energy_per_capita'])
+df_filtered_year = df_filtered_year_2000.dropna(subset=['wind_energy_per_capita'])
 
 # Verificando se há linhas restantes após a remoção de NaN
 if df_filtered_year.empty:
@@ -104,15 +104,12 @@ upper_limit = Q3 + 1.5 * IQR
 df_filtered_year = df_filtered_year[(df_filtered_year['wind_energy_per_capita'] >= lower_limit) & (df_filtered_year['wind_energy_per_capita'] <= upper_limit)]
 
 # Criando o ColumnDataSource
-source = ColumnDataSource(df_filtered_year)
-
-# Criando o ColumnDataSource
-source2 = ColumnDataSource(df_filtered_year)
+create_column_data_source_df_filtered_year = ColumnDataSource(df_filtered_year)
 
 #Filtrando os dados para o país "Brazil" nos últimos 50 anos:
 df_filtered_country = data[(data['country'] == 'Brazil') & (data['year'] >= (data['year'].max() - 50))]
 
-wind_source = ColumnDataSource(df_filtered_country)
+df_wind_graph_line = ColumnDataSource(df_filtered_country)
 
 
 

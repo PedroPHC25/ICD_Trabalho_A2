@@ -3,7 +3,8 @@ from bokeh.plotting import figure
 from bokeh.models import Slope
 from scipy import stats
 from bokeh.layouts import gridplot
-from cds_generator import df_filtered_year, source, source2
+from cds_generator import df_filtered_year_2000, create_column_data_source_df_filtered_year
+
 
 #GRÁFICO DE DISPERSÃO
 
@@ -14,7 +15,7 @@ wind_ratio_figure = figure(height=600, width=1200,
                                tooltips = [("País", "@country")])
 
 # Plotando o gráfico de dispersão
-wind_ratio_figure.scatter(x='wind_elec_per_capita', y='wind_energy_per_capita', source=source,
+wind_ratio_figure.scatter(x='wind_elec_per_capita', y='wind_energy_per_capita', source= create_column_data_source_df_filtered_year,
            fill_color="#D49495", size=10)
 
 # Ajustando rótulos e títulos dos eixos
@@ -22,10 +23,10 @@ wind_ratio_figure.xaxis.axis_label = "WIND ELECTRICITY PER CAPITA"
 wind_ratio_figure.yaxis.axis_label = "WIND ENERGY PER CAPITA"
 
 # Aplicando regressão linear usando scipy
-slope, intercept, r_value, p_value, std_err = stats.linregress(df_filtered_year['wind_elec_per_capita'], df_filtered_year['wind_energy_per_capita'])
+slope, intercept, r_value, p_value, std_err = stats.linregress(df_filtered_year_2000['wind_elec_per_capita'], df_filtered_year_2000['wind_energy_per_capita'])
 
 # Criando a reta de regressão
-x_line = np.array([df_filtered_year['wind_elec_per_capita'].min(), df_filtered_year['wind_elec_per_capita'].max()])
+x_line = np.array([df_filtered_year_2000['wind_elec_per_capita'].min(), df_filtered_year_2000['wind_elec_per_capita'].max()])
 y_line = slope * x_line + intercept
 regression_line = Slope(gradient=slope, y_intercept=intercept, line_color='#8A5556', line_width=2)
 
@@ -61,7 +62,9 @@ wind_ratio_figure_new_scale = figure(height=600, width=1200,
                                tooltips = [("País", "@country")])
 
 # Plotando o gráfico de dispersão
-wind_ratio_figure_new_scale.scatter(x='wind_elec_per_capita', y='wind_energy_per_capita', source=source2,
+wind_ratio_figure_new_scale.scatter(x='wind_elec_per_capita', 
+                                    y='wind_energy_per_capita', 
+                                    source = create_column_data_source_df_filtered_year,
            fill_color="#D49495", size=10)
 
 # Ajustando rótulos e títulos dos eixos
@@ -69,10 +72,10 @@ wind_ratio_figure_new_scale.xaxis.axis_label = "WIND ELECTRICITY PER CAPITA"
 wind_ratio_figure_new_scale.yaxis.axis_label = "WIND ENERGY PER CAPITA"
 
 # Aplicando regressão linear usando scipy
-slope, intercept, r_value, p_value, std_err = stats.linregress(df_filtered_year['wind_elec_per_capita'], df_filtered_year['wind_energy_per_capita'])
+slope, intercept, r_value, p_value, std_err = stats.linregress(df_filtered_year_2000['wind_elec_per_capita'], df_filtered_year_2000['wind_energy_per_capita'])
 
 # Criando a reta de regressão
-x_line = np.array([df_filtered_year['wind_elec_per_capita'].min(), df_filtered_year['wind_elec_per_capita'].max()])
+x_line = np.array([df_filtered_year_2000['wind_elec_per_capita'].min(), df_filtered_year_2000['wind_elec_per_capita'].max()])
 y_line = slope * x_line + intercept
 regression_line = Slope(gradient=slope, y_intercept=intercept, line_color='#8A5556', line_width=2)
 

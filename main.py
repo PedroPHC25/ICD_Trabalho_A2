@@ -3,29 +3,29 @@ from bokeh.io import output_file, save
 from bokeh.layouts import column
 
 # Pegando os textos e os gráficos dos arquivos de petróleo
-from graphics_oil.oil_text import oil_text_1, oil_text_2, oil_text_3, oil_text_4
-from graphics_oil.oil_line_production_year import graph_best_regions
-from graphics_oil.oil_scatter_population_consumption import graph_pop_consumption
-from graphics_oil.oil_grid_variation_year import oil_grid
+from oil_text import oil_text_1, oil_text_2, oil_text_3, oil_text_4
+from oil_line_production_year import graph_best_regions
+from oil_scatter_population_consumption import graph_pop_consumption
+from oil_grid_variation_year import oil_grid
 
 # Pegando os textos e os gráficos dos arquivos de energia eólica
-from graphics_wind.wind_text import wind_text_0, wind_text_1, wind_text_2, wind_text_3, wind_text_4
-from graphics_wind.wind_bar_top_countries import wind_bar_top_countries_graph
-from graphics_wind.wind_grid_comparison_six_countries import wind_grid_comparison_graph
-from graphics_wind.wind_grid_scatter_plot import wind_grid_scatter_plot
-from graphics_wind.wind_line_brazil_evolution import wind_line_brazil_evolution_graph
+from wind_text import wind_text_0, wind_text_1, wind_text_2, wind_text_3, wind_text_4
+from wind_bar_top_countries import wind_bar_top_countries_graph
+from wind_grid_comparison_six_countries import wind_grid_comparison_graph
+from wind_grid_scatter_plot import wind_grid_scatter_plot
+from wind_line_brazil_evolution import wind_line_brazil_evolution_graph
 
 # Pegando os textos e os gráficos dos arquivos de energia nuclear
-from graphics_nuclear.nuclear_text import nuclear_text_1, nuclear_text_2, nuclear_text_3, nuclear_text_4
-from graphics_nuclear.nuclear_bar_country_consumption import bar_rank_nuclear
-from graphics_nuclear.nuclear_line_year_electricity import plot
-from graphics_nuclear.nuclear_scatter_pib_energy import scatterplot_gdp_nuclear_share
+from nuclear_text import nuclear_text_1, nuclear_text_2, nuclear_text_3, nuclear_text_4
+from nuclear_bar_country_consumption import bar_rank_nuclear
+from nuclear_line_year_electricity import plot
+from nuclear_scatter_pib_energy import scatterplot_gdp_nuclear_share
 
 # Pegando os textos e os gráficos dos arquivos de energia nuclear
-from graphics_coal.coal_text import title_html, first_graph, text_grid_graph, title_stackedbar, text_stackedbar, title_rank, text_rank
-from graphics_coal.coal_stacked import coal_bar_stacked
-from graphics_coal.coal_rank import rank
-from graphics_coal.coal_continents import coal_grid
+from coal_text import title_html, first_graph, text_grid_graph, title_stackedbar, text_stackedbar, title_rank, text_rank
+from coal_stacked import coal_bar_stacked
+from coal_rank import rank
+from coal_continents import coal_grid
 
 
 # Gerando a página sobre petróleo

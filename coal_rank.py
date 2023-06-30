@@ -6,8 +6,6 @@ from cds_generator import data_countries, coal_rank_data, cds_coal_rank_data
 
 # Gráfico de barras interativo com os maiores consumidores de energia vinda do carvão
 
-output_file("rank_interativo.html")
-
 # Construção do gráfico de barras
 rank = figure(x_range = coal_rank_data["country"], tools = "")
 
@@ -59,4 +57,3 @@ layout = column(year_slider, rank)
 # Adicionando o layout à aplicação
 curdoc().add_root(layout)
 
-show(layout)

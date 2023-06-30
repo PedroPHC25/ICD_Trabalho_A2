@@ -1,10 +1,13 @@
 from bokeh.plotting import figure
 from bokeh.models import Label
 from cds_generator import cds_nuclear_gdp_share_country
+from nuclear_scatter_interactive import nuclear_interactive_chart
+from bokeh.layouts import gridplot, layout
+from bokeh.io import output_file, save, show
 
 
 # Gera o scatterplot
-scatterplot_gdp_nuclear_share = figure(width= 700, height = 700,
+scatterplot_gdp_nuclear_share = figure(width= 700, height = 650,
                                         tools = "box_zoom, pan, reset, save, wheel_zoom, hover",
                                         tooltips = [("País", "@z"),
                                                     ("Energia nuclear", "@y"),
@@ -57,4 +60,8 @@ scatterplot_gdp_nuclear_share.add_layout(Label(x = 2700, y = 35,
 
 # Fundo
 scatterplot_gdp_nuclear_share.background_fill_color = ("WhiteSmoke")
+
+grid_scatter_gdp_nuclear_share = gridplot([[scatterplot_gdp_nuclear_share, nuclear_interactive_chart]])
+
+# show(grid_scatter_gdp_nuclear_share)
 

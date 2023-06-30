@@ -19,12 +19,12 @@ from wind_line_brazil_evolution import wind_line_brazil_evolution_graph
 from nuclear_text import nuclear_text_1, nuclear_text_2, nuclear_text_3, nuclear_text_4
 from nuclear_bar_country_consumption import bar_rank_nuclear
 from nuclear_line_year_electricity import grid_line_nuclear_contries
-from nuclear_scatter_pib_energy import scatterplot_gdp_nuclear_share
+from nuclear_scatter_pib_energy import grid_scatter_gdp_nuclear_share
 
-# Pegando os textos e os gráficos dos arquivos de energia nuclear
+# Pegando os textos e os gráficos dos arquivos de carvão
 from coal_text import title_html, first_graph, text_grid_graph, title_stackedbar, text_stackedbar, title_rank, text_rank
 from coal_stacked import coal_bar_stacked
-from coal_rank import rank
+# from coal_rank import rank 
 from coal_continents import coal_grid
 
 
@@ -56,14 +56,14 @@ save(column(wind_text_0,
 output_file("html_pages/nuclear.html")
 
 save(column(nuclear_text_1, 
-            scatterplot_gdp_nuclear_share, 
+            grid_scatter_gdp_nuclear_share, 
             nuclear_text_2, 
             grid_line_nuclear_contries, 
             nuclear_text_3, 
             bar_rank_nuclear, 
             nuclear_text_4))
 
-#  Gerando a página sobre energia nuclear
+#  Gerando a página sobre carvão
 output_file("html_pages/coal.html")
 
 save(column(title_html,

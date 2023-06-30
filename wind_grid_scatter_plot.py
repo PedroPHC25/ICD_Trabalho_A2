@@ -1,7 +1,5 @@
 from bokeh.plotting import figure
 from cds_generator import wind_scatter_sem_outlier, wind_scatter_com_outlier, regression_line, regression_line_new_scale
-
-from bokeh.plotting import figure, show, output_file, save
 from bokeh.layouts import gridplot
 
 #GRÁFICO DE DISPERSÃO
@@ -96,12 +94,3 @@ wind_ratio_figure_new_scale.background_fill_color = "#D4D3A9"
 #Criando um grid com os gráficos
 wind_grid_scatter_plot = gridplot([[wind_ratio_figure_new_scale], 
                                    [wind_ratio_figure]])
-
-
-#Configurando a saída para um arquivo HTML
-output_file("wind_grid_scatter_plot.html")
-
-
-#Exibindo o grid
-show(wind_grid_scatter_plot)
-save(wind_grid_scatter_plot)

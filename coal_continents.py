@@ -1,6 +1,5 @@
-import pandas as pd
-from bokeh.plotting import figure, output_file, show
-from bokeh.models import ColumnDataSource, Range1d, HoverTool
+from bokeh.plotting import figure
+from bokeh.models import Range1d, HoverTool
 from bokeh.layouts import gridplot
 from bokeh.models.annotations import BoxAnnotation
 from cds_generator import coal_africa_data, coal_sc_am_data, coal_europa_data, coal_am_norte_data

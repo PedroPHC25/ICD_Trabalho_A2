@@ -18,7 +18,10 @@ Integrantes do grupo:
 
 
 Os arquivos estão organizados da seguinte forma:
-- Os arquivos .py contendo todos os códigos estão na pasta principal do repositório. Sem contar o "main" e o "cds_generator" (módulo que lê os dados e os converte em ColumnDataSources), os demais estão intitulados de acordo com a energia que abordam. São 4 arquivos por energia: os 3 gráficos e o "_text", que contém o código em HTML de cada página.
-- Dentro da pasta "html_pages", estão os arquivos HTML oficiais, que são referenciados na página principal do site do repositório.
-- Na pasta "images", estão imagens utilizadas na criação do HTML principal, denominado "index.html".
-- E na pasta "drafts", estão apenas rascunhos que fizemos durante todo o processo de elaboração do trabalho.
+- Na pasta principal do repositório, estão apenas a base de dados em formato csv, os arquivos .py `main` e `cds_generator` (leitor do csv e gerador dos ColumnDataSources) e a página principal do site `index.html`.
+- Os códigos geradores dos gráficos e dos textos estão divididos entre as pastas `graphics`, sendo cada pasta referente a um tipo de energia explorada. Cada pasta contém de 4 a 5 arquivos: um é o gerador das variáveis de texto para o HTML e os demais são os códigos das visualizações, com cada um armazenando o código de uma visualização.
+- Dentro da pasta `html_pages`, estão os arquivos HTML oficiais, que são referenciados na página principal do site do repositório.
+- Na pasta `images`, estão imagens utilizadas na criação do HTML principal.
+- E na pasta `drafts`, estão apenas rascunhos que fizemos durante todo o processo de elaboração do trabalho.
+
+Observação: Se for desejado executar o arquivo `main.py`, é necessário antes instalar a biblioteca `scipy` por meio do comando `pip install scipy`, pois ela foi utilizada em uma das visualizações.

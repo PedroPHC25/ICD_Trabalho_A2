@@ -201,15 +201,8 @@ data_america = ColumnDataSource(best_countries_nuclear[best_countries_nuclear["c
 
 ### CARVÃO ###
 
-# Selecionando um ano
-coal_rank_data = data_countries[data_countries["year"] == 1965]
 
-# Ordenando e selecionando as colunas desejadas
-coal_rank_data = coal_rank_data.sort_values("coal_consumption", ascending= False)
-coal_rank_data = coal_rank_data[["country", "year", "coal_consumption"]]
-coal_rank_data = coal_rank_data.head(10)
-
-cds_coal_rank_data = ColumnDataSource(coal_rank_data)
+## Grid de linhas "Comparação entre continentes da produção de energia a partir do carvão" ##
 
 # África
 # Filtrando apenas os dados da África
@@ -234,6 +227,8 @@ coal_am_norte_data = data[data["country"] == "North America"]
 coal_am_norte_data = ColumnDataSource(coal_am_norte_data)
 
 
+## Gráfico de barras empilhadas "Atividades a partir do carvão em 1995 (em TWh)"
+
 # Filtrando a base de dados
 coal_stacked_countries = data[data["year"] == 1995]
 coal_stacked_countries = coal_stacked_countries[["country", "coal_electricity","coal_production","coal_consumption"]]
@@ -255,3 +250,20 @@ coal_stacked_countries = coal_stacked_countries.loc[countries]
 coal_stacked_countries.reset_index(inplace= True)
 
 cds_coal_stacked = ColumnDataSource(coal_stacked_countries)
+
+
+## Gráfico de barras "Maiores consumidores de energia primária a partir do carvão (1965-2019)" ##
+
+# Selecionando um ano
+coal_rank_data = data_countries[data_countries["year"] == 1965]
+
+# Ordenando e selecionando as colunas desejadas
+coal_rank_data = coal_rank_data.sort_values("coal_consumption", ascending= False)
+coal_rank_data = coal_rank_data[["country", "year", "coal_consumption"]]
+coal_rank_data = coal_rank_data.head(10)
+
+cds_coal_rank_data = ColumnDataSource(coal_rank_data)
+
+
+
+

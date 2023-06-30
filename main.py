@@ -1,4 +1,4 @@
-# Importando as funções e métodos necessários
+# Importando as funções e métodos necessários 
 from bokeh.io import output_file, save
 from bokeh.layouts import column
 

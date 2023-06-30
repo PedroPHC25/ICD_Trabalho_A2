@@ -1,5 +1,5 @@
 import pandas as pd
-from bokeh.models import ColumnDataSource
+from bokeh.models import ColumnDataSource, Slope
 import numpy as np
 from scipy import stats
 

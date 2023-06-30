@@ -21,7 +21,7 @@ scatterplot_gdp_nuclear_share.toolbar.autohide = True #deixa a barra de ferramen
 scatterplot_gdp_nuclear_share.toolbar_location = "right" #define a localização barra de ferramentas
 
 # título
-scatterplot_gdp_nuclear_share.title.text = "Energia nuclear por PIB em 2000 - Gráfico interativo"
+scatterplot_gdp_nuclear_share.title.text = "Gráfico interativo"
 scatterplot_gdp_nuclear_share.title.text_color = "MidnightBlue"
 scatterplot_gdp_nuclear_share.title.text_font = "Arial"
 scatterplot_gdp_nuclear_share.title.text_font_size = "25px"

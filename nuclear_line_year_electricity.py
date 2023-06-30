@@ -309,5 +309,5 @@ glyph_renderer = renderer.glyph #pega o renderzador do glifo
 glyph_renderer.line_width= 3.5
 
 #Junção dos gráficos
-plot = gridplot([[line_year_nuclear_EUA, line_year_nuclear_France, line_year_nuclear_Japan],
+grid_line_nuclear_contries = gridplot([[line_year_nuclear_EUA, line_year_nuclear_France, line_year_nuclear_Japan],
                  [line_year_nuclear_Germany, line_year_nuclear_Russia, line_year_nuclear_SouthKorea]])

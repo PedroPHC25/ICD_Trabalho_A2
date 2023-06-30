@@ -18,7 +18,7 @@ from wind_line_brazil_evolution import wind_line_brazil_evolution_graph
 # Pegando os textos e os gráficos dos arquivos de energia nuclear
 from nuclear_text import nuclear_text_1, nuclear_text_2, nuclear_text_3, nuclear_text_4
 from nuclear_bar_country_consumption import bar_rank_nuclear
-from nuclear_line_year_electricity import plot
+from nuclear_line_year_electricity import grid_line_nuclear_contries
 from nuclear_scatter_pib_energy import scatterplot_gdp_nuclear_share
 
 # Pegando os textos e os gráficos dos arquivos de energia nuclear
@@ -58,7 +58,7 @@ output_file("html_pages/nuclear.html")
 save(column(nuclear_text_1, 
             scatterplot_gdp_nuclear_share, 
             nuclear_text_2, 
-            plot, 
+            grid_line_nuclear_contries, 
             nuclear_text_3, 
             bar_rank_nuclear, 
             nuclear_text_4))

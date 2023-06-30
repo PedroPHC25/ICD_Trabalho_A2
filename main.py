@@ -22,9 +22,8 @@ from nuclear_line_year_electricity import grid_line_nuclear_contries
 from nuclear_scatter_pib_energy import scatterplot_gdp_nuclear_share
 
 # Pegando os textos e os gráficos dos arquivos de energia nuclear
-from coal_text import title_html, first_graph, text_grid_graph, title_stackedbar, text_stackedbar, title_rank, text_rank
+from coal_text import title_html, first_graph, text_grid_graph, title_stackedbar, text_stackedbar, title_rank, text_rank, coal_gif
 from coal_stacked import coal_bar_stacked
-from coal_rank import rank
 from coal_continents import coal_grid
 
 
@@ -74,5 +73,5 @@ save(column(title_html,
             coal_bar_stacked, 
             text_stackedbar, 
             title_rank,
-            # rank,
+            coal_gif,
             text_rank))

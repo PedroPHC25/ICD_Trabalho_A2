@@ -3,14 +3,33 @@ from cds_generator import best_countries_nuclear, data_america, data_europe, dat
 
 # Gerando o gráfico de barras
 bar_rank_nuclear = figure(x_range = best_countries_nuclear["country"], 
-                          width= 800, height = 600, 
+                          width= 800, 
+                          height = 600, 
                           tools = "box_zoom, pan, reset, save, wheel_zoom",
                           tooltips = [("País", "@country"),
-                                      ("Consumo de Energia nuclear", "@nuclear_consumption")])
+                                      ("Consumo de Energia nuclear", "@nuclear_consumption{1,11}")])
 
-bar_rank_nuclear.vbar(x="country", top="nuclear_consumption", legend_label = "Europa", fill_alpha = 0.9, color = "color", width=0.5, source = data_europe)
-bar_rank_nuclear.vbar(x="country", top="nuclear_consumption", legend_label = "Ásia", fill_alpha = 0.8, color = "color", width=0.5, source = data_asia)
-bar_rank_nuclear.vbar(x="country", top="nuclear_consumption", legend_label = "América do norte", fill_alpha = 0.8, color = "color", width=0.5, source = data_america)
+bar_rank_nuclear.vbar(x="country", 
+                      top="nuclear_consumption", 
+                      legend_label = "Europa", 
+                      fill_alpha = 0.9, 
+                      color = "color", 
+                      width=0.5, 
+                      source = data_europe)
+bar_rank_nuclear.vbar(x="country", 
+                      top="nuclear_consumption", 
+                      legend_label = "Ásia", 
+                      fill_alpha = 0.8, 
+                      color = "color", 
+                      width=0.5, 
+                      source = data_asia)
+bar_rank_nuclear.vbar(x="country", 
+                      top="nuclear_consumption", 
+                      legend_label = "América do norte", 
+                      fill_alpha = 0.8, 
+                      color = "color", 
+                      width=0.5, 
+                      source = data_america)
 
 # ferramnetas
 bar_rank_nuclear.toolbar.logo = None #retira a logo

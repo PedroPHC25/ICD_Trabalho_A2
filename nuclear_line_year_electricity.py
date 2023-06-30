@@ -9,12 +9,16 @@ from cds_generator import cds_nuclear_eua, cds_nuclear_france, cds_nuclear_germa
 """EUA"""
 
 #Gera o gráfico de linha
-line_year_nuclear_EUA = figure(width= 400, height = 400, 
+line_year_nuclear_EUA = figure(width= 400, 
+                               height = 400, 
                                tools = "box_zoom, pan, reset, save, wheel_zoom",
                                tooltips = [("Ano", "@year"),
                                            ("Energia nuclear", "@nuclear_electricity")])
 
-renderer = line_year_nuclear_EUA.line(x = "year", y = "nuclear_electricity", source = cds_nuclear_eua, color="RoyalBlue")
+renderer = line_year_nuclear_EUA.line(x = "year", 
+                                      y = "nuclear_electricity", 
+                                      source = cds_nuclear_eua, 
+                                      color="RoyalBlue")
 
 # título
 line_year_nuclear_EUA.title.text = "Estados Unidos da América"
@@ -59,12 +63,16 @@ line_year_nuclear_EUA.ygrid.grid_line_alpha = 0.6  #transparencia do gride
 
 """France"""
 
-line_year_nuclear_France = figure(width= 400, height = 400, 
+line_year_nuclear_France = figure(width= 400, 
+                                  height = 400, 
                                   tools = "box_zoom, pan, reset, save, wheel_zoom",
                                   tooltips = [("Ano", "@year"),
                                               ("Energia nuclear", "@nuclear_electricity")])
 
-renderer = line_year_nuclear_France.line(x = "year", y = "nuclear_electricity", source = cds_nuclear_france, color="RoyalBlue")
+renderer = line_year_nuclear_France.line(x = "year", 
+                                         y = "nuclear_electricity", 
+                                         source = cds_nuclear_france, 
+                                         color="RoyalBlue")
 
 # título
 line_year_nuclear_France.title.text = "França"
@@ -106,12 +114,16 @@ glyph_renderer = renderer.glyph #pega o renderzador do glifo
 glyph_renderer.line_width= 3.5
 
 """Japan"""
-line_year_nuclear_Japan = figure(width= 400, height = 400, 
+line_year_nuclear_Japan = figure(width= 400, 
+                                 height = 400, 
                                  tools = "box_zoom, pan, reset, save, wheel_zoom",
                                  tooltips = [("Ano", "@year"),
                                              ("Energia nuclear", "@nuclear_electricity")])
 
-renderer = line_year_nuclear_Japan.line(x = "year", y = "nuclear_electricity", source = cds_nuclear_japan, color="RoyalBlue")
+renderer = line_year_nuclear_Japan.line(x = "year", 
+                                        y = "nuclear_electricity", 
+                                        source = cds_nuclear_japan, 
+                                        color="RoyalBlue")
 # título
 line_year_nuclear_Japan.title.text = "Japão"
 line_year_nuclear_Japan.title.text_color = "MidnightBlue"
@@ -151,22 +163,30 @@ glyph_renderer = renderer.glyph #pega o renderizador do glifo
 glyph_renderer.line_width= 3.5
 
 #Anotação
-box_annotation = BoxAnnotation(left = 2010, right = 2017, fill_color = "red", fill_alpha = 0.2)
+box_annotation = BoxAnnotation(left = 2010, 
+                               right = 2017, 
+                               fill_color = "red", 
+                               fill_alpha = 0.2)
 line_year_nuclear_Japan.add_layout(box_annotation)
 
-line_year_nuclear_Japan.add_layout(Label(x = 2009, y = 500,
-                                       text = "Em 2011 ocorre o acidente\n nuclear de Fukushima Daiichi",
-                                       text_align = "right",
-                                       text_font_size = "12px",
-                                       text_color = "red", 
-                                       text_alpha = 0.7))
+line_year_nuclear_Japan.add_layout(Label(x = 2009, 
+                                         y = 500,
+                                         text = "Em 2011 ocorre o acidente\n nuclear de Fukushima Daiichi",
+                                         text_align = "right",
+                                         text_font_size = "12px",
+                                         text_color = "red", 
+                                         text_alpha = 0.7))
 
 """Germany"""
-line_year_nuclear_Germany = figure(width= 400, height = 400, 
+line_year_nuclear_Germany = figure(width= 400, 
+                                   height = 400, 
                                    tools = "box_zoom, pan, reset, save, wheel_zoom",
                                    tooltips = [("Ano", "@year"),
                                                       ("Energia nuclear", "@nuclear_electricity")])
-renderer = line_year_nuclear_Germany.line(x = "year", y = "nuclear_electricity", source = cds_nuclear_germany, color="RoyalBlue")
+renderer = line_year_nuclear_Germany.line(x = "year", 
+                                          y = "nuclear_electricity", 
+                                          source = cds_nuclear_germany, 
+                                          color="RoyalBlue")
 # ferramnetas
 line_year_nuclear_Germany.toolbar.logo = None #retira a logo
 line_year_nuclear_Germany.toolbar.autohide = True #deixa o barra de ferramentas invisível
@@ -211,12 +231,16 @@ glyph_renderer = renderer.glyph #pega o renderizador do glifo
 glyph_renderer.line_width= 3.5
 
 """Russia"""
-line_year_nuclear_Russia = figure(width= 400, height = 400, 
+line_year_nuclear_Russia = figure(width= 400, 
+                                  height = 400, 
                                   tools = "box_zoom, pan, reset, save, wheel_zoom",
                                   tooltips = [("Ano", "@year"),
                                               ("Energia nuclear", "@nuclear_electricity")])
 
-renderer = line_year_nuclear_Russia.line(x = "year", y = "nuclear_electricity", source = cds_nuclear_russia, color="RoyalBlue")
+renderer = line_year_nuclear_Russia.line(x = "year", 
+                                         y = "nuclear_electricity", 
+                                         source = cds_nuclear_russia, 
+                                         color="RoyalBlue")
 
 # título
 line_year_nuclear_Russia.title.text = "Rússia"
@@ -261,12 +285,16 @@ glyph_renderer = renderer.glyph #pega o renderzador do glifo
 glyph_renderer.line_width= 3.5
 
 """South Korea"""
-line_year_nuclear_SouthKorea = figure(width= 400, height = 400, 
+line_year_nuclear_SouthKorea = figure(width= 400, 
+                                      height = 400, 
                                       tools = "box_zoom, pan, reset, save, wheel_zoom",
                                       tooltips = [("Ano", "@year"),
                                                   ("Energia nuclear", "@nuclear_electricity")])
 
-renderer = line_year_nuclear_SouthKorea.line(x = "year", y = "nuclear_electricity", source = cds_nuclear_korea, color="RoyalBlue")
+renderer = line_year_nuclear_SouthKorea.line(x = "year", 
+                                             y = "nuclear_electricity", 
+                                             source = cds_nuclear_korea, 
+                                             color="RoyalBlue")
 
 # título
 line_year_nuclear_SouthKorea.title.text = "Coreia do Sul"
@@ -309,5 +337,5 @@ glyph_renderer = renderer.glyph #pega o renderzador do glifo
 glyph_renderer.line_width= 3.5
 
 #Junção dos gráficos
-plot = gridplot([[line_year_nuclear_EUA, line_year_nuclear_France, line_year_nuclear_Japan],
-                 [line_year_nuclear_Germany, line_year_nuclear_Russia, line_year_nuclear_SouthKorea]])
+grid_line_nuclear_contries = gridplot([[line_year_nuclear_EUA, line_year_nuclear_France, line_year_nuclear_Japan],
+                                       [line_year_nuclear_Germany, line_year_nuclear_Russia, line_year_nuclear_SouthKorea]])

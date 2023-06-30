@@ -1,25 +1,40 @@
 from bokeh.plotting import figure
-from bokeh.models import Label
-from cds_generator import cds_nuclear_gdp_share_country
-from nuclear_scatter_interactive import nuclear_interactive_chart
-from bokeh.layouts import gridplot
+from bokeh.models import Range1d, Label, Div, Spinner, TextInput, Slider
+from bokeh.io import output_file, save, show
+import pandas as pd
+from bokeh.models import ColumnDataSource
+from bokeh.layouts import gridplot, layout
+from bokeh.models.annotations import Span, BoxAnnotation
 
 
+data = pd.read_csv("World Energy Consumption.csv")
+
+# Cria um data frame com todos os países excluindo a soma dos continentes e do mundo ("world"), que estão no dado original.
+data_countries = data.loc[data["country"] != "World"].dropna(subset = ["iso_code"])
+
+# Seleciona os dados do ano 2000
+data_nuclear_2000 = data_countries.loc[data_countries["year"]==2000]
+data_nuclear_2000["gdp_in_bi"] = data_nuclear_2000["gdp"]/ 1000000000
+
+output_file("nuclear_rascunho.html")
+
+# Cria um dicionário que corresponde x, y e z com as colunas 'gdp_in_bi', 'nuclear_share_energy' e 'country', do dataframe 'data_nuclear_2000'.
+# E gera o ColumnDataSource com esse dicionário.
+data_gdp_nuclear = {"x": data_nuclear_2000["gdp_in_bi"], 
+                    "y": data_nuclear_2000["nuclear_share_energy"], 
+                    "z": data_nuclear_2000["country"]}
+
+cds_nuclear_gdp_share_country = data_source = ColumnDataSource(data=data_gdp_nuclear)
 
 # Gera o scatterplot
-
-scatterplot_gdp_nuclear_share = figure(width= 700, height = 650,
+scatterplot_gdp_nuclear_share = figure(width= 700, height = 700,
                                         tools = "box_zoom, pan, reset, save, wheel_zoom, hover",
                                         tooltips = [("País", "@z"),
                                                     ("Energia nuclear", "@y"),
                                                     ("PIB", "@x")]) 
 
-scatterplot_gdp_nuclear_share.circle(x = "x", 
-                                     y = "y", 
-                                     size = "y", 
-                                     color = "MidnightBlue", 
-                                     alpha = 0.5, 
-                                     source = cds_nuclear_gdp_share_country)
+points = scatterplot_gdp_nuclear_share.circle(x = "x", y = "y",color = "DeepPink", alpha = 0.5,  size = "y", source = cds_nuclear_gdp_share_country) 
+
 
 
 # Ferramentas pretendidas
@@ -57,17 +72,28 @@ scatterplot_gdp_nuclear_share.yaxis.axis_label_text_font_size = "20px" #Tamanho 
 scatterplot_gdp_nuclear_share.xaxis[0].formatter.use_scientific = False #Retirar o modo de escala em notação científica
 
 # Anotação
-scatterplot_gdp_nuclear_share.add_layout(Label(x = 2700, 
-                                               y = 35,
-                                               text = "França foi o país em que a energia nuclear \nteve maior participação no consumo de \neletricidade no ano 2000",
-                                               text_font_size = "14px",
-                                               text_color = "MidnightBlue", 
-                                               text_alpha = 0.7))
+scatterplot_gdp_nuclear_share.add_layout(Label(x = 2700, y = 35,
+                                       text = "França foi o país em que a energia nuclear \nteve maior participação no consumo de \neletricidade no ano 2000",
+                                       text_font_size = "14px",
+                                       text_color = "MidnightBlue", 
+                                       text_alpha = 0.7))
 
 # Fundo
 scatterplot_gdp_nuclear_share.background_fill_color = ("WhiteSmoke")
 
-grid_scatter_gdp_nuclear_share = gridplot([[scatterplot_gdp_nuclear_share, nuclear_interactive_chart]])
+
+#Interatividade
+div = Div()
+slider = Slider(start = 0, end =50,
+                value= 5, step = 0.5,
+                title="Tamanho dos círculos")
+slider.js_link("value", points.glyph, "size")
+
+textinput = TextInput(value = points.glyph.fill_color, width = 200)
+textinput.js_link("value", points.glyph, "fill_color")
+
+nuclear_interactive_chart= layout([[div, slider],[textinput],[scatterplot_gdp_nuclear_share] ])
 
 
+# show(nuclear_interactive_chart)
 

@@ -31,7 +31,7 @@ wind_ratio_figure.add_layout(regression_line)
 wind_ratio_figure.title.text_font = "Georgia"
 wind_ratio_figure.title.text_font_size = "14pt"
 wind_ratio_figure.title.text_color = "#8A5556"
-wind_ratio_figure.title.text_align = "center"
+wind_ratio_figure.title.align = "center"
 wind_ratio_figure.title.text_baseline = "middle"
 
 wind_ratio_figure.xaxis.axis_label_text_font = "Georgia"
@@ -74,7 +74,7 @@ wind_ratio_figure_new_scale.add_layout(regression_line_new_scale)
 wind_ratio_figure_new_scale.title.text_font = "Georgia"
 wind_ratio_figure_new_scale.title.text_font_size = "14pt"
 wind_ratio_figure_new_scale.title.text_color = "#8A5556"
-wind_ratio_figure_new_scale.title.text_align = "center"
+wind_ratio_figure_new_scale.title.align = "center"
 wind_ratio_figure_new_scale.title.text_baseline = "middle"
 
 
@@ -94,7 +94,8 @@ wind_ratio_figure_new_scale.background_fill_color = "#D4D3A9"
 
 
 #Criando um grid com os gráficos
-wind_grid_scatter_plot = gridplot([[wind_ratio_figure_new_scale], [wind_ratio_figure]])
+wind_grid_scatter_plot = gridplot([[wind_ratio_figure_new_scale], 
+                                   [wind_ratio_figure]])
 
 
 #Configurando a saída para um arquivo HTML

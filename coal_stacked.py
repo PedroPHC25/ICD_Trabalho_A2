@@ -1,6 +1,5 @@
-from bokeh.models import ColumnDataSource, HoverTool, Label
-from bokeh.plotting import figure, output_file, show
-import pandas as pd
+from bokeh.models import HoverTool, Label
+from bokeh.plotting import figure
 from cds_generator import cds_coal_stacked, coal_stacked_countries
 
 

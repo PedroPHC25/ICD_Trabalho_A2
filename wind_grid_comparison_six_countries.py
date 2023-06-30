@@ -9,9 +9,10 @@ from cds_generator import df_brazil, df_argentina, df_china, df_germany, df_king
 
 #Criando a figura:
 grid_brazil_india = figure(title="ANNUAL PERCENTAGE CHANGE IN WIND CONSUMPTION", 
-            x_axis_label='YEAR', 
-           y_axis_label='WIND ENERGY PER CAPITA',
-           width=450, height=300)
+                           x_axis_label='YEAR', 
+                           y_axis_label='WIND ENERGY PER CAPITA',
+                           width=450, 
+                           height=300)
 
 # Criando a origem de dados para os dados do Brasil
 source_brazil = ColumnDataSource(df_brazil)
@@ -20,8 +21,18 @@ source_brazil = ColumnDataSource(df_brazil)
 source_india = ColumnDataSource(df_india)
 
 # Plotando os gráficos de linha para cada país, usando as origens de dados
-grid_brazil_india.line('year', 'wind_cons_change_pct', line_width=6, color='#D49495', legend_label='Brazil', source=source_brazil)
-grid_brazil_india.line('year', 'wind_cons_change_pct', line_width=4, color='#8A5556', legend_label='India', source=source_india)
+grid_brazil_india.line('year', 
+                       'wind_cons_change_pct', 
+                       line_width=6, 
+                       color='#D49495', 
+                       legend_label='Brazil', 
+                       source=source_brazil)
+grid_brazil_india.line('year', 
+                       'wind_cons_change_pct', 
+                       line_width=4, 
+                       color='#8A5556', 
+                       legend_label='India', 
+                       source=source_india)
 
 #Ajustando a legenda:
 grid_brazil_india.legend.location = "top_right"
@@ -50,9 +61,10 @@ grid_brazil_india.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo d
 
 #Criando a figura:
 grid_brazil_argentina = figure(title="ANNUAL PERCENTAGE CHANGE IN WIND CONSUMPTION", 
-            x_axis_label='YEAR', 
-           y_axis_label='WIND ENERGY PER CAPITA',
-          width=450, height=300)
+                               x_axis_label='YEAR', 
+                               y_axis_label='WIND ENERGY PER CAPITA',
+                               width=450, 
+                               height=300)
 
 # Criando a origem de dados para os dados do Brasil
 source_brazil = ColumnDataSource(df_brazil)
@@ -61,8 +73,18 @@ source_brazil = ColumnDataSource(df_brazil)
 source_argentina = ColumnDataSource(df_argentina)
 
 # Plotando os gráficos de linha para cada país, usando as origens de dados
-grid_brazil_argentina.line('year', 'wind_cons_change_pct', line_width=6, color='#D49495', legend_label='Brazil', source=source_brazil)
-grid_brazil_argentina.line('year', 'wind_cons_change_pct', line_width=4, color='#8A5556', legend_label='Argentina', source=source_argentina)
+grid_brazil_argentina.line('year', 
+                           'wind_cons_change_pct', 
+                           line_width=6, 
+                           color='#D49495', 
+                           legend_label='Brazil', 
+                           source=source_brazil)
+grid_brazil_argentina.line('year', 
+                           'wind_cons_change_pct', 
+                           line_width=4, 
+                           color='#8A5556', 
+                           legend_label='Argentina', 
+                           source=source_argentina)
 
 #Ajustando a legenda:
 grid_brazil_argentina.legend.location = "top_right"
@@ -92,9 +114,10 @@ grid_brazil_argentina.background_fill_color = "#D4D3A9"  #Alterando a cor de fun
 
 #Criando a figura:
 grid_brazil_china = figure(title="ANNUAL PERCENTAGE CHANGE IN WIND CONSUMPTION", 
-            x_axis_label='YEAR', 
-           y_axis_label='WIND ENERGY PER CAPITA',
-           width=450, height=300)
+                           x_axis_label='YEAR', 
+                           y_axis_label='WIND ENERGY PER CAPITA',
+                           width=450, 
+                           height=300)
 
 # Criando a origem de dados para os dados do Brasil
 source_brazil = ColumnDataSource(df_brazil)
@@ -103,8 +126,18 @@ source_brazil = ColumnDataSource(df_brazil)
 source_china = ColumnDataSource(df_china)
 
 # Plotando os gráficos de linha para cada país, usando as origens de dados
-grid_brazil_china.line('year', 'wind_cons_change_pct', line_width=6, color='#D49495', legend_label='Brazil', source=source_brazil)
-grid_brazil_china.line('year', 'wind_cons_change_pct', line_width=4, color='#8A5556', legend_label='China', source=source_china)
+grid_brazil_china.line('year', 
+                       'wind_cons_change_pct', 
+                       line_width=6, 
+                       color='#D49495', 
+                       legend_label='Brazil', 
+                       source=source_brazil)
+grid_brazil_china.line('year', 
+                       'wind_cons_change_pct', 
+                       line_width=4, 
+                       color='#8A5556', 
+                       legend_label='China', 
+                       source=source_china)
 
 #Ajustando a legenda:
 grid_brazil_china.legend.location = "top_right"
@@ -132,9 +165,10 @@ grid_brazil_china.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo d
 
 #Criando a figura:
 grid_brazil_united_states = figure(title="ANNUAL PERCENTAGE CHANGE IN WIND CONSUMPTION", 
-            x_axis_label='YEAR', 
-           y_axis_label='WIND ENERGY PER CAPITA',
-           width=450, height=300)
+                                   x_axis_label='YEAR', 
+                                   y_axis_label='WIND ENERGY PER CAPITA',
+                                   width=450, 
+                                   height=300)
 
 # Criando a origem de dados para os dados do Brasil
 source_brazil = ColumnDataSource(df_brazil)
@@ -143,8 +177,18 @@ source_brazil = ColumnDataSource(df_brazil)
 source_united = ColumnDataSource(df_united)
 
 # Plotando os gráficos de linha para cada país, usando as origens de dados
-grid_brazil_united_states.line('year', 'wind_cons_change_pct', line_width=6, color='#D49495', legend_label='Brazil', source=source_brazil)
-grid_brazil_united_states.line('year', 'wind_cons_change_pct', line_width=4, color='#8A5556', legend_label='United States', source=source_united)
+grid_brazil_united_states.line('year', 
+                               'wind_cons_change_pct', 
+                               line_width=6, 
+                               color='#D49495', 
+                               legend_label='Brazil', 
+                               source=source_brazil)
+grid_brazil_united_states.line('year', 
+                               'wind_cons_change_pct', 
+                               line_width=4, 
+                               color='#8A5556', 
+                               legend_label='United States', 
+                               source=source_united)
 
 # Configurando a escala do eixo y
 grid_brazil_united_states.y_range.start = 0
@@ -176,9 +220,10 @@ grid_brazil_united_states.background_fill_color = "#D4D3A9"  #Alterando a cor de
 
 #Criando a figura:
 grid_brazil_germany = figure(title="ANNUAL PERCENTAGE CHANGE IN WIND CONSUMPTION", 
-            x_axis_label='YEAR', 
-           y_axis_label='WIND ENERGY PER CAPITA',
-           width=450, height=300)
+                             x_axis_label='YEAR', 
+                             y_axis_label='WIND ENERGY PER CAPITA',
+                             width=450, 
+                             height=300)
 
 # Criando a origem de dados para os dados do Brasil
 source_brazil = ColumnDataSource(df_brazil)
@@ -187,8 +232,18 @@ source_brazil = ColumnDataSource(df_brazil)
 source_germany = ColumnDataSource(df_germany)
 
 # Plotando os gráficos de linha para cada país, usando as origens de dados
-grid_brazil_germany.line('year', 'wind_cons_change_pct', line_width=6, color='#D49495', legend_label='Brazil', source=source_brazil)
-grid_brazil_germany.line('year', 'wind_cons_change_pct', line_width=4, color='#8A5556', legend_label='Germany', source=source_germany)
+grid_brazil_germany.line('year', 
+                         'wind_cons_change_pct', 
+                         line_width=6, 
+                         color='#D49495', 
+                         legend_label='Brazil', 
+                         source=source_brazil)
+grid_brazil_germany.line('year', 
+                         'wind_cons_change_pct', 
+                         line_width=4, 
+                         color='#8A5556', 
+                         legend_label='Germany', 
+                         source=source_germany)
 
 #Ajustando a legenda:
 grid_brazil_germany.legend.location = "top_right"
@@ -218,9 +273,10 @@ grid_brazil_germany.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo
 
 #Criando a figura:
 grid_brazil_united_kingdom = figure(title="ANNUAL PERCENTAGE CHANGE IN WIND CONSUMPTION", 
-            x_axis_label='YEAR', 
-           y_axis_label='WIND ENERGY PER CAPITA',
-           width=450, height=300)
+                                    x_axis_label='YEAR', 
+                                    y_axis_label='WIND ENERGY PER CAPITA',
+                                    width=450, 
+                                    height=300)
 
 # Criando a origem de dados para os dados do Brasil
 source_brazil = ColumnDataSource(df_brazil)
@@ -229,8 +285,18 @@ source_brazil = ColumnDataSource(df_brazil)
 source_kingdom = ColumnDataSource(df_kingdom)
 
 # Plotando os gráficos de linha para cada país, usando as origens de dados
-grid_brazil_united_kingdom.line('year', 'wind_cons_change_pct', line_width=6, color='#D49495', legend_label='Brazil', source=source_brazil)
-grid_brazil_united_kingdom.line('year', 'wind_cons_change_pct', line_width=4, color='#8A5556', legend_label='Reino Unido', source=source_kingdom)
+grid_brazil_united_kingdom.line('year', 
+                                'wind_cons_change_pct', 
+                                line_width=6, 
+                                color='#D49495', 
+                                legend_label='Brazil', 
+                                source=source_brazil)
+grid_brazil_united_kingdom.line('year', 
+                                'wind_cons_change_pct', 
+                                line_width=4, 
+                                color='#8A5556', 
+                                legend_label='Reino Unido', 
+                                source=source_kingdom)
 
 #Ajustando a legenda:
 grid_brazil_united_kingdom.legend.location = "top_right"
@@ -255,4 +321,5 @@ grid_brazil_united_kingdom.yaxis.major_label_text_font_style = "bold"  #Colocand
 grid_brazil_united_kingdom.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico
 
 #Criando um grid com os gráficos
-wind_grid_comparison_graph = gridplot([[grid_brazil_india, grid_brazil_argentina, grid_brazil_china], [grid_brazil_united_states, grid_brazil_germany, grid_brazil_united_kingdom]])
+wind_grid_comparison_graph = gridplot([[grid_brazil_india, grid_brazil_argentina, grid_brazil_china], 
+                                       [grid_brazil_united_states, grid_brazil_germany, grid_brazil_united_kingdom]])

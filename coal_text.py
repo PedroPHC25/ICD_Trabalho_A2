@@ -35,6 +35,8 @@ text_stackedbar = Div(text ="""<p style="text-align:justify; font-size:16px;">Es
 
 title_rank = Div(text ="""<center><h2>Maiores consumidores de energia primária a partir do carvão (1965-2019)</h2></center>""")
 
+coal_gif = Div(text = """<img src = ../images/coal_rank_slider.gif> """)
+
 text_rank = Div(text ="""<p style="text-align:justify; font-size:16px;">Nesse gráfico foi usado o Bokeh Server para permitr a interatividade do gráfico entre os anos disponíveis. A mensagem dessa visualização é um rank, assim as barras verticais foram escolhidas para representar os montantes de consumo.</p>
 
 <p style="text-align:justify; font-size:16px;">Para esse gráfico precisei filtrar os maiores consumidores em um ano e depois foi definida uma função que atualiza o ano exibido no gráfico de acordo com o "slider". Além do slider, também está disponível o "hover" que detalha o dado da barra respectiva.</p>

@@ -290,7 +290,3 @@ coal_rank_data = coal_rank_data[["country", "year", "coal_consumption"]]
 coal_rank_data = coal_rank_data.head(10)
 
 cds_coal_rank_data = ColumnDataSource(coal_rank_data)
-
-
-
-

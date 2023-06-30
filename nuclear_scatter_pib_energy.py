@@ -8,7 +8,7 @@ from bokeh.layouts import gridplot
 
 # Gera o scatterplot
 
-scatterplot_gdp_nuclear_share = figure(width= 700, height = 650,
+scatterplot_gdp_nuclear_share = figure(width= 600, height = 600,
                                         tools = "box_zoom, pan, reset, save, wheel_zoom, hover",
                                         tooltips = [("País", "@z"),
                                                     ("Energia nuclear", "@y"),

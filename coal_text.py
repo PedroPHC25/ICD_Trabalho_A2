@@ -6,8 +6,8 @@ title_html = Div(text = """<html>
     <head>
         <title>Análise das atividades energéticas a partir do carvão</title>
     </head>
-    <body>
      <center><h1>Análise das atividades energéticas a partir do carvão</h1></center>
+    <body>
     """)
             
 first_graph = Div(text =""" <center><h2>Comparação entre continentes da produção de energia a partir do carvão</h2></center>""")
@@ -20,7 +20,7 @@ text_grid_graph = Div(text ="""<p style="text-align:justify; font-size:16px;">O 
     <p style="text-align:justify; font-size:16px;">Com a base de dados original tive que filtrar apenas os países que desejava e para cada um o seu respectivo gráfico de linha, após todos confeccionados foram arranjados em um grid 2x2.</p>
     <p style="text-align:justify; font-size:16px;">Os continentes estão representados com cores diferentes e além do título também está visível uma legenda. Nesse gráfico a interatividade está presente nas linhas através da ferramenta "hover", que detalha o dado pressionado.</p>
 
-    <p style="text-align:justify; font-size:16px;">Os continentes da direita apresentam um aumento constante e sútil na produção dos últimos anos, com suas economias emergentes e em desenvolvimento aumentar o uso de carvão é uma maneira de ajudar a impulsionar seu crescimento econômico, mesmo quando adicionam mais fontes renováveis. Já à esquerda, a Europa e América do Norte diminuem suas produções em diferentes ritmos, a demanda por carvão cai nas economias avançadas à medida que as energias renováveis o substituem cada vez mais pela geração de eletricidade.</p>
+    <p style="text-align:justify; font-size:16px;">Os continentes da direita apresentam um aumento constante e sútil na produção dos últimos anos, com suas economias emergentes e em desenvolvimento, aumentar o uso de carvão é uma maneira de ajudar a impulsionar seu crescimento econômico, mesmo quando adicionam mais fontes renováveis. Já à esquerda, a Europa e América do Norte diminuem suas produções em diferentes ritmos, isso ocorre pois a demanda por carvão cai nas economias avançadas à medida que as energias renováveis o substituem cada vez mais pela geração de eletricidade.</p>
     """)
 
 title_stackedbar = Div(text ="""   <center><h2>Atividades do carvão</h2></center>""")
@@ -30,14 +30,15 @@ text_stackedbar = Div(text ="""<p style="text-align:justify; font-size:16px;">Es
 <p style="text-align:justify; font-size:16px;">Para a escolha dos países busquei aqueles que tinham as 3 categorias com dados disponíveis e relevantes, a partir disso manipulei a base de dados para ter apenas esses certos países, em seguida escolhi as cores para representar as camadas das barras.</p>
 <p style="text-align:justify; font-size:16px;">Para montar o gráfico decidi deixar as barras na horizontal, o eixo vertical tem os países e o eixo horizontal o acumulativo das variáveis. Nessa visualização a interatividade está presente na legenda, ao ser pressionada oculta a camada desejada, e com "hover", que mostra a categoria da barra e o montante no respectivo país.</p>
     
-<p style="text-align:justify; font-size:16px;">Analisando o gráfico vemos uma alta participação da China em todos aspectos. Entre 1970 e 1990, o consumo de energia aumentou 208% na China, em comparação com um aumento médio de 28% nos países desenvolvidos durante o mesmo período.Mesmo que a China tenha melhorado a eficiência de todas as suas usinas elétricas, grande parte do carvão queimado na China é consumido em pequenas caldeiras industriais e municipais e em milhões de fogões e aquecedores domésticos, para os quais não há combustíveis alternativos atualmente disponíveis.</p>
+<p style="text-align:justify; font-size:16px;">Analisando o gráfico vemos uma alta participação da China em todos aspectos. Entre 1970 e 1990, o consumo de energia aumentou 208% na China, em comparação com um aumento médio de 28% nos países desenvolvidos durante o mesmo período. Mesmo que a China tenha melhorado a eficiência de todas as suas usinas elétricas, grande parte do carvão queimado na China é consumido em pequenas caldeiras industriais e municipais e em milhões de fogões e aquecedores domésticos, para os quais não há combustíveis alternativos atualmente disponíveis.</p>
 """)
 
 title_rank = Div(text ="""<center><h2>Maiores consumidores de energia primária a partir do carvão (1965-2019)</h2></center>""")
 
 coal_gif = Div(text = """<img src = ../images/coal_rank_slider.gif> """)
 
-text_rank = Div(text ="""<p style="text-align:justify; font-size:16px;">Nesse gráfico foi usado o Bokeh Server para permitr a interatividade do gráfico entre os anos disponíveis. A mensagem dessa visualização é um rank, assim as barras verticais foram escolhidas para representar os montantes de consumo.</p>
+text_rank = Div(text ="""<p style="text-align:justify; font-size:16px;">Nesse gráfico foi usado o Bokeh Server para permitr a interatividade do gráfico entre os anos disponíveis, mas infelizmente não foi possível a implementação do gráfico em si, por isso acima está exibido um clipe curto do funcionamento em um servidor local. Para visualizar este aplicativo no modo interativo, você precisa configurar um servidor Bokeh local então abrir uma janela de linha de comando em seu diretório atual e execute: <pre><code><mark style = "background-color: silver">bokeh serve --show coal_rank.py</mark></code></pre></p>
+<p style="text-align:justify; font-size:16px;">A mensagem dessa visualização é um ranking, assim as barras verticais foram escolhidas para representar os montantes de consumo.</p>
 
 <p style="text-align:justify; font-size:16px;">Para esse gráfico precisei filtrar os maiores consumidores em um ano e depois foi definida uma função que atualiza o ano exibido no gráfico de acordo com o "slider". Além do slider, também está disponível o "hover" que detalha o dado da barra respectiva.</p>
 

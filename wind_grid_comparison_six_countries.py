@@ -55,7 +55,7 @@ grid_brazil_india.yaxis.axis_label_text_color = "#8A5556"  #Alterando a cor do t
 grid_brazil_india.yaxis.major_label_text_font_style = "bold"  #Colocando em negrito os rótulos das escalas do eixo y
 
 grid_brazil_india.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico
-
+grid_brazil_india.axis.axis_label_text_font_style = "normal"
 
 #2: BRASIL E ARGENTINA
 
@@ -108,7 +108,7 @@ grid_brazil_argentina.yaxis.axis_label_text_color = "#8A5556"  #Alterando a cor 
 grid_brazil_argentina.yaxis.major_label_text_font_style = "bold"  #Colocando em negrito os rótulos das escalas do eixo y
 
 grid_brazil_argentina.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico
-
+grid_brazil_argentina.axis.axis_label_text_font_style = "normal"
 
 #3: BRASIL E CHINA
 
@@ -160,6 +160,7 @@ grid_brazil_china.yaxis.axis_label_text_color = "#8A5556"  #Alterando a cor do t
 grid_brazil_china.yaxis.major_label_text_font_style = "bold"  #Colocando em negrito os rótulos das escalas do eixo y
 
 grid_brazil_china.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico
+grid_brazil_china.axis.axis_label_text_font_style = "normal"
 
 #4: Brasil e Estados Unidos 
 
@@ -215,6 +216,7 @@ grid_brazil_united_states.yaxis.axis_label_text_color = "#8A5556"  #Alterando a 
 grid_brazil_united_states.yaxis.major_label_text_font_style = "bold"  #Colocando em negrito os rótulos das escalas do eixo y
 
 grid_brazil_united_states.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico
+grid_brazil_united_states.axis.axis_label_text_font_style = "normal"
 
 #5: BRASIL E ALEMANHA
 
@@ -267,6 +269,7 @@ grid_brazil_germany.yaxis.axis_label_text_color = "#8A5556"  #Alterando a cor do
 grid_brazil_germany.yaxis.major_label_text_font_style = "bold"  #Colocando em negrito os rótulos das escalas do eixo y
 
 grid_brazil_germany.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico
+grid_brazil_germany.axis.axis_label_text_font_style = "normal"
 
 #6: Brasil e Reino Unido
 
@@ -319,6 +322,7 @@ grid_brazil_united_kingdom.yaxis.axis_label_text_color = "#8A5556"  #Alterando a
 grid_brazil_united_kingdom.yaxis.major_label_text_font_style = "bold"  #Colocando em negrito os rótulos das escalas do eixo y
 
 grid_brazil_united_kingdom.background_fill_color = "#D4D3A9"  #Alterando a cor de fundo do gráfico
+grid_brazil_united_kingdom.axis.axis_label_text_font_style = "normal"
 
 #Criando um grid com os gráficos
 wind_grid_comparison_graph = gridplot([[grid_brazil_india, grid_brazil_argentina, grid_brazil_china], 

@@ -31,37 +31,37 @@ from coal_continents import coal_grid
 # Gerando a página sobre petróleo
 output_file("html_pages/oil.html")
 
-# save(column(oil_text_1, 
-#             graph_best_regions, 
-#             oil_text_2, 
-#             graph_pop_consumption, 
-#             oil_text_3, 
-#             oil_grid, 
-#             oil_text_4))
+save(column(oil_text_1, 
+            graph_best_regions, 
+            oil_text_2, 
+            graph_pop_consumption, 
+            oil_text_3, 
+            oil_grid, 
+            oil_text_4))
 
 # Gerando a página sobre energia eólica
 output_file("html_pages/wind.html")
 
-# save(column(wind_text_0, 
-#             wind_grid_comparison_graph,
-#             wind_text_1,
-#             wind_bar_top_countries_graph, 
-#             wind_text_2, 
-#             wind_grid_scatter_plot, 
-#             wind_text_3, 
-#             wind_line_brazil_evolution_graph, 
-#             wind_text_4))
+save(column(wind_text_0, 
+            wind_grid_comparison_graph,
+            wind_text_1,
+            wind_bar_top_countries_graph, 
+            wind_text_2, 
+            wind_grid_scatter_plot, 
+            wind_text_3, 
+            wind_line_brazil_evolution_graph, 
+            wind_text_4))
 
 #  Gerando a página sobre energia nuclear
 output_file("html_pages/nuclear.html")
 
-# save(column(nuclear_text_1, 
-            # scatterplot_gdp_nuclear_share, 
-            # nuclear_text_2, 
-            # plot, 
-            # nuclear_text_3, 
-            # bar_rank_nuclear, 
-            # nuclear_text_4))
+save(column(nuclear_text_1, 
+            scatterplot_gdp_nuclear_share, 
+            nuclear_text_2, 
+            plot, 
+            nuclear_text_3, 
+            bar_rank_nuclear, 
+            nuclear_text_4))
 
 #  Gerando a página sobre energia nuclear
 output_file("html_pages/coal.html")

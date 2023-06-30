@@ -1,4 +1,4 @@
-from bokeh.plotting import figure, output_file, show, curdoc
+from bokeh.plotting import figure, curdoc
 import pandas as pd
 from bokeh.models import ColumnDataSource, Slider, HoverTool, Range1d
 from bokeh.layouts import column
